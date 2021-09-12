@@ -3,6 +3,7 @@ import { Configuration, HotModuleReplacementPlugin } from "webpack";
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
+import { postcss } from "postcss-flexbugs-fixes";
 
 const config: Configuration = {
     mode: 'development',
