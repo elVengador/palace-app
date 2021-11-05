@@ -1,6 +1,12 @@
 import React from 'react';
 import './button.css';
 
+const COLORS = {
+    red: '#f00',
+    green: '#0f0',
+    blue: '#00f',
+}
+
 interface ButtonProps {
     /**
      * Is this the principal call to action on the page?
@@ -9,7 +15,7 @@ interface ButtonProps {
     /**
      * What background color to use
      */
-    backgroundColor?: string;
+    backgroundColor?: 'red' | 'green' | 'blue';
     /**
      * How large should the button be?
      */
@@ -30,7 +36,7 @@ interface ButtonProps {
 export const Button = ({
     primary = false,
     size = 'medium',
-    backgroundColor,
+    backgroundColor = 'blue',
     label,
     ...props
 }: ButtonProps) => {
@@ -39,7 +45,7 @@ export const Button = ({
         <button
             type="button"
             className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
-            style={{ backgroundColor }}
+            style={{ backgroundColor: COLORS[backgroundColor] }}
             {...props}
         >
             {label}

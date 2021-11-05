@@ -49,7 +49,6 @@ export const Tmp = Template.bind({})
 Tmp.args = {
     size: 'small',
     label: 'Tmp',
-    backgroundColor: 'red'
 }
 Tmp.parameters = {
     backgroundColor: {
