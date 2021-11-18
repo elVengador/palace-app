@@ -1,15 +1,14 @@
 // frontend
 use cases --> entities
-
-     A
-     |
-
-  controllers
-
+     
           A
           | 
 
-API <- repository <-  framework [controller <- UI -> css]
+ controllers <-  framework [controller <- UI -> css]
+ 
+          |
+          V
+ API <- repository
 
 // backend
 use cases --> entities
