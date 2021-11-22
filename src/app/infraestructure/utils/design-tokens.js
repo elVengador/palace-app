@@ -131,6 +131,14 @@ const desicions = {
         secondary: choices.colors.orange[700],
         backgroundLight: choices.colors.gray[100],
         foregroundLight: choices.colors.gray[900],
+        blue: choices.colors.blue[300],
+        orange: choices.colors.orange[300],
+    },
+    light_theme: {
+        bg: choices.colors.blue[300]
+    },
+    dark_theme: {
+        bg: choices.colors.orange[300]
     }
 }
 

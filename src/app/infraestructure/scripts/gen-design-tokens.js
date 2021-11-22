@@ -11,10 +11,17 @@ const { choices, desicions } = require('../utils/design-tokens')
 
 const generateDesignTokens = () => {
 
-    const desicionColorKeys = Object.keys(desicions.colors)
-    const colorProperties = desicionColorKeys.reduce((acu, cur, idx, src) => acu + `--${cur}: ${desicions.colors[cur]};${idx === src.length - 1 ? '' : '\n'}`, '')
+    const colorKeys = Object.keys(desicions.colors)
+    const colorProperties = colorKeys.reduce((acu, cur, idx, src) => acu + `--${cur}: ${desicions.colors[cur]};${idx === src.length - 1 ? '' : '\n'}`, '')
+
+    const lightThemeKeys = Object.keys(desicions.light_theme)
+    const lightThemeProperties = lightThemeKeys.reduce((acu, cur, idx, src) => acu + `--${cur}:${desicions.light_theme[cur]};${idx === src.length - 1 ? '' : '\n'}`, '')
+
+    const darkThemeKeys = Object.keys(desicions.dark_theme)
+    const darkThemeProperties = darkThemeKeys.reduce((acu, cur, idx, src) => acu + `--${cur}:${desicions.dark_theme[cur]};${idx === src.length - 1 ? '' : '\n'}`, '')
 
     console.log('.> Generando');
+    console.log('.> Log:', darkThemeProperties);
     // const variablesCss = ''
 
     const data = `
@@ -22,6 +29,14 @@ const generateDesignTokens = () => {
 
 :root {
 ${colorProperties}
+}
+
+.light-theme {
+${lightThemeProperties}
+}
+
+.dark-theme {
+${darkThemeProperties}
 }
     `
 

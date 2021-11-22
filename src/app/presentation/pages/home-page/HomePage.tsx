@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNote } from '../../../infraestructure/controllers/note.controller'
+// import { desicions } from '../../../infraestructure/utils/design-tokens';
 // import { api } from '../../../infraestructure/rest-api'
 
 // interface Pokemon {
@@ -18,8 +19,10 @@ export default function HomePage(): JSX.Element {
     }, [])
 
     return (
-        <div>
-            {notes.map(cur => (<div key={cur.id}>{cur.text}</div>))}
+        <div >
+            <div className='bg'>
+                {notes.map(cur => (<div key={cur.id}>{cur.text}</div>))}
+            </div>
         </div>
     )
 }

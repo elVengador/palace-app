@@ -1,0 +1,22 @@
+/* file generate by Design Tokens, author: elVengador */
+
+:root {
+    --primary: #2b6cb0;
+    --secondary: #c05621;
+    --backgroundLight: #f7fafc;
+    --foregroundLight: #1a202c;
+    --blue: #90cdf4;
+    --orange: #fbd38d;
+}
+
+.light-theme {
+    --bg: #90cdf4;
+}
+
+.dark-theme {
+    --bg: #fbd38d;
+}
+
+.bg {
+    background-color: var(--bg);
+}
