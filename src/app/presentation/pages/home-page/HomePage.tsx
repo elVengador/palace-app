@@ -20,7 +20,7 @@ export default function HomePage(): JSX.Element {
 
     return (
         <div >
-            <div className='bg'>
+            <div className='bg-2'>
                 {notes.map(cur => (<div key={cur.id}>{cur.text}</div>))}
             </div>
         </div>

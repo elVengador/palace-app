@@ -20,6 +20,8 @@ const generateDesignTokens = () => {
     const darkThemeKeys = Object.keys(desicions.dark_theme)
     const darkThemeProperties = darkThemeKeys.reduce((acu, cur, idx, src) => acu + `--${cur}:${desicions.dark_theme[cur]};${idx === src.length - 1 ? '' : '\n'}`, '')
 
+    const fontProperty = desicions.font
+
     console.log('.> Generando');
     console.log('.> Log:', darkThemeProperties);
     // const variablesCss = ''
@@ -29,6 +31,7 @@ const generateDesignTokens = () => {
 
 :root {
 ${colorProperties}
+font-family: '${fontProperty}', cursive;
 }
 
 .light-theme {
@@ -40,7 +43,7 @@ ${darkThemeProperties}
 }
     `
 
-    fs.writeFile("./tokens.css", data, 'utf-8', (err) => {
+    fs.writeFile("./tokens.scss", data, 'utf-8', (err) => {
         if (err) { return console.error('.> Ups, no se pudo generar tokens', err) }
         console.log('.> Exito');
     })

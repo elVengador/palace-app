@@ -1,22 +1,24 @@
+
 /* file generate by Design Tokens, author: elVengador */
 
 :root {
-    --primary: #2b6cb0;
-    --secondary: #c05621;
-    --backgroundLight: #f7fafc;
-    --foregroundLight: #1a202c;
-    --blue: #90cdf4;
-    --orange: #fbd38d;
+
+font-family: 'Mplus', cursive;
 }
 
 .light-theme {
-    --bg: #90cdf4;
+--bg:#f7fafc;
+--bg_2:#e2e8f0;
+--fg:#2d3748;
+--disable:#718096;
+--main:#2b6cb0;
 }
 
 .dark-theme {
-    --bg: #fbd38d;
+--bg:#4a5568;
+--bg_2:#2d3748;
+--fg:#e2e8f0;
+--disable:#a0aec0;
+--main:#ecc94b;
 }
-
-.bg {
-    background-color: var(--bg);
-}
+    

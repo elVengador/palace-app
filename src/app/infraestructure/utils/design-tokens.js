@@ -123,23 +123,46 @@ const choices = {
         lg: '1024px',
         xl: '1280px',
     },
+    fontFamily: {
+        sans: [
+            'system-ui',
+            '-apple-system',
+            'BlinkMacSystemFont',
+            '"Segoe UI"',
+            'Roboto',
+            '"Helvetica Neue"',
+            'Arial',
+            '"Noto Sans"',
+            'sans-serif',
+            '"Apple Color Emoji"',
+            '"Segoe UI Emoji"',
+            '"Segoe UI Symbol"',
+            '"Noto Color Emoji"',
+        ],
+        serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
+        mono: ['Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
+        hand: ['Merienda', 'Mplus']
+    },
 }
 
 const desicions = {
     colors: {
-        primary: choices.colors.blue[700],
-        secondary: choices.colors.orange[700],
-        backgroundLight: choices.colors.gray[100],
-        foregroundLight: choices.colors.gray[900],
-        blue: choices.colors.blue[300],
-        orange: choices.colors.orange[300],
     },
     light_theme: {
-        bg: choices.colors.blue[300]
+        bg: choices.colors.gray[100],
+        bg_2: choices.colors.gray[300],
+        fg: choices.colors.gray[800],
+        disable: choices.colors.gray[600],
+        main: choices.colors.blue[700],
     },
     dark_theme: {
-        bg: choices.colors.orange[300]
-    }
+        bg: choices.colors.gray[700],
+        bg_2: choices.colors.gray[800],
+        fg: choices.colors.gray[300],
+        disable: choices.colors.gray[500],
+        main: choices.colors.yellow[500],
+    },
+    font: choices.fontFamily.hand[1],
 }
 
 
