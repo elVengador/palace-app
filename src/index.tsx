@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { render } from "react-dom";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+
 import HomePage from "./app/presentation/pages/home-page/HomePage";
 import '../tokens.scss'
 import './index.scss'
+
+library.add(faCoffee /*, faCheckSquare, etc*/)
 
 function App() {
     const [state, setState] = useState("CLICK ME");

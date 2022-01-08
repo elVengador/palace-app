@@ -1,0 +1,18 @@
+.color-main {
+    color: var(--main);
+}
+
+.btn{
+    background: var(--main);
+    color: var(--bg_2);
+    border-radius: 35px;
+    padding: 10px 20px;
+    border: none;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.747);
+    cursor: pointer;
+}
+
+.btn-disable{
+    background: var(--disable);
+    cursor: default;
+}

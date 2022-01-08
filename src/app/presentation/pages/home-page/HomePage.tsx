@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useNote } from '../../../infraestructure/controllers/note.controller'
+import { useNote } from '../../../application/controllers/note.controller'
 // import { desicions } from '../../../infraestructure/utils/design-tokens';
 // import { api } from '../../../infraestructure/rest-api'
 

@@ -147,6 +147,9 @@ const choices = {
 
 const desicions = {
     colors: {
+        success: choices.colors.green[500],
+        warning: choices.colors.orange[500],
+        bad: choices.colors.red[600],
     },
     light_theme: {
         bg: choices.colors.gray[100],

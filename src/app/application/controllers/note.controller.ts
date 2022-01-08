@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 import { Note } from "../../domain/notes/notes.entity"
-import { noteRepository } from "../repository/note.repository"
+import { noteRepository } from "../../infraestructure/repository/note.repository"
 
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

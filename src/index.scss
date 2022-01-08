@@ -3,6 +3,7 @@ body{
     padding: 0px;
     background-color: var(--bg_2);
     color: var(--fg);
+    font-family: 'Dosis', sans-serif;
 }
 
 .bg{
@@ -13,4 +14,44 @@ body{
 .bg-2{
     background-color: var(--bg_2);
     color: var(--fg);
+}
+
+.color-main{
+    color: var(--main);
+}
+
+.text-xlg{
+    font-size: 36px;
+}
+
+.text-lg{
+    font-size: 24px;
+}
+
+.text-md{
+    font-size: 18px;
+}
+
+.text-sm{
+    font-size: 14px;
+}
+
+.text-xsm{
+    font-size: 12px;
+}
+
+.m-sm{
+    margin: 5px;
+}
+
+.m-md{
+    margin: 10px;
+}
+
+.m-lg{
+    margin: 15px;
+}
+
+.mr-sm{
+    margin-right: 5px;
 }

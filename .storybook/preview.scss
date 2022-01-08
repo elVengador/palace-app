@@ -1,0 +1,20 @@
+// body{
+//     font-family: 'Merienda', cursive !important;
+// }
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.container-light{
+    border: dashed 2px var(--main);
+    background-color: var(--bg);
+    padding: 20px;
+}
+
+.container-dark{
+    border: dashed 2px var(--main);
+    background-color: var(--bg);
+    padding: 20px;
+}
