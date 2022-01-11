@@ -19,6 +19,7 @@ Default.args = {
 export const Disable = Template.bind({});
 Disable.args = {
     size: 'md',
+    type: 'disable',
     content: 'Disable Button'
 };
 

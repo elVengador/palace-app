@@ -1,0 +1,55 @@
+input{
+    background: var(--bg_2);
+    color: var(--fg);
+    border: none;
+    border-radius: 35px;
+}
+
+.input-default{
+    border: none;
+}
+
+.input-success{
+    border: solid 2px var(--success)
+}
+
+.input-error{
+    border: solid 2px var(--bad)
+}
+
+.input-disable{
+    background: var(--disable);
+    color: var(--fg);
+    border: none;
+    border-radius: 35px;
+}
+
+.input-sm{
+    padding: 2px 5px;
+}
+
+.input-md{
+    padding: 10px 15px;
+}
+
+.input-lg{
+    padding: 15px 20px;
+}
+
+.label-input{
+    color: var(--main);
+    font-weight: 700;
+}
+
+.label-input-sm{
+    padding: 0px 5px;
+    font-size: var(--font-size-xs);
+}
+.label-input-md{
+    padding: 5px 15px;
+    font-size: var(--font-size-md);
+}
+.label-input-lg{
+    padding: 5px 20px;
+    font-size: var(--font-size-lg);
+}

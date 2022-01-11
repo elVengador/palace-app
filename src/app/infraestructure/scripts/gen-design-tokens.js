@@ -9,18 +9,32 @@ const fs = require('fs')
 
 const { choices, desicions } = require('../utils/design-tokens')
 
+const buildAProperty = (key, arrayProperties, prefix = '') => `--${prefix}${prefix ? '-' : ''}${key}: ${arrayProperties[key]};`
+
 const generateDesignTokens = () => {
 
     const colorKeys = Object.keys(desicions.colors)
-    const colorProperties = colorKeys.reduce((acu, cur, idx, src) => acu + `--${cur}: ${desicions.colors[cur]};${idx === src.length - 1 ? '' : '\n'}`, '')
+    const colorProperties = colorKeys
+        .map((cur) => buildAProperty(cur, desicions.colors))
+        .join('\n')
 
     const lightThemeKeys = Object.keys(desicions.light_theme)
-    const lightThemeProperties = lightThemeKeys.reduce((acu, cur, idx, src) => acu + `--${cur}:${desicions.light_theme[cur]};${idx === src.length - 1 ? '' : '\n'}`, '')
+    const lightThemeProperties = lightThemeKeys
+        .map((cur) => buildAProperty(cur, desicions.light_theme))
+        .join('\n')
 
     const darkThemeKeys = Object.keys(desicions.dark_theme)
-    const darkThemeProperties = darkThemeKeys.reduce((acu, cur, idx, src) => acu + `--${cur}:${desicions.dark_theme[cur]};${idx === src.length - 1 ? '' : '\n'}`, '')
+    const darkThemeProperties = darkThemeKeys
+        .map((cur) => buildAProperty(cur, desicions.dark_theme))
+        .join('\n')
 
     const fontProperty = desicions.font
+
+    const fontSizeKeys = Object.keys(desicions.fontsize)
+    const fontSizeProperties = fontSizeKeys
+        .map((cur) => buildAProperty(cur, desicions.fontsize, 'font-size'))
+        .join('\n')
+
 
     console.log('.> Generando');
     console.log('.> Log:', darkThemeProperties);
@@ -32,6 +46,7 @@ const generateDesignTokens = () => {
 :root {
 ${colorProperties}
 font-family: '${fontProperty}', cursive;
+${fontSizeProperties}
 }
 
 .light-theme {

@@ -6,21 +6,26 @@
 --warning: #ed8936;
 --bad: #e53e3e;
 font-family: 'Mplus', cursive;
+--font-size-xs: 0.75rem;
+--font-size-sm: 0.875rem;
+--font-size-md: 1rem;
+--font-size-lg: 1.125rem;
+--font-size-xl: 1.25rem;
 }
 
 .light-theme {
---bg:#f7fafc;
---bg_2:#e2e8f0;
---fg:#2d3748;
---disable:#718096;
---main:#2b6cb0;
+--bg: #f7fafc;
+--bg_2: #e2e8f0;
+--fg: #2d3748;
+--disable: #718096;
+--main: #2b6cb0;
 }
 
 .dark-theme {
---bg:#4a5568;
---bg_2:#2d3748;
---fg:#e2e8f0;
---disable:#a0aec0;
---main:#ecc94b;
+--bg: #4a5568;
+--bg_2: #2d3748;
+--fg: #e2e8f0;
+--disable: #a0aec0;
+--main: #ecc94b;
 }
     
