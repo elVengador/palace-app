@@ -16,3 +16,11 @@ Default.args = {
     placeholder: 'Default input',
     label: 'Some Label'
 };
+
+export const WithPattern = Template.bind({});
+WithPattern.args = {
+    size: 'md',
+    placeholder: 'Default input',
+    label: 'Only 5 UpperCases',
+    pattern: '^[A-Z]{5}$'
+};

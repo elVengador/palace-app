@@ -1,44 +1,15 @@
-body{
-    margin: 0px;
-    padding: 0px;
-    background-color: var(--bg_2);
-    color: var(--fg);
-    font-family: 'Dosis', sans-serif;
-}
+@import "./app/presentation/scss/generic/reset.scss";
+@import "./app/presentation/scss/elements/html-elements.scss";
 
-.bg{
-    background-color: var(--bg);
-    color: var(--fg);
-}
+// .bg{
+//     background-color: var(--bg);
+//     color: var(--fg);
+// }
 
-.bg-2{
-    background-color: var(--bg_2);
-    color: var(--fg);
-}
-
-.color-main{
-    color: var(--main);
-}
-
-.text-xlg{
-    font-size: 36px;
-}
-
-.text-lg{
-    font-size: 24px;
-}
-
-.text-md{
-    font-size: 18px;
-}
-
-.text-sm{
-    font-size: 14px;
-}
-
-.text-xsm{
-    font-size: 12px;
-}
+// .bg-2{
+//     background-color: var(--bg_2);
+//     color: var(--fg);
+// }
 
 .m-sm{
     margin: 5px;

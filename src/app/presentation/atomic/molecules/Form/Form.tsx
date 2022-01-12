@@ -17,10 +17,16 @@ export const Form = ({
     ...props
 }: FormProps): JSX.Element => {
     return (
-        <>
-            <Title content={title}></Title>
-            {props.children}
-            <Button content='ok' icon="check" />
-        </>
+        <div className="form">
+            <div className="form-header">
+                <Title content={title} size="lg"></Title>
+            </div>
+            <div className="form-body">
+                {props.children}
+            </div>
+            <div className="form-footer">
+                <Button content='ok' icon="check" />
+            </div>
+        </div>
     );
 };

@@ -1,10 +1,10 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { FormSignUp } from './FormSignUp';
+import { FormSignUp } from './PageForm';
 
 export default {
-    title: 'Desing System/Templates/Page',
+    title: 'Desing System/Templates/PageForm',
     component: FormSignUp,
 } as ComponentMeta<typeof FormSignUp>;
 

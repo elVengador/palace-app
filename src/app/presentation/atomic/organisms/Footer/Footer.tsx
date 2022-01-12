@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import './FormSignUp.scss';
+import './Footer.scss';
 import { Form } from '../../molecules/Form/Form';
 import { Input } from '../../atoms/Input/Input';
 import { FormPassword } from '../../molecules/FormPassword/FormPassword';

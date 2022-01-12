@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import './Input.scss';
+
+export type InputStatus = 'default' | 'success' | 'error' | 'disable'
 
 interface InputProps {
     size?: 'sm' | 'md' | 'lg';
     label?: string
-    placeholder: string;
+    placeholder?: string;
     content: string;
-    optional: boolean
+    setContent: React.Dispatch<React.SetStateAction<string>>
+    required?: boolean
     type?: 'text' | 'date' | 'password';
-    state?: 'default' | 'success' | 'error' | 'disable'
+    state?: InputStatus
+    pattern?: string
     onClick?: () => void;
 }
 
@@ -18,39 +22,61 @@ export const Input = ({
     label = '',
     placeholder = '...',
     content = '',
-    optional = false,
+    required = true,
     type = 'text',
     state = 'default',
+    pattern = '',
     ...props
 }: InputProps): JSX.Element => {
-    const [value, setValue] = useState('')
+    const [value, setValue] = useState(content)
+    const [status, setStatus] = useState<InputStatus>('default')
     const [isTouched, setIsTouched] = useState(false)
 
+    useEffect(() => { init() }, [])
+
     useEffect(() => {
-        console.log(1);
+        console.log('useEffect content');
         setValue(content)
+        if (isDefaultValue() || !pattern) { return setStatus('default') }
+        if (!isValid()) { return setStatus('error') }
+        return setStatus('success')
     }, [content])
+
+    useEffect(() => {
+        setStatus(state)
+    }, [state])
+
+    const init = () => { setStatus(state) }
+
+    const isValid = () => { return new RegExp(pattern).test(content) }
+
+    const isDefaultValue = () => { return !content && !isTouched }
+
+    const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+        console.log('onChange');
+        setValue(e.target.value)
+        props.setContent(e.target.value)
+    }
 
     return (
         <div>
             <div className={`label-input label-input-${size}`}>
                 <label>{label}</label>
-                {optional && <span>*</span>}
-                {isTouched && 'TT'}
+                {required && <span>*</span>}
             </div>
-            {state !== 'disable' &&
+            {status !== 'disable' &&
                 <input
                     type={type}
                     placeholder={placeholder}
-                    className={`input input-${size} input-${state}`}
+                    className={`input input-${size} input-${status}`}
                     autoComplete={'off'}
                     value={value}
-                    onChange={(e) => setValue(e.target.value)}
-                    onFocus={e => setIsTouched(true)}
+                    onChange={(e) => onChangeInput(e)}
+                    onFocus={() => setIsTouched(true)}
                 >
                 </input>
             }
-            {state === 'disable' &&
+            {status === 'disable' &&
                 <div className={`input-disable input-${size}`}>{content}</div>}
         </div>
     );

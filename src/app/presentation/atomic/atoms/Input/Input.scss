@@ -3,6 +3,15 @@ input{
     color: var(--fg);
     border: none;
     border-radius: 35px;
+    width: 100%;
+}
+
+input:focus{
+    background: var(--bg_2);
+    color: var(--fg);
+    border: none;
+    border-radius: 35px;
+    width: 100%;
 }
 
 .input-default{
