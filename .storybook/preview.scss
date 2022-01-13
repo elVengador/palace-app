@@ -2,18 +2,20 @@
 //     font-family: 'Merienda', cursive !important;
 // }
 
-.container{
+.preview--container{
+    border: solid;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    width: 100%;
 }
 
-.container-light{
+.preview--container-light{
     border: dashed 2px var(--main);
     background-color: var(--bg);
     padding: 20px;
 }
 
-.container-dark{
+.preview--container-dark{
     border: dashed 2px var(--main);
     background-color: var(--bg);
     padding: 20px;

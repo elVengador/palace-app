@@ -1,0 +1,41 @@
+.page--wrapper{
+    background: var(--bg_2);
+    height: 100vh;
+}
+
+.header--wrapper{
+    box-shadow: var(--shadow);
+    height: var(--height-header);
+}
+
+.footer--wrapper{
+    box-shadow: var(--shadow);
+    height: var(--height-footer);
+}
+
+.wrapper{
+    height: var(--height-main);
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    max-width: var(--page-width);
+    margin: auto;
+    &--main{
+        width: 100%;
+        border-radius: 10px;
+    }
+    &--left-menu{
+        background: var(--bg);
+        margin-right: 10px;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: var(--shadow);
+    }
+    &--right-menu{
+        background: var(--bg);
+        margin-left: 10px;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: var(--shadow);
+    }
+}

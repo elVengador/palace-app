@@ -1,43 +1,48 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { render } from "react-dom";
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import HomePage from "./app/presentation/pages/home-page/HomePage";
-import '../tokens.scss'
+// import HomePage from "./app/presentation/pages/home-page/HomePage";
+// import '../tokens.scss'
 import './index.scss'
-
-library.add(faCoffee /*, faCheckSquare, etc*/)
+import './app/presentation/utils/font-awesome.util';
+import SignUp from "./app/presentation/pages/Sign-Up/SignUp.page";
+import HomePage from "./app/presentation/pages/home-page/HomePage";
 
 function App() {
-    const [state, setState] = useState("CLICK ME");
-    const [theme, setTheme] = useState("light-theme");
+    // const [theme, setTheme] = useState("light-theme");
 
-    useEffect(() => {
-        const setThemeOnPage = () => {
-            const body = document.querySelector('body')
-            if (!body) { return }
+    useEffect(() => { setThemeOnPage() }, [])
 
-            body.classList.remove('light-theme')
-            body.classList.remove('dark-theme')
-            // body.classList.remove('bg')
-            body.classList.add(theme)
-            // body.classList.add('bg')
-        }
-        setThemeOnPage()
-    }, [theme])
+    const setThemeOnPage = () => {
+        const body = document.querySelector('body')
+        if (!body) { return }
 
-    const toogleTheme = () => {
-        if (theme === 'light-theme') setTheme('dark-theme')
-        if (theme === 'dark-theme') setTheme('light-theme')
+        body.classList.remove('light-theme')
+        body.classList.remove('dark-theme')
+        body.classList.add('light-theme')
     }
+
+    // const toogleTheme = () => {
+    //     if (theme === 'light-theme') setTheme('dark-theme')
+    //     if (theme === 'dark-theme') setTheme('light-theme')
+    // }
 
 
 
     return <div>
-        <HomePage />
-        <button onClick={() => setState("CLICKED")}>{state}</button>;
-        <button onClick={() => toogleTheme()} > change {theme}</button>;
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<HomePage />}>
+                    {/* <Route element={<HomePage />} /> */}
+                </Route>
+                <Route path="auth" element={<SignUp />}>
+                    {/* <Route path="sign-up" element={<SignUp />} /> */}
+                </Route>
+            </Routes>
+        </BrowserRouter>
+        {/* <button onClick={() => toogleTheme()} > change {theme}</button> */}
+        {/* <SignUp /> */}
     </div >
 }
 

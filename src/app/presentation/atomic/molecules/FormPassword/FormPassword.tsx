@@ -10,7 +10,6 @@ interface FormProps {
 
 export const FormPassword = ({
     passwordValue = '',
-    ...props
 }: FormProps): JSX.Element => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')

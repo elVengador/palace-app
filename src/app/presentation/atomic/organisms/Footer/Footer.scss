@@ -1,17 +1,12 @@
-.title{
-    margin: 0px;
-    color: var(--main);
-    font-weight: 700;
-}
+.footer{
+    background: var(--main);
+    color: var(--fg);
 
-.title-xs{
-    font-size: var(--font-size-xs);
-}
-
-.title-md{
-    font-size: var(--font-size-md);
-}
-
-.title-lg{
-    font-size: var(--font-size-lg);
+    &--items{
+        max-width: var(--page-width);
+        margin: auto;
+        padding: 4px;
+        display: flex;
+        justify-content: center;
+    }
 }

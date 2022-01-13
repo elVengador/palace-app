@@ -1,0 +1,5 @@
+schema: http://localhost:4100/graphql
+generates:
+  ./src/app/domain/entities.ts:
+    plugins:
+      - typescript

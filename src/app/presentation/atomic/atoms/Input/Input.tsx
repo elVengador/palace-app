@@ -32,6 +32,7 @@ export const Input = ({
     const [status, setStatus] = useState<InputStatus>('default')
     const [isTouched, setIsTouched] = useState(false)
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => { init() }, [])
 
     useEffect(() => {
@@ -40,6 +41,7 @@ export const Input = ({
         if (isDefaultValue() || !pattern) { return setStatus('default') }
         if (!isValid()) { return setStatus('error') }
         return setStatus('success')
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [content])
 
     useEffect(() => {

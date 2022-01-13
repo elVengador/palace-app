@@ -1,9 +1,9 @@
 .form{
     background: var(--bg);
     border-radius: 10px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.747);
+    box-shadow: var(--shadow);
     padding: 20px;
-    max-width: 500px;
+    width: inherit;
 }
 
 .form-header{
@@ -13,7 +13,7 @@
 }
 
 .form-body{
-    width: inherit;
+    width: 100%;
     // border: solid;
 
 }

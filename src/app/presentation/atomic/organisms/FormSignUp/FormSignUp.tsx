@@ -6,23 +6,19 @@ import { Input } from '../../atoms/Input/Input';
 import { FormPassword } from '../../molecules/FormPassword/FormPassword';
 
 interface FormProps {
-    title: string;
-    onClick?: () => void;
-    children: JSX.Element
+    title?: string;
 }
 
 export const FormSignUp = ({
-    title = '',
-    ...props
+    title = 'Sign Up',
 }: FormProps): JSX.Element => {
 
     const [nick, setNick] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
 
     return (
-        <Form title='Sign Up' >
+        <Form title={title}>
             <>
                 <Input
                     label="Nick"

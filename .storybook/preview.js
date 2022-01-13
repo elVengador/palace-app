@@ -17,11 +17,11 @@ export const parameters = {
 
 export const decorators = [
     (Story) => (
-        <div className={'container'}>
-            <div className={'container-light light-theme'}>
+        <div className={'preview--container'}>
+            <div className={'preview--container-light light-theme'}>
                 <Story />
             </div>
-            <div className={'container-dark dark-theme'}>
+            <div className={'preview--container-dark dark-theme'}>
                 <Story />
             </div>
         </div>
