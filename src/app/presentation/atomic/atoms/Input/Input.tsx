@@ -36,7 +36,6 @@ export const Input = ({
     useEffect(() => { init() }, [])
 
     useEffect(() => {
-        console.log('useEffect content');
         setValue(content)
         if (isDefaultValue() || !pattern) { return setStatus('default') }
         if (!isValid()) { return setStatus('error') }
@@ -55,7 +54,6 @@ export const Input = ({
     const isDefaultValue = () => { return !content && !isTouched }
 
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log('onChange');
         setValue(e.target.value)
         props.setContent(e.target.value)
     }

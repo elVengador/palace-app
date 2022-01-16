@@ -4,6 +4,7 @@ import './FormSignUp.scss';
 import { Form } from '../../molecules/Form/Form';
 import { Input } from '../../atoms/Input/Input';
 import { FormPassword } from '../../molecules/FormPassword/FormPassword';
+import { signUp } from '../../../../application/controllers/auth.controller';
 
 interface FormProps {
     title?: string;
@@ -16,6 +17,8 @@ export const FormSignUp = ({
     const [nick, setNick] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const onSubmitSignUp = async () => signUp({ nick, email, password })
 
     return (
         <Form title={title}>
@@ -35,6 +38,7 @@ export const FormSignUp = ({
                     pattern="^.{2,18}$"
                 />
                 <FormPassword passwordValue={password} setContent={setPassword} />
+                <button onClick={() => onSubmitSignUp()}>ok</button>
             </>
         </Form>
     );

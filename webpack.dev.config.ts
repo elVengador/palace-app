@@ -3,11 +3,12 @@ import { Configuration, HotModuleReplacementPlugin } from "webpack";
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
-import { postcss } from "postcss-flexbugs-fixes";
+// import { postcss } from "postcss-flexbugs-fixes";
 
 const config: Configuration = {
     mode: 'development',
     entry: { index: path.resolve(__dirname, "src", "index.tsx") },
+    output: { publicPath: '/' },
     module: {
         rules: [
             {
@@ -27,7 +28,7 @@ const config: Configuration = {
                         ],
                     },
                 },
-            },
+            }
         ]
     },
     resolve: {
@@ -42,11 +43,14 @@ const config: Configuration = {
     ],
     devtool: "inline-source-map",
     devServer: {
-        static: path.join(__dirname, "build"),
+        // static: path.join(__dirname, "dist"),
         historyApiFallback: true,
         port: 4000,
         open: true,
-        hot: true
+        hot: true,
+        client: {
+            progress: true,
+        },
     },
 };
 

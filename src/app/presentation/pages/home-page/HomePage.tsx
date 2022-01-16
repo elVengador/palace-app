@@ -1,14 +1,8 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import { useNote } from '../../../application/controllers/note.controller'
-// import { desicions } from '../../../infraestructure/utils/design-tokens';
-// import { api } from '../../../infraestructure/rest-api'
 
-// interface Pokemon {
-//     name: string,
-//     sprites: {
-//         front_default: string
-//     }
-// }
+import './HomePage.scss';
 
 export default function HomePage(): JSX.Element {
     const { notes } = useNote()
@@ -20,9 +14,27 @@ export default function HomePage(): JSX.Element {
 
     return (
         <div >
-            <h1>Home PAge</h1>
+            <h1>-- Mind Notes --</h1>
+            <ul>
+                <li>
+                    <Link to="auth" >Sign In</Link>
+                </li>
+                <li>
+                    <Link to="auth/sign-up" >Sign Up</Link>
+                </li>
+                <li>
+                    <Link to="user" >User</Link>
+                </li>
+                <li>
+                    <Link to="notes" >Notes</Link>
+                </li>
+            </ul>
+
             <div className='bg-2'>
                 {notes.map(cur => (<div key={cur.id}>{cur.text}</div>))}
+            </div>
+            <div className="logo">
+
             </div>
         </div>
     )

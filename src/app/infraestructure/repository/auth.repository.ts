@@ -1,5 +1,9 @@
+import { SignUpInput } from "../../domain/entities";
+import { gqlClient } from "../graphql";
+import { MUTATION_SIGN_UP } from './auth.gql';
 
 export const authRepository = {
-    // signUp:()
-    // getNotes: (): Promise<Note[]> => api.POST<Note[]>('notes/get'),
+    signUp: async (params: SignUpInput): Promise<string> => {
+        return await gqlClient.request<string>(MUTATION_SIGN_UP, params)
+    }
 }
