@@ -1,83 +1,82 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
+import { Style } from '../../../utils/interfaces.utils';
 
 import './Input.scss';
 
 export type InputStatus = 'default' | 'success' | 'error' | 'disable'
 
 interface InputProps {
+    value: string
+    setValue: React.Dispatch<React.SetStateAction<string>>
+    state: InputStatus
+    setState: React.Dispatch<React.SetStateAction<InputStatus>>
+    labelValue?: string
     size?: 'sm' | 'md' | 'lg';
-    label?: string
-    placeholder?: string;
-    content: string;
-    setContent: React.Dispatch<React.SetStateAction<string>>
     required?: boolean
+    pattern?: string,
     type?: 'text' | 'date' | 'password';
-    state?: InputStatus
-    pattern?: string
-    onClick?: () => void;
+    attributes?: {
+        id: string;
+        name: string;
+        placeholder?: string;
+        style: Style;
+        className: string
+    }
+    events?: {
+        onClick?: () => void
+    }
 }
 
 export const Input = ({
-    size = 'md',
-    label = '',
-    placeholder = '...',
-    content = '',
-    required = true,
-    type = 'text',
+    value = '',
     state = 'default',
+    labelValue = '',
+    size = 'md',
+    required = true,
     pattern = '',
+    type = 'text',
     ...props
 }: InputProps): JSX.Element => {
-    const [value, setValue] = useState(content)
-    const [status, setStatus] = useState<InputStatus>('default')
     const [isTouched, setIsTouched] = useState(false)
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => { init() }, [])
-
     useEffect(() => {
-        setValue(content)
-        if (isDefaultValue() || !pattern) { return setStatus('default') }
-        if (!isValid()) { return setStatus('error') }
-        return setStatus('success')
+        if (isDefaultValue() || !pattern) { return props.setState('default') }
+        if (!isValid()) { return props.setState('error') }
+        return props.setState('success')
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [content])
+    }, [value])
 
-    useEffect(() => {
-        setStatus(state)
-    }, [state])
+    const isValid = () => { return new RegExp(pattern).test(value) }
 
-    const init = () => { setStatus(state) }
-
-    const isValid = () => { return new RegExp(pattern).test(content) }
-
-    const isDefaultValue = () => { return !content && !isTouched }
+    const isDefaultValue = () => { return !value && !isTouched }
 
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value)
-        props.setContent(e.target.value)
+        props.setValue(e.target.value)
+        if (isDefaultValue()) { return props.setState('default') }
+        if (isValid()) { return props.setState('success') }
+        return props.setState('error')
     }
 
     return (
         <div>
             <div className={`label-input label-input-${size}`}>
-                <label>{label}</label>
-                {required && <span>*</span>}
+                <label>{labelValue}</label>
+                {required && <span> *</span>}
             </div>
-            {status !== 'disable' &&
+            {state !== 'disable' &&
                 <input
-                    type={type}
-                    placeholder={placeholder}
-                    className={`input input-${size} input-${status}`}
-                    autoComplete={'off'}
                     value={value}
+                    type={type}
+                    className={`input input-${size} input-${state}`}
+                    autoComplete={'off'}
                     onChange={(e) => onChangeInput(e)}
                     onFocus={() => setIsTouched(true)}
+                    {...props.attributes}
                 >
                 </input>
             }
-            {status === 'disable' &&
-                <div className={`input-disable input-${size}`}>{content}</div>}
+            {state === 'disable' &&
+                <div className={`input-disable input-${size}`}>{value}</div>}
         </div>
     );
 };

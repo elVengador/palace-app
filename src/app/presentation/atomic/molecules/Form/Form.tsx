@@ -6,7 +6,7 @@ import { Button } from '../../atoms/Button/Button';
 
 interface FormProps {
     title: string;
-    onClick?: () => void;
+    onSubmit: () => void;
     children: JSX.Element
 }
 
@@ -23,7 +23,10 @@ export const Form = ({
                 {props.children}
             </div>
             <div className="form-footer">
-                <Button content='ok' icon="check" />
+                <Button
+                    content='ok'
+                    icon="check"
+                    onClick={() => props.onSubmit()} />
             </div>
         </div>
     );
