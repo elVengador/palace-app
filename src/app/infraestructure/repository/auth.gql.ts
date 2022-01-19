@@ -9,3 +9,15 @@ export const MUTATION_SIGN_UP = gql`
         })
     }
 `
+
+export const MUTATION_SIGN_IN = gql`
+    mutation signIn($email:String!,$password:String!){
+        signIn(signInInput:{
+            email:$email,
+            password:$password
+        }){
+            accessToken,
+            refreshToken
+        }
+    }
+`

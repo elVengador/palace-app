@@ -38,7 +38,11 @@ export type Mutation = {
   addMedia?: Maybe<Scalars['ID']>;
   addPermission?: Maybe<Scalars['ID']>;
   addView?: Maybe<Scalars['ID']>;
+  privateContent?: Maybe<Scalars['String']>;
+  refreshToken?: Maybe<TokensOutput>;
   removeMedia?: Maybe<Scalars['Int']>;
+  signIn?: Maybe<TokensOutput>;
+  signOff?: Maybe<Scalars['Boolean']>;
   signUp?: Maybe<Scalars['String']>;
   updateMedia?: Maybe<Scalars['Int']>;
 };
@@ -59,8 +63,23 @@ export type MutationAddViewArgs = {
 };
 
 
+export type MutationRefreshTokenArgs = {
+  refreshTokenInput: RefreshTokenInput;
+};
+
+
 export type MutationRemoveMediaArgs = {
   id: Scalars['ID'];
+};
+
+
+export type MutationSignInArgs = {
+  signInInput: SignInInput;
+};
+
+
+export type MutationSignOffArgs = {
+  signOffInput: SignOffInput;
 };
 
 
@@ -108,10 +127,29 @@ export type QueryGetViewArgs = {
   id: Scalars['ID'];
 };
 
+export type RefreshTokenInput = {
+  currentRefreshToken: Scalars['String'];
+};
+
+export type SignInInput = {
+  email: Scalars['String'];
+  password: Scalars['String'];
+};
+
+export type SignOffInput = {
+  currentRefreshToken: Scalars['String'];
+};
+
 export type SignUpInput = {
   email: Scalars['String'];
   nick: Scalars['String'];
   password: Scalars['String'];
+};
+
+export type TokensOutput = {
+  __typename?: 'TokensOutput';
+  accessToken?: Maybe<Scalars['String']>;
+  refreshToken?: Maybe<Scalars['String']>;
 };
 
 export type User = {

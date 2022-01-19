@@ -14,7 +14,7 @@
 }
 
 .wrapper{
-    height: var(--height-main);
+    min-height: var(--height-main);
     display: flex;
     justify-content: center;
     padding: 15px 10px;

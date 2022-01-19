@@ -1,6 +1,7 @@
-import { SignUpInput } from "../entities";
+import { SignInInput, SignUpInput, TokensOutput } from "../entities";
 
 export type SignUp = (params: SignUpInput) => Promise<string>
+export type SignIn = (params: SignInInput) => Promise<TokensOutput>
 // export type GetUser = (id: string) => User
 // export type GetUsers = () => User[]
 // export type UpdateUser = (user: User) => User

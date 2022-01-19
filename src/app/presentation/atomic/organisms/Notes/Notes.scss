@@ -1,0 +1,9 @@
+.notes{
+    &--header{
+        padding-bottom: 10px ;
+    }
+    &--items{
+        display: grid;
+        row-gap: 10px;
+    }
+}

@@ -47,10 +47,7 @@ const config: Configuration = {
         historyApiFallback: true,
         port: 4000,
         open: true,
-        hot: true,
-        client: {
-            progress: true,
-        },
+        hot: true
     },
 };
 

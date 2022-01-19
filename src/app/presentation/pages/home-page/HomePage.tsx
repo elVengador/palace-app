@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import { useNote } from '../../../application/controllers/note.controller'
+// import { useNote } from '../../../application/controllers/note.controller'
 
 import './HomePage.scss';
 
 export default function HomePage(): JSX.Element {
-    const { notes } = useNote()
+    // const { notes } = useNote()
     // const [pokemon, setPokemon] = useState<Pokemon | null>(null)
 
     useEffect(() => {
@@ -30,9 +30,9 @@ export default function HomePage(): JSX.Element {
                 </li>
             </ul>
 
-            <div className='bg-2'>
+            {/* <div className='bg-2'>
                 {notes.map(cur => (<div key={cur.id}>{cur.text}</div>))}
-            </div>
+            </div> */}
             <div className="logo">
 
             </div>

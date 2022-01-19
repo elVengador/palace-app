@@ -2,6 +2,7 @@
     margin: 0px;
     color: var(--main);
     font-weight: 700;
+    white-space: nowrap;
 }
 
 .title-primary{
@@ -22,4 +23,20 @@
 
 .title-lg{
     font-size: var(--font-size-lg);
+}
+
+.icon{
+    // margin-right: 5px;
+}
+
+.icon-separation-none{
+    margin-right: 0px;
+}
+
+.icon-separation-sm{
+    margin-right: 5px;
+}
+
+.icon-separation-md{
+    margin-right: 10px;
 }

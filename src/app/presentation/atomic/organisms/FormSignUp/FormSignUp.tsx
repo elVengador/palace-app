@@ -73,13 +73,16 @@ export const FormSignUp = ({
                     state={passwordState}
                     setState={setPasswordState}
                     labelValue="Password"
-                    pattern={RE_PASSWORD} />
+                    pattern={RE_PASSWORD}
+                    type="password"
+                />
                 <Input
                     value={confirmPassword}
                     setValue={setConfirmPassword}
                     state={confirmPasswordState}
                     setState={setConfirmPasswordState}
                     labelValue="Confirm your password"
+                    type="password"
                     pattern={RE_PASSWORD} />
             </>
         </Form>
