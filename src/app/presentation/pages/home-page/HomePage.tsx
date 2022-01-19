@@ -28,6 +28,9 @@ export default function HomePage(): JSX.Element {
                 <li>
                     <Link to="notes" >Notes</Link>
                 </li>
+                <li>
+                    <Link to="tags" >tags</Link>
+                </li>
             </ul>
 
             {/* <div className='bg-2'>

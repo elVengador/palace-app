@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { NotesOperations } from './NoteOperations';
 
 export default {
-    title: 'Desing System/Organisims/Header',
+    title: 'Desing System/Organisims/NoteOperations',
     component: NotesOperations,
 } as ComponentMeta<typeof NotesOperations>;
 

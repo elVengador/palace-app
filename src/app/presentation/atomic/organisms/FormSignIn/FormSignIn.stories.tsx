@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { FormSignIn } from './FormSignIn';
 
 export default {
-    title: 'Desing System/Organisims/FormSignUp',
+    title: 'Desing System/Organisims/FormSignIn',
     component: FormSignIn,
 } as ComponentMeta<typeof FormSignIn>;
 

@@ -1,5 +1,8 @@
-schema: http://localhost:4100/graphql
+schema:
+    - http://localhost:4100/graphql:
+        headers:
+            Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhcHAiLCJzdWIiOiI2MWU1OGVhM2VjYjlkYmVjMjFkODU3ZmEiLCJpYXQiOjE2NDI0NDEzNjMsImV4cCI6MTY3Mzk5ODk2MywiaXNzIjoidmF1dGgifQ.gZdHL6h9LIsYAgsOMvbhKxvDRFi_8l8L5AzYVhtalPk"
 generates:
-  ./src/app/domain/entities.ts:
-    plugins:
-      - typescript
+    ./src/app/domain/entities.ts:
+        plugins:
+            - typescript

@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Main } from './Main';
 
 export default {
-    title: 'Desing System/Molecules/Form',
+    title: 'Desing System/Molecules/Main',
     component: Main,
 } as ComponentMeta<typeof Main>;
 

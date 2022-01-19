@@ -12,6 +12,10 @@ export type Scalars = {
   Float: number;
 };
 
+export type AddTagInput = {
+  value: Scalars['String'];
+};
+
 export type Media = {
   __typename?: 'Media';
   _id?: Maybe<Scalars['ID']>;
@@ -37,6 +41,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   addMedia?: Maybe<Scalars['ID']>;
   addPermission?: Maybe<Scalars['ID']>;
+  addTag?: Maybe<Scalars['String']>;
   addView?: Maybe<Scalars['ID']>;
   privateContent?: Maybe<Scalars['String']>;
   refreshToken?: Maybe<TokensOutput>;
@@ -45,6 +50,7 @@ export type Mutation = {
   signOff?: Maybe<Scalars['Boolean']>;
   signUp?: Maybe<Scalars['String']>;
   updateMedia?: Maybe<Scalars['Int']>;
+  updateTag?: Maybe<Scalars['Int']>;
 };
 
 
@@ -55,6 +61,11 @@ export type MutationAddMediaArgs = {
 
 export type MutationAddPermissionArgs = {
   permissionInput: PermissionInput;
+};
+
+
+export type MutationAddTagArgs = {
+  addTagInput?: InputMaybe<AddTagInput>;
 };
 
 
@@ -92,6 +103,12 @@ export type MutationUpdateMediaArgs = {
   mediaUpdate: MediaUpdate;
 };
 
+
+export type MutationUpdateTagArgs = {
+  tagId: Scalars['ID'];
+  updateTagInput: UpdateTagInput;
+};
+
 export type Permission = {
   __typename?: 'Permission';
   _id?: Maybe<Scalars['ID']>;
@@ -109,6 +126,7 @@ export type Query = {
   __typename?: 'Query';
   getMedia?: Maybe<Media>;
   getPermission?: Maybe<Permission>;
+  getTagsByUser?: Maybe<Array<Maybe<Tag>>>;
   getView?: Maybe<View>;
 };
 
@@ -120,6 +138,11 @@ export type QueryGetMediaArgs = {
 
 export type QueryGetPermissionArgs = {
   id: Scalars['ID'];
+};
+
+
+export type QueryGetTagsByUserArgs = {
+  userId: Scalars['ID'];
 };
 
 
@@ -146,10 +169,24 @@ export type SignUpInput = {
   password: Scalars['String'];
 };
 
+export type Tag = {
+  __typename?: 'Tag';
+  _id: Scalars['ID'];
+  creationDate: Scalars['String'];
+  state: Scalars['String'];
+  updateDate: Scalars['String'];
+  userId: Scalars['ID'];
+  value: Scalars['String'];
+};
+
 export type TokensOutput = {
   __typename?: 'TokensOutput';
   accessToken?: Maybe<Scalars['String']>;
   refreshToken?: Maybe<Scalars['String']>;
+};
+
+export type UpdateTagInput = {
+  value: Scalars['String'];
 };
 
 export type User = {

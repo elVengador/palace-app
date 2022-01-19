@@ -8,7 +8,8 @@ interface ButtonProps {
     size?: 'sm' | 'md' | 'lg';
     icon?: IconProp | null;
     content: string;
-    type?: 'enable' | 'disable';
+    type?: 'normal' | 'alpha';
+    state?: 'enable' | 'disable';
     onClick?: () => void;
 }
 
@@ -16,12 +17,13 @@ export const Button = ({
     size = 'md',
     content = '...',
     icon = null,
-    type = 'enable',
+    type = 'normal',
+    state = 'enable',
     ...props
 }: ButtonProps): JSX.Element => {
     return (
-        <button type="button" className={`btn btn-${type} btn-${size} text-${size}`} {...props}>
-            {icon && <FontAwesomeIcon icon={icon} className="mr-sm" />}
+        <button type="button" className={`btn btn-${state} btn-${size} btn-${type} text-${size}`} {...props}>
+            {icon && <FontAwesomeIcon icon={icon} className={content ? "mr-sm" : ""} />}
             {content}
         </button>
     );

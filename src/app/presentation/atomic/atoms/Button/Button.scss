@@ -6,7 +6,7 @@
     background: var(--main);
     color: var(--bg_2);
     border-radius: 35px;
-    padding: 10px 20px;
+    // padding: 10px 20px;
     border: none;
     box-shadow: var(--shadow);
     cursor: pointer;
@@ -15,4 +15,28 @@
 .btn-disable{
     background: var(--disable);
     cursor: default;
+}
+
+.btn-normal{
+    background: var(--main);
+    color: var(--bg_2);
+}
+
+.btn-alpha{
+    background: none;
+    color: var(--main);
+    border: none;
+    box-shadow: none;
+}
+
+.btn-sm{
+    padding: 5px 10px;
+}
+
+.btn-md{
+    padding: 10px 20px;
+}
+
+.btn-lg{
+    padding: 15px 25px;
 }

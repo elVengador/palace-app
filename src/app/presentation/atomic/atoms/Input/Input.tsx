@@ -59,10 +59,10 @@ export const Input = ({
 
     return (
         <div>
-            <div className={`label-input label-input-${size}`}>
+            {labelValue && <div className={`label-input label-input-${size}`}>
                 <label>{labelValue}</label>
                 {required && <span> *</span>}
-            </div>
+            </div>}
             {state !== 'disable' &&
                 <input
                     value={value}
