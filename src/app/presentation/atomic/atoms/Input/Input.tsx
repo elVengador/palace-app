@@ -16,11 +16,11 @@ interface InputProps {
     pattern?: string,
     type?: 'text' | 'date' | 'password';
     attributes?: {
-        id: string;
-        name: string;
+        id?: string;
+        name?: string;
         placeholder?: string;
-        style: Style;
-        className: string
+        style?: Style;
+        className?: string
     }
     events?: {
         onClick?: () => void
@@ -58,8 +58,8 @@ export const Input = ({
     }
 
     return (
-        <div>
-            {labelValue && <div className={`label-input label-input-${size}`}>
+        <div className="input">
+            {labelValue && <div className={`input--label input--label-${size}`}>
                 <label>{labelValue}</label>
                 {required && <span> *</span>}
             </div>}
@@ -67,7 +67,7 @@ export const Input = ({
                 <input
                     value={value}
                     type={type}
-                    className={`input input-${size} input-${state}`}
+                    className={`input--element input--element-${size} input--element-${state}`}
                     autoComplete={'off'}
                     onChange={(e) => onChangeInput(e)}
                     onFocus={() => setIsTouched(true)}

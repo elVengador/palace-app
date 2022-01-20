@@ -10,18 +10,20 @@ import { Button } from '../../atoms/Button/Button';
 interface TagItemProps {
     tagValue: string;
     date: string;
+    startEditting?: boolean
     // onClick: () => void;
 }
 
 export const TagItem = ({
     tagValue = '',
     date = '00/00/00',
+    startEditting = false
     // ...props
 }: TagItemProps): JSX.Element => {
 
     // const onClickNote = () => props.onClick()
     const [value, setValue] = useState(tagValue)
-    const [isEditting, setIsEditting] = useState(false)
+    const [isEditting, setIsEditting] = useState(startEditting)
     const [stateTagInput, setStateTagInput] = useState<InputStatus>('success')
 
     return (

@@ -15,37 +15,6 @@
     &--footer{
         display: flex;
         justify-content: space-between;
+        align-items: flex-end;
     }
 }
-// .note{
-//     color: var(--fg);
-//     border: solid 1px var(--main);
-//     border-radius: 12px;
-//     padding: 10px 25px;
-// }
-
-// .note:hover{
-//     box-shadow: var(--shadow);
-//     transition: box-shadow 0.3s ease-in-out;
-// }
-
-// .note--body{
-//     cursor: pointer;
-// }
-
-// .note--footer{
-
-// }
-
-// @media screen and (min-width: 800px) {
-//     .note--footer{
-//         display: flex;
-//     justify-content: space-between;
-//     }
-// }
-
-// .note--tags{
-//     display: flex;
-//     flex-wrap: wrap;
-//     // width: 100%;
-// }

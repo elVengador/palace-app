@@ -6,12 +6,13 @@ import { Main } from '../../molecules/Main/Main';
 import { Tag } from '../../../../domain/entities';
 import { TagItem } from '../../molecules/TagItem/TagItem';
 import { Button } from '../../atoms/Button/Button';
+import { TagForm } from '../../molecules/TagForm/TagForm';
 
 
 export const Tags = (): JSX.Element => {
 
     const [canAddTag, setCanAddTag] = useState(false)
-    const [tagValue] = useState('')
+    const [tagValue, setTagValue] = useState('')
 
     const tags: Tag[] = [
         {
@@ -38,15 +39,27 @@ export const Tags = (): JSX.Element => {
         key={cur._id}
     />)
 
+    const handleAddTag = () => {
+        console.log('add tag', tagValue);
+    }
+
     return (
         <Main>
             <>
                 <div className="tags--header">
                     <Title content="Tags" />
-                    <Button content="" icon="plus" type="alpha" onClick={() => setCanAddTag(!canAddTag)} />
+                    {canAddTag && <Button content="" icon="times" type="alpha" onClick={() => setCanAddTag(false)} />}
+                    {!canAddTag && <Button content="" icon="plus" type="alpha" onClick={() => setCanAddTag(true)} />}
                 </div>
                 <div className="tags--items">
-                    {canAddTag && <TagItem tagValue={tagValue} date="" />}
+                    {
+                        canAddTag &&
+                        <TagForm
+                            value={tagValue}
+                            setValue={setTagValue}
+                            handleAddTag={handleAddTag}
+                        />
+                    }
                     {buildNotes}
                 </div>
             </>

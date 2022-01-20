@@ -1,68 +1,68 @@
-input{
-    background: var(--bg_2);
-    color: var(--fg);
-    border: none;
-    border-radius: 35px;
+.input{
     width: 100%;
-    box-shadow: var(--shadow-inner);
-}
+    &--label{
+        color: var(--main);
+        font-weight: 700;
+        &-sm{
+            padding: 0px 5px;
+            font-size: var(--font-size-xs);
+        }
+        &-md{
+            padding: 5px 15px;
+            font-size: var(--font-size-md);
+        }
+        &-lg{
+            padding: 5px 20px;
+            font-size: var(--font-size-lg);
+        }
+    }
 
-input:focus{
-    background: var(--bg_2);
-    color: var(--fg);
-    border: none;
-    border-radius: 35px;
-    width: 100%;
-}
+    &--element{
+        background: var(--bg_2);
+        color: var(--fg);
+        border: none;
+        border-radius: 35px;
+        width: 100%;
+        box-shadow: var(--shadow-inner);
 
-.input-default{
-    border: none;
+        &-default{
+            border: none;
     outline: none;
-}
+        }
 
-.input-success{
-    // border: solid 2px var(--success);
-    outline: solid 2px var(--success);
-}
+        &-success{
+            outline: solid 2px var(--success);
+        }
 
-.input-error{
-    // border: solid 2px var(--bad);
-    outline: solid 2px var(--bad);
-}
+        &-error{
+            outline: solid 2px var(--bad);
+        }
 
-.input-disable{
-    background: var(--disable);
-    color: var(--fg);
-    border: none;
-    border-radius: 35px;
-}
+        &-disable{
+            background: var(--disable);
+            color: var(--fg);
+            border: none;
+            border-radius: 35px;
+        }
 
-.input-sm{
-    padding: 2px 5px;
-}
+        &-sm{
+            padding: 2px 5px;
+        }
 
-.input-md{
-    padding: 10px 15px;
-}
+        &-md{
+            padding: 10px 15px;
+        }
 
-.input-lg{
-    padding: 15px 20px;
-}
+        &-lg{
+            padding: 15px 20px;
+        }
+    }
 
-.label-input{
-    color: var(--main);
-    font-weight: 700;
-}
-
-.label-input-sm{
-    padding: 0px 5px;
-    font-size: var(--font-size-xs);
-}
-.label-input-md{
-    padding: 5px 15px;
-    font-size: var(--font-size-md);
-}
-.label-input-lg{
-    padding: 5px 20px;
-    font-size: var(--font-size-lg);
+    &--element:focus{
+        background: var(--bg_2);
+        color: var(--fg);
+        border: none;
+        border-radius: 35px;
+        width: 100%;
+    }
 }
