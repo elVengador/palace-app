@@ -218,7 +218,15 @@ class RuntimePlugin {
 			compilation.hooks.runtimeRequirementInTree
 				.for(RuntimeGlobals.systemContext)
 				.tap("RuntimePlugin", chunk => {
-					if (compilation.outputOptions.library.type === "system") {
+					const { outputOptions } = compilation;
+					const { library: globalLibrary } = outputOptions;
+					const entryOptions = chunk.getEntryOptions();
+					const libraryType =
+						entryOptions && entryOptions.library !== undefined
+							? entryOptions.library.type
+							: globalLibrary.type;
+
+					if (libraryType === "system") {
 						compilation.addRuntimeModule(
 							chunk,
 							new SystemContextRuntimeModule()
@@ -248,6 +256,31 @@ class RuntimePlugin {
 								(chunk.canBeInitial()
 									? compilation.outputOptions.filename
 									: compilation.outputOptions.chunkFilename),
+							false
+						)
+					);
+					return true;
+				});
+			compilation.hooks.runtimeRequirementInTree
+				.for(RuntimeGlobals.getChunkCssFilename)
+				.tap("RuntimePlugin", (chunk, set) => {
+					if (
+						typeof compilation.outputOptions.cssChunkFilename === "string" &&
+						/\[(full)?hash(:\d+)?\]/.test(
+							compilation.outputOptions.cssChunkFilename
+						)
+					) {
+						set.add(RuntimeGlobals.getFullHash);
+					}
+					compilation.addRuntimeModule(
+						chunk,
+						new GetChunkFilenameRuntimeModule(
+							"css",
+							"css",
+							RuntimeGlobals.getChunkCssFilename,
+							chunk =>
+								chunk.cssFilenameTemplate ||
+								compilation.outputOptions.cssChunkFilename,
 							false
 						)
 					);

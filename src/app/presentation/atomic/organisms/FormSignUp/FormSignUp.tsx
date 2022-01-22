@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
 
 import './FormSignUp.scss';
 import { Form } from '../../molecules/Form/Form';
-import { signUp } from '../../../../application/controllers/auth.controller';
+// import { signUp } from '../../../../application/controllers/auth.controller';
 import { Input, InputStatus } from '../../atoms/Input/Input';
 import { RE_EMAIL, RE_PASSWORD } from '../../../utils/regex.utils';
+import { MUTATION_SIGN_UP } from '../../../../infraestructure/repository/auth/auth.gql';
+import { SignUpInput } from '../../../../domain/entities';
 
 interface FormProps {
     title?: string;
@@ -23,6 +26,7 @@ export const FormSignUp = ({
     const [passwordState, setPasswordState] = useState<InputStatus>('default')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [confirmPasswordState, setConfirmPasswordState] = useState<InputStatus>('default')
+    const [signIn, { error, data }] = useMutation<string, SignUpInput>(MUTATION_SIGN_UP, { variables: { nick, email, password } });
 
     const successStatus: InputStatus = 'success'
     const navigate = useNavigate();
@@ -43,12 +47,17 @@ export const FormSignUp = ({
         return invalidInputs.length
     }
 
-    const onSubmitSignUp = async () => {
-        if (isInvalidForm()) { return console.log('Error'); }
-
-        const res = await signUp({ nick, email, password })
-        if (res) { navigate("/auth") }
+    const onSubmitSignUp = () => {
+        try {
+            if (isInvalidForm()) { return console.log('invalid form'); }
+            signIn()
+        } catch (err) {
+            console.log('ERRor', err);
+        }
     }
+
+    { data && navigate("/auth") }
+    { error && <h1>Hay un error</h1> }
 
     return (
         <Form title={title} onSubmit={onSubmitSignUp}>

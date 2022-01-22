@@ -39,6 +39,7 @@ const {
 /** @typedef {import("webpack-sources").Source} Source */
 /** @typedef {import("../../declarations/WebpackOptions").WebpackOptionsNormalized} WebpackOptions */
 /** @typedef {import("../ChunkGraph")} ChunkGraph */
+/** @typedef {import("../CodeGenerationResults")} CodeGenerationResults */
 /** @typedef {import("../Compilation")} Compilation */
 /** @typedef {import("../Dependency")} Dependency */
 /** @typedef {import("../Dependency").UpdateHashContext} UpdateHashContext */
@@ -58,6 +59,7 @@ const {
 /** @typedef {import("../WebpackError")} WebpackError */
 /** @typedef {import("../javascript/JavascriptModulesPlugin").ChunkRenderContext} ChunkRenderContext */
 /** @typedef {import("../util/Hash")} Hash */
+/** @typedef {typeof import("../util/Hash")} HashConstructor */
 /** @typedef {import("../util/fs").InputFileSystem} InputFileSystem */
 /** @typedef {import("../util/runtime").RuntimeSpec} RuntimeSpec */
 
@@ -563,7 +565,7 @@ const getFinalName = (
 				? `(0,${reference})`
 				: asiSafe === false
 				? `;(0,${reference})`
-				: `Object(${reference})`;
+				: `/*#__PURE__*/Object(${reference})`;
 		}
 		return reference;
 	}
@@ -647,13 +649,21 @@ class ConcatenatedModule extends Module {
 	 * @param {Set<Module>} modules all modules in the concatenation (including the root module)
 	 * @param {RuntimeSpec} runtime the runtime
 	 * @param {Object=} associatedObjectForCache object for caching
+	 * @param {string | HashConstructor=} hashFunction hash function to use
 	 * @returns {ConcatenatedModule} the module
 	 */
-	static create(rootModule, modules, runtime, associatedObjectForCache) {
+	static create(
+		rootModule,
+		modules,
+		runtime,
+		associatedObjectForCache,
+		hashFunction = "md4"
+	) {
 		const identifier = ConcatenatedModule._createIdentifier(
 			rootModule,
 			modules,
-			associatedObjectForCache
+			associatedObjectForCache,
+			hashFunction
 		);
 		return new ConcatenatedModule({
 			identifier,
@@ -1010,7 +1020,19 @@ class ConcatenatedModule extends Module {
 		return list;
 	}
 
-	static _createIdentifier(rootModule, modules, associatedObjectForCache) {
+	/**
+	 * @param {Module} rootModule the root module of the concatenation
+	 * @param {Set<Module>} modules all modules in the concatenation (including the root module)
+	 * @param {Object=} associatedObjectForCache object for caching
+	 * @param {string | HashConstructor=} hashFunction hash function to use
+	 * @returns {string} the identifier
+	 */
+	static _createIdentifier(
+		rootModule,
+		modules,
+		associatedObjectForCache,
+		hashFunction = "md4"
+	) {
 		const cachedMakePathsRelative = makePathsRelative.bindContextCache(
 			rootModule.context,
 			associatedObjectForCache
@@ -1020,7 +1042,7 @@ class ConcatenatedModule extends Module {
 			identifiers.push(cachedMakePathsRelative(module.identifier()));
 		}
 		identifiers.sort();
-		const hash = createHash("md4");
+		const hash = createHash(hashFunction);
 		hash.update(identifiers.join(" "));
 		return rootModule.identifier() + "|" + hash.digest("hex");
 	}
@@ -1056,7 +1078,8 @@ class ConcatenatedModule extends Module {
 		runtimeTemplate,
 		moduleGraph,
 		chunkGraph,
-		runtime: generationRuntime
+		runtime: generationRuntime,
+		codeGenerationResults
 	}) {
 		/** @type {Set<string>} */
 		const runtimeRequirements = new Set();
@@ -1083,7 +1106,8 @@ class ConcatenatedModule extends Module {
 				runtimeTemplate,
 				moduleGraph,
 				chunkGraph,
-				runtime
+				runtime,
+				codeGenerationResults
 			);
 		}
 
@@ -1613,6 +1637,7 @@ ${defineGetters}`
 	 * @param {ModuleGraph} moduleGraph moduleGraph
 	 * @param {ChunkGraph} chunkGraph chunkGraph
 	 * @param {RuntimeSpec} runtime runtime
+	 * @param {CodeGenerationResults} codeGenerationResults codeGenerationResults
 	 */
 	_analyseModule(
 		modulesMap,
@@ -1621,7 +1646,8 @@ ${defineGetters}`
 		runtimeTemplate,
 		moduleGraph,
 		chunkGraph,
-		runtime
+		runtime,
+		codeGenerationResults
 	) {
 		if (info.type === "concatenated") {
 			const m = info.module;
@@ -1636,7 +1662,8 @@ ${defineGetters}`
 					moduleGraph,
 					chunkGraph,
 					runtime,
-					concatenationScope
+					concatenationScope,
+					codeGenerationResults
 				});
 				const source = codeGenResult.sources.get("javascript");
 				const data = codeGenResult.data;

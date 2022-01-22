@@ -1,7 +1,7 @@
 schema:
     - http://localhost:4100/graphql:
         headers:
-            Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhcHAiLCJzdWIiOiI2MWU1OGVhM2VjYjlkYmVjMjFkODU3ZmEiLCJpYXQiOjE2NDI0NDEzNjMsImV4cCI6MTY3Mzk5ODk2MywiaXNzIjoidmF1dGgifQ.gZdHL6h9LIsYAgsOMvbhKxvDRFi_8l8L5AzYVhtalPk"
+            Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2wiOiJkZXYiLCJhdWQiOiJhcHAiLCJzdWIiOiI2MWU5YThiZWE0Yzc4NWUyYjBkNGQ1OTgiLCJpYXQiOjE2NDI4MDk1MTIsImV4cCI6MTY0MjgxMDQxMiwiaXNzIjoidmF1dGgifQ.hnpLXAadyKjTICAuCsDd9blAIpHn8T9I1V7fQn05DwI"
 generates:
     ./src/app/domain/entities.ts:
         plugins:

@@ -1,9 +1,15 @@
 import path from "path";
-import { Configuration, HotModuleReplacementPlugin } from "webpack";
+import { Configuration as WebpackConfiguration, HotModuleReplacementPlugin } from "webpack";
+import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
+// import { Configuration, HotModuleReplacementPlugin } from "webpack";
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
 // import { postcss } from "postcss-flexbugs-fixes";
+
+interface Configuration extends WebpackConfiguration {
+    devServer?: WebpackDevServerConfiguration;
+}
 
 const config: Configuration = {
     mode: 'development',
@@ -43,7 +49,6 @@ const config: Configuration = {
     ],
     devtool: "inline-source-map",
     devServer: {
-        // static: path.join(__dirname, "dist"),
         historyApiFallback: true,
         port: 4000,
         open: true,

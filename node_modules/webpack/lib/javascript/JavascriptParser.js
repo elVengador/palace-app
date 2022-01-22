@@ -417,23 +417,41 @@ class JavascriptParser extends Parser {
 
 				const left = this.evaluateExpression(expr.left);
 				if (!left) return;
+				let returnRight = false;
+				/** @type {boolean|undefined} */
+				let allowedRight;
 				if (expr.operator === "&&") {
 					const leftAsBool = left.asBool();
 					if (leftAsBool === false) return left.setRange(expr.range);
-					if (leftAsBool !== true) return;
+					returnRight = leftAsBool === true;
+					allowedRight = false;
 				} else if (expr.operator === "||") {
 					const leftAsBool = left.asBool();
 					if (leftAsBool === true) return left.setRange(expr.range);
-					if (leftAsBool !== false) return;
+					returnRight = leftAsBool === false;
+					allowedRight = true;
 				} else if (expr.operator === "??") {
 					const leftAsNullish = left.asNullish();
 					if (leftAsNullish === false) return left.setRange(expr.range);
 					if (leftAsNullish !== true) return;
+					returnRight = true;
 				} else return;
 				const right = this.evaluateExpression(expr.right);
 				if (!right) return;
-				if (left.couldHaveSideEffects()) right.setSideEffects();
-				return right.setRange(expr.range);
+				if (returnRight) {
+					if (left.couldHaveSideEffects()) right.setSideEffects();
+					return right.setRange(expr.range);
+				}
+
+				const asBool = right.asBool();
+
+				if (allowedRight === true && asBool === true) {
+					return new BasicEvaluatedExpression()
+						.setRange(expr.range)
+						.setTruthy();
+				} else if (allowedRight === false && asBool === false) {
+					return new BasicEvaluatedExpression().setRange(expr.range).setFalsy();
+				}
 			});
 
 		const valueAsExpression = (value, expr, sideEffects) => {
@@ -917,6 +935,13 @@ class JavascriptParser extends Parser {
 				.setString("undefined")
 				.setRange(expr.range);
 		});
+		this.hooks.evaluate.for("Identifier").tap("JavascriptParser", expr => {
+			if (/** @type {IdentifierNode} */ (expr).name === "undefined") {
+				return new BasicEvaluatedExpression()
+					.setUndefined()
+					.setRange(expr.range);
+			}
+		});
 		/**
 		 * @param {string} exprType expression type name
 		 * @param {function(ExpressionNode): GetInfoResult | undefined} getInfo get info
@@ -1171,14 +1196,15 @@ class JavascriptParser extends Parser {
 				const node = /** @type {TaggedTemplateExpressionNode} */ (_node);
 				const tag = this.evaluateExpression(node.tag);
 
-				if (tag.isIdentifier() && tag.identifier !== "String.raw") return;
-				const { quasis, parts } = getSimplifiedTemplateResult(
-					"raw",
-					node.quasi
-				);
-				return new BasicEvaluatedExpression()
-					.setTemplateString(quasis, parts, "raw")
-					.setRange(node.range);
+				if (tag.isIdentifier() && tag.identifier === "String.raw") {
+					const { quasis, parts } = getSimplifiedTemplateResult(
+						"raw",
+						node.quasi
+					);
+					return new BasicEvaluatedExpression()
+						.setTemplateString(quasis, parts, "raw")
+						.setRange(node.range);
+				}
 			});
 
 		this.hooks.evaluateCallExpressionMember

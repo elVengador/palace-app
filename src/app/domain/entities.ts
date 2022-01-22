@@ -16,51 +16,15 @@ export type AddTagInput = {
   value: Scalars['String'];
 };
 
-export type Media = {
-  __typename?: 'Media';
-  _id?: Maybe<Scalars['ID']>;
-  name: Scalars['String'];
-  size: Scalars['Int'];
-  url: Scalars['String'];
-};
-
-export type MediaInput = {
-  name: Scalars['String'];
-  size: Scalars['Int'];
-  url: Scalars['String'];
-};
-
-export type MediaUpdate = {
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  size: Scalars['Int'];
-  url: Scalars['String'];
-};
-
 export type Mutation = {
   __typename?: 'Mutation';
-  addMedia?: Maybe<Scalars['ID']>;
-  addPermission?: Maybe<Scalars['ID']>;
   addTag?: Maybe<Scalars['String']>;
-  addView?: Maybe<Scalars['ID']>;
   privateContent?: Maybe<Scalars['String']>;
   refreshToken?: Maybe<TokensOutput>;
-  removeMedia?: Maybe<Scalars['Int']>;
   signIn?: Maybe<TokensOutput>;
   signOff?: Maybe<Scalars['Boolean']>;
   signUp?: Maybe<Scalars['String']>;
-  updateMedia?: Maybe<Scalars['Int']>;
   updateTag?: Maybe<Scalars['Int']>;
-};
-
-
-export type MutationAddMediaArgs = {
-  mediaInput: MediaInput;
-};
-
-
-export type MutationAddPermissionArgs = {
-  permissionInput: PermissionInput;
 };
 
 
@@ -69,18 +33,8 @@ export type MutationAddTagArgs = {
 };
 
 
-export type MutationAddViewArgs = {
-  viewInput: ViewInput;
-};
-
-
 export type MutationRefreshTokenArgs = {
   refreshTokenInput: RefreshTokenInput;
-};
-
-
-export type MutationRemoveMediaArgs = {
-  id: Scalars['ID'];
 };
 
 
@@ -99,59 +53,20 @@ export type MutationSignUpArgs = {
 };
 
 
-export type MutationUpdateMediaArgs = {
-  mediaUpdate: MediaUpdate;
-};
-
-
 export type MutationUpdateTagArgs = {
   tagId: Scalars['ID'];
   updateTagInput: UpdateTagInput;
 };
 
-export type Permission = {
-  __typename?: 'Permission';
-  _id?: Maybe<Scalars['ID']>;
-  description: Scalars['String'];
-  name: Scalars['String'];
-  state: Scalars['String'];
-};
-
-export type PermissionInput = {
-  description: Scalars['String'];
-  name: Scalars['String'];
-};
-
 export type Query = {
   __typename?: 'Query';
-  getMedia?: Maybe<Media>;
-  getPermission?: Maybe<Permission>;
   getTagsByUser?: Maybe<Array<Maybe<Tag>>>;
-  getView?: Maybe<View>;
-};
-
-
-export type QueryGetMediaArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type QueryGetPermissionArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type QueryGetTagsByUserArgs = {
-  userId: Scalars['ID'];
-};
-
-
-export type QueryGetViewArgs = {
-  id: Scalars['ID'];
+  hola?: Maybe<Scalars['String']>;
 };
 
 export type RefreshTokenInput = {
   currentRefreshToken: Scalars['String'];
+  retryNumber: Scalars['Int'];
 };
 
 export type SignInInput = {
@@ -187,34 +102,4 @@ export type TokensOutput = {
 
 export type UpdateTagInput = {
   value: Scalars['String'];
-};
-
-export type User = {
-  __typename?: 'User';
-  _id?: Maybe<Scalars['ID']>;
-  birthday: Scalars['String'];
-  dni: Scalars['String'];
-  email: Scalars['String'];
-  maternalLastName: Scalars['String'];
-  name: Scalars['String'];
-  nick: Scalars['String'];
-  password: Scalars['String'];
-  paternalLastName: Scalars['String'];
-  phone: Scalars['String'];
-  photo: Media;
-  state: Scalars['String'];
-};
-
-export type View = {
-  __typename?: 'View';
-  _id?: Maybe<Scalars['ID']>;
-  description: Scalars['String'];
-  icon: Scalars['String'];
-  name: Scalars['String'];
-};
-
-export type ViewInput = {
-  description: Scalars['String'];
-  icon: Scalars['String'];
-  name: Scalars['String'];
 };
