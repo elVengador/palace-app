@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import './Tags.scss';
 import { Title } from '../../atoms/Title/Title';
@@ -9,6 +9,7 @@ import { Button } from '../../atoms/Button/Button';
 import { TagForm } from '../../molecules/TagForm/TagForm';
 import { useMutation, useQuery } from '@apollo/client';
 import { MUTATION_ADD_TAG, QUERY_GET_TAGS_BY_USER } from '../../../../infraestructure/repository/tag/tag.gql';
+// import { useNavigate } from 'react-router-dom';
 
 
 export const Tags = (): JSX.Element => {
@@ -16,15 +17,10 @@ export const Tags = (): JSX.Element => {
     const [canAddTag, setCanAddTag] = useState(false)
     const [tagValue, setTagValue] = useState('')
     const { error: errorGetTagsByUser, loading, data: dataGetTagsByUser, } = useQuery<{ getTagsByUser: Tag[] }, string>(QUERY_GET_TAGS_BY_USER)
-    //, { error, data: dataAddTag }
     const [addTag, { error: errorAddTag }] = useMutation<{ addTag: string }, AddTagInput>
         (MUTATION_ADD_TAG, { variables: { value: tagValue } })
 
-    useEffect(() => {
-        console.log('errorAddTag', errorAddTag);
-        console.log('errorGetTagsByUser', errorGetTagsByUser?.message, errorGetTagsByUser?.name);
-        console.log('ee', errorGetTagsByUser?.extraInfo);
-    }, [errorAddTag, errorGetTagsByUser])
+    // const navigate = useNavigate();
 
     const buildNotes = dataGetTagsByUser?.getTagsByUser ? dataGetTagsByUser.getTagsByUser.map(cur => <TagItem
         tagValue={cur.value}

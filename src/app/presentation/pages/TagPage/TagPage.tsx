@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import './TagPage.scss';
 import { Footer } from '../../atomic/organisms/Footer/Footer';
@@ -7,10 +7,6 @@ import { Page } from '../../atomic/templates/Page/Page';
 import { Tags } from '../../atomic/organisms/Tags/Tags';
 
 export default function TagsPage(): JSX.Element {
-
-    useEffect(() => {
-        console.log('main useefect');
-    }, [])
 
     const header = <Header title="Mind Notes" />
     const footer = <Footer title="2021 - elVengador" />
