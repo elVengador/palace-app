@@ -18,7 +18,7 @@ export type AddTagInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  addTag?: Maybe<Scalars['String']>;
+  addTag?: Maybe<Tag>;
   privateContent?: Maybe<Scalars['String']>;
   refreshToken?: Maybe<TokensOutput>;
   signIn?: Maybe<TokensOutput>;
