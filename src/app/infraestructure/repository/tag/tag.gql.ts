@@ -16,21 +16,6 @@ export const MUTATION_ADD_TAG = gql`
 
 `
 
-// export const MUTATION_ADD_TAG2 = gql`
-//     mutation addTag2($value:String!){
-//         addTag2(addTagInput:{
-//             value:$value
-//         }){
-//             id
-//             userId
-//             value
-//             state
-//             updateDate
-//             creationDate
-//         }
-//     }
-// `
-
 export const QUERY_GET_TAGS_BY_USER = gql`
     query getTagsByUser{
         getTagsByUser{
@@ -42,4 +27,18 @@ export const QUERY_GET_TAGS_BY_USER = gql`
             creationDate
         }
     }
+`
+
+export const MUTATION_UPDATE_TAG = gql`
+    mutation updateTag($tagId: ID!, $updateTagInput: UpdateTagInput!) {
+        updateTag(tagId: $tagId, updateTagInput: $updateTagInput) {
+            _id
+            userId
+            value
+            creationDate
+            updateDate
+            state
+        }
+    }
+
 `

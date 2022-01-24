@@ -23,7 +23,8 @@ interface InputProps {
         className?: string
     }
     events?: {
-        onClick?: () => void
+        onClick?: () => void,
+        onkeydown?: () => void
     }
 }
 
@@ -72,6 +73,7 @@ export const Input = ({
                     onChange={(e) => onChangeInput(e)}
                     onFocus={() => setIsTouched(true)}
                     {...props.attributes}
+                    {...props.events}
                 >
                 </input>
             }

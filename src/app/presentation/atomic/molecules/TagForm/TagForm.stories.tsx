@@ -11,7 +11,4 @@ export default {
 const Template: ComponentStory<typeof TagForm> = (args) => <TagForm {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {
-    value: 'This is a example note',
-    setValue: () => { console.log('hi'); }
-};
+Default.args = {};

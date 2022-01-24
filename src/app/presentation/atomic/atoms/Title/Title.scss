@@ -3,6 +3,8 @@
     color: var(--main);
     font-weight: 700;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
 }
 
 .title-primary{

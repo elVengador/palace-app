@@ -3,11 +3,12 @@ import React from 'react';
 
 import './NoteItem.scss';
 import { Title } from '../../atoms/Title/Title';
+import { Tag } from '../../../../domain/entities';
 
-export interface Tag {
-    id: string,
-    value: string,
-}
+// export interface Tag {
+//     id: string,
+//     value: string,
+// }
 
 interface NoteItemProps {
     content: string;
@@ -28,7 +29,12 @@ export const NoteItem = ({
 
     const tagAttribures = { style: { 'marginRight': '10px' } }
 
-    const buildTags = () => tags.map(cur => <Title content={cur.value} icon="hashtag" key={cur.id} size="xs" attributes={tagAttribures} />)
+    const buildTags = () => tags.map(cur => <Title
+        content={cur.value}
+        icon="hashtag"
+        key={cur._id}
+        size="xs"
+        attributes={tagAttribures} />)
 
     const onClickNote = () => {
         props.onClick()
