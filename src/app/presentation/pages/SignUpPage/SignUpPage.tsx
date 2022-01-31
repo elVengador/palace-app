@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 
 import './SignUpPage.scss';
-import { Footer } from '../../atomic/organisms/Footer/Footer';
+import { Footer } from '../../../../core/presentation/atomic/organisms/Footer/Footer';
 import { FormSignUp } from '../../atomic/organisms/FormSignUp/FormSignUp';
-import { Header } from '../../atomic/organisms/Header/Header';
+import { Header } from '../../../../core/presentation/atomic/organisms/Header/Header';
 import { Page } from '../../atomic/templates/Page/Page';
 
 export default function SignUp(): JSX.Element {

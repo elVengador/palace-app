@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 import './TagForm.scss';
-import { Input, InputStatus } from '../../atoms/Input/Input';
-import { Button } from '../../atoms/Button/Button';
+import { Input, InputStatus } from '../../../../../core/presentation/atomic/atoms/Input/Input';
+import { Button } from '../../../../../core/presentation/atomic/atoms/Button/Button';
 import { useMutation } from '@apollo/client';
 import { MUTATION_ADD_TAG, QUERY_GET_TAGS_BY_USER } from '../../../../infraestructure/repository/tag/tag.gql';
 import { AddTagInput, Tag } from '../../../../domain/entities';

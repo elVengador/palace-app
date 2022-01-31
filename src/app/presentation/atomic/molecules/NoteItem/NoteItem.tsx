@@ -2,7 +2,7 @@ import React from 'react';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './NoteItem.scss';
-import { Title } from '../../atoms/Title/Title';
+import { Title } from '../../../../../core/presentation/atomic/atoms/Title/Title';
 import { Tag } from '../../../../domain/entities';
 
 // export interface Tag {

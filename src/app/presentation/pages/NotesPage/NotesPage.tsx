@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 
 import './NotesPage.scss';
-import { Footer } from '../../atomic/organisms/Footer/Footer';
-import { Header } from '../../atomic/organisms/Header/Header';
+import { Footer } from '../../../../core/presentation/atomic/organisms/Footer/Footer';
+import { Header } from '../../../../core/presentation/atomic/organisms/Header/Header';
 import { Page } from '../../atomic/templates/Page/Page';
 import { Notes } from '../../atomic/organisms/Notes/Notes';
 

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
 import './Tags.scss';
-import { Title } from '../../atoms/Title/Title';
-import { Main } from '../../molecules/Main/Main';
+import { Title } from '../../../../../core/presentation/atomic/atoms/Title/Title';
+import { Main } from '../../../../../core/presentation/atomic/molecules/Main/Main';
 import { Tag } from '../../../../domain/entities';
 import { TagItem } from '../../molecules/TagItem/TagItem';
-import { Button } from '../../atoms/Button/Button';
+import { Button } from '../../../../../core/presentation/atomic/atoms/Button/Button';
 import { TagForm } from '../../molecules/TagForm/TagForm';
 import { useQuery } from '@apollo/client';
 import { QUERY_GET_TAGS_BY_USER } from '../../../../infraestructure/repository/tag/tag.gql';

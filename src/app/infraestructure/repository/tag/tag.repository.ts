@@ -1,6 +1,6 @@
 import { Variables } from "graphql-request";
 import { AddTagInput, Tag } from "../../../domain/entities";
-import { gqlClient } from "../../graphql";
+import { gqlClient } from "../../../../core/infraestructure/graphql";
 import { MUTATION_UPDATE_TAG, QUERY_GET_TAGS_BY_USER } from "./tag.gql";
 // import { MUTATION_SIGN_IN, MUTATION_SIGN_UP } from './auth.gql';
 

@@ -1,9 +1,9 @@
 import React from 'react';
 
 import './Notes.scss';
-import { Title } from '../../atoms/Title/Title';
+import { Title } from '../../../../../core/presentation/atomic/atoms/Title/Title';
 import { NoteItem } from '../../molecules/NoteItem/NoteItem';
-import { Main } from '../../molecules/Main/Main';
+import { Main } from '../../../../../core/presentation/atomic/molecules/Main/Main';
 import { Tag } from '../../../../domain/entities';
 
 interface Note {
