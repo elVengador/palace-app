@@ -4,7 +4,23 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
-import Dotenv from 'dotenv-webpack';
+import dotenv from 'dotenv';
+import webpack from "webpack";
+
+const getEnvKeys = () => {
+    const env = dotenv.config().parsed;
+    let envKeys = {}
+    if (env) {
+        envKeys = Object.keys(env).reduce((acu, cur) => {
+            const value = JSON.stringify(env[cur]);
+            // acu[`process.env.${cur}`]
+            const tt = `process.env.${cur}`
+            return { ...acu, [tt]: value };
+        }, {});
+    }
+
+    return envKeys
+}
 
 const config: Configuration = {
     mode: "production",
@@ -44,7 +60,7 @@ const config: Configuration = {
         new ForkTsCheckerWebpackPlugin({ async: false }),
         new ESLintPlugin({ extensions: ["js", "jsx", "ts", "tsx"] }),
         new CleanWebpackPlugin(),
-        new Dotenv()
+        new webpack.DefinePlugin(getEnvKeys())
     ],
     optimization: {
         splitChunks: {
