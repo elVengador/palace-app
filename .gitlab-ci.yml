@@ -69,7 +69,7 @@ deploy-job:
 
       docker ps -f name=$PROJECT && docker rm -f $PROJECT;
       docker run -d --name $PROJECT \
-        -p $API_PORT:8600 $REGISTRY/$PROJECT;
+        -p $APP_PORT:8600 $REGISTRY/$PROJECT;
       docker network connect $NETWORK_NAME $PROJECT;
       "
     - ssh -tt el_vengador_king@$SERVER "$cmd"
