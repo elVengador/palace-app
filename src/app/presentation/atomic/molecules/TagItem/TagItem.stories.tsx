@@ -12,6 +12,12 @@ const Template: ComponentStory<typeof TagItem> = (args) => <TagItem {...args} />
 
 export const Default = Template.bind({});
 Default.args = {
-    tagValue: 'This is a example note',
-    date: '12 de noviembre del 2021'
+    tag: {
+        _id: '',
+        userId: '',
+        value: 'This is a example note',
+        state: '',
+        creationDate: '12 de noviembre del 2021',
+        updateDate: '12 de noviembre del 2021'
+    }
 };

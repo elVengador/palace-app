@@ -16,6 +16,10 @@ const config: Configuration = {
     module: {
         rules: [
             {
+                test: /\.scss$/,
+                use: ["style-loader", "css-loader", "sass-loader"]
+            },
+            {
                 test: /\.(ts|js)x?$/i,
                 exclude: /node_modules/,
                 use: {
@@ -40,6 +44,11 @@ const config: Configuration = {
         new ESLintPlugin({ extensions: ["js", "jsx", "ts", "tsx"] }),
         new CleanWebpackPlugin(),
     ],
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
+    }
 };
 
 export default config;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ApolloProvider } from '@apollo/client';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 
-import { client } from './app/infraestructure/apollo';
+import { client } from './core/infraestructure/apollo';
 import HomePage from './app/presentation/pages/home-page/HomePage';
 import NotePage from './app/presentation/pages/NotePage/NotePage';
 import NotesPage from './app/presentation/pages/NotesPage/NotesPage';

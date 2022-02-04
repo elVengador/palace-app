@@ -1,5 +1,5 @@
 import { Note } from '../../domain/notes/notes.entity'
-import { api } from '../rest-api'
+import { api } from '../../../core/infraestructure/rest-api'
 
 export const noteRepository = {
     getNotes: (): Promise<Note[]> => api.POST<Note[]>('notes/get'),

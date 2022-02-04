@@ -1,8 +1,9 @@
 import React from 'react'
 
 import './SignInPage.scss';
-import { Footer } from '../../atomic/organisms/Footer/Footer';
-import { Header } from '../../atomic/organisms/Header/Header';
+import { Footer } from '../../../../core/presentation/atomic/organisms/Footer/Footer';
+// import { FormSignUp } from '../../atomic/organisms/FormSignUp/FormSignUp';
+import { Header } from '../../../../core/presentation/atomic/organisms/Header/Header';
 import { Page } from '../../atomic/templates/Page/Page';
 import { FormSignIn } from '../../atomic/organisms/FormSignIn/FormSignIn';
 

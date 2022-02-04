@@ -1,11 +1,22 @@
 .tags{
     &--header{
-        padding-bottom: 10px ;
-        display: flex;
-        justify-content: space-between;
+        padding: 20px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        box-shadow: var(--shadow);
+        background: var(--bg);
+        position: sticky;
+        top: 0;
+        .options-top{
+            display: flex;
+            justify-content: space-between;
+        }
     }
     &--items{
+        padding: 20px;
         display: grid;
         row-gap: 10px;
+        // max-height: inherit;
+        overflow-y: auto;
     }
 }
