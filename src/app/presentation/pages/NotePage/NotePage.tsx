@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import './NotePage.scss';
 import { Footer } from '../../../../core/presentation/atomic/organisms/Footer/Footer';
@@ -9,11 +9,6 @@ import { Page } from '../../atomic/templates/Page/Page';
 // import { Main } from '../../atomic/molecules/Main/Main';
 
 export default function NotesPage(): JSX.Element {
-
-    useEffect(() => {
-        console.log('main useefect');
-    }, [])
-
 
     const header = <Header title="Mind Notes" />
     const footer = <Footer title="2021 - elVengador" />

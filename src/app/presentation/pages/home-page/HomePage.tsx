@@ -1,16 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 // import { useNote } from '../../../application/controllers/note.controller'
 
 import './HomePage.scss';
 
 export default function HomePage(): JSX.Element {
-    // const { notes } = useNote()
-    // const [pokemon, setPokemon] = useState<Pokemon | null>(null)
-
-    useEffect(() => {
-        console.log('main useefect');
-    }, [])
 
     return (
         <div >
