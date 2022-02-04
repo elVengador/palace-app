@@ -1,3 +1,4 @@
 [submodule "src/core"]
 	path = src/core
 	url = ../core-app.git
+    branch = main
