@@ -68,10 +68,7 @@ deploy-job:
       docker pull $REGISTRY/$PROJECT;
 
       docker ps -f name=$PROJECT && docker rm -f $PROJECT;
-      docker run -d --name $PROJECT \
-        -e API_HOST=$API_HOST \
-        -e API_PORT=$API_PORT \
-        -p $APP_PORT:8060 $REGISTRY/$PROJECT;
+      docker run -d --name $PROJECT -e API_HOST=$API_HOST -e API_PORT=$API_PORT -p $APP_PORT:8060 $REGISTRY/$PROJECT;
       docker network connect $NETWORK_NAME $PROJECT;
       "
     - ssh -tt el_vengador_king@$SERVER "$cmd"
