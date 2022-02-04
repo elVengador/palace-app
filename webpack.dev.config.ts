@@ -6,9 +6,27 @@ import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
 // import { postcss } from "postcss-flexbugs-fixes";
+import dotenv from 'dotenv';
+import webpack from "webpack";
 
 interface Configuration extends WebpackConfiguration {
     devServer?: WebpackDevServerConfiguration;
+}
+
+
+const getEnvKeys = () => {
+    const env = dotenv.config().parsed;
+    let envKeys = {}
+    if (env) {
+        envKeys = Object.keys(env).reduce((acu, cur) => {
+            const value = JSON.stringify(env[cur]);
+            // acu[`process.env.${cur}`]
+            const tt = `process.env.${cur}`
+            return { ...acu, [tt]: value };
+        }, {});
+    }
+
+    return envKeys
 }
 
 const config: Configuration = {
@@ -46,6 +64,7 @@ const config: Configuration = {
         new HotModuleReplacementPlugin(),
         new ForkTsCheckerWebpackPlugin({ async: false }),
         new ESLintPlugin({ extensions: ["js", "jsx", "ts", "tsx"] }),
+        new webpack.DefinePlugin(getEnvKeys())
     ],
     devtool: "inline-source-map",
     devServer: {
