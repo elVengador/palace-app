@@ -56,6 +56,8 @@ docker-job:
   image: docker:dind
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - echo '-- -- >>'$API_HOST
+    - echo '-- -- >>'$API_PORT
     - docker build -t $REGISTRY/$PROJECT .
     - docker push $REGISTRY/$PROJECT
 
