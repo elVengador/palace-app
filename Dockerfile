@@ -5,6 +5,8 @@ RUN yarn install --production
 RUN yarn add webpack
 ENV API_HOST=$API_HOST
 ENV API_PORT=$API_PORT
+RUN echo $API_HOST
+RUN echo $API_PORT
 RUN yarn build
 
 FROM node:alpine
