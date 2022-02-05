@@ -4,21 +4,30 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
-import dotenv from 'dotenv';
 import webpack from "webpack";
 
-const getEnvKeys = () => {
-    const env = dotenv.config().parsed;
-    let envKeys = {}
-    if (env) {
-        envKeys = Object.keys(env).reduce((acu, cur) => {
-            const value = JSON.stringify(env[cur]);
-            // acu[`process.env.${cur}`]
-            const tt = `process.env.${cur}`
-            return { ...acu, [tt]: value };
-        }, {});
-    }
+// const getEnvKeys = () => {
+//     const env = dotenv.config().parsed;
+//     let envKeys = {}
+//     if (env) {
+//         envKeys = Object.keys(env).reduce((acu, cur) => {
+//             const value = JSON.stringify(env[cur]);
+//             // acu[`process.env.${cur}`]
+//             const tt = `process.env.${cur}`
+//             return { ...acu, [tt]: value };
+//         }, {});
+//     }
+//     console.log('......???>>>', envKeys, process.env.API_HOST);
+//     return envKeys
+// }
 
+const getEnvKeys = () => {
+
+    const envKeys = {
+        'process.env.API_HOST': JSON.stringify(process.env.API_HOST),
+        'process.env.API_PORT': JSON.stringify(process.env.API_PORT)
+    }
+    console.log('......???>>>', envKeys);
     return envKeys
 }
 
