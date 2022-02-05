@@ -58,7 +58,7 @@ docker-job:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - echo '-- -- >>'$API_HOST
     - echo '-- -- >>'$API_PORT
-    - docker build -t $REGISTRY/$PROJECT .
+    - docker build -t $REGISTRY/$PROJECT --build-arg ARG_API_HOST=$API_HOST ARG_API_PORT=$API_PORT .
     - docker push $REGISTRY/$PROJECT
 
 deploy-job:
