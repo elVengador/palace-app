@@ -5,6 +5,7 @@ import { Footer } from '../../../../core/presentation/atomic/organisms/Footer/Fo
 // import { FormSignUp } from '../../atomic/organisms/FormSignUp/FormSignUp';
 import { Header } from '../../../../core/presentation/atomic/organisms/Header/Header';
 import { Page } from '../../atomic/templates/Page/Page';
+import { Menu } from '../../../../core/presentation/atomic/organisms/Menu/Menu';
 // import { Notes } from '../../atomic/organisms/Notes/Notes';
 // import { Main } from '../../atomic/molecules/Main/Main';
 
@@ -12,10 +13,11 @@ export default function NotesPage(): JSX.Element {
 
     const header = <Header />
     const footer = <Footer />
+    const leftMenu = <Menu />
     const main = <h1>Note operations</h1>
 
     return (
-        <Page main={main} header={header} footer={footer} />
+        <Page main={main} header={header} footer={footer} leftMenu={leftMenu} />
     )
 }
 

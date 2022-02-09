@@ -8,9 +8,6 @@ import { MUTATION_ADD_TAG, QUERY_GET_TAGS_BY_USER } from '../../../../infraestru
 import { AddTagInput, Tag } from '../../../../domain/entities';
 
 interface TagFormProps {
-    // value: string;
-    // setValue: React.Dispatch<React.SetStateAction<string>>
-    // handleAddTag: () => void;
     handleBeforeSubmit: () => void
 }
 
@@ -33,7 +30,6 @@ export const TagForm = ({
                         query: QUERY_GET_TAGS_BY_USER,
                         data: { getTagsByUser: getTagsByUser }
                     })
-                    // setCanAddTag(false)
                     setValue('')
                     props.handleBeforeSubmit()
                 }
@@ -44,7 +40,6 @@ export const TagForm = ({
         try {
             if (stateTagInput !== 'success') { return console.log('form invalid'); }
 
-            // props.handleAddTag()
             addTag()
         } catch (err) {
             console.log(err);
@@ -63,14 +58,13 @@ export const TagForm = ({
                 pattern="^[a-zA-Z0-9\-]{2,18}$"
                 size="sm"
                 attributes={{ placeholder: 'Write name from new tag' }}
-            // events={{ onkeydown: () => onSubmit() }}
             />
             <Button
                 content=""
                 icon="check"
                 size="sm"
                 type="alpha"
-                onClick={() => onSubmit()}
+                events={{ onClick: () => onSubmit() }}
             />
 
         </div>

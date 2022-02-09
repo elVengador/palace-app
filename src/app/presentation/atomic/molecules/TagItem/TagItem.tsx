@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './TagItem.scss';
 import { Title } from '../../../../../core/presentation/atomic/atoms/Title/Title';
@@ -10,20 +9,16 @@ import { Tag, UpdateTagInput } from '../../../../domain/entities';
 import { useMutation } from '@apollo/client';
 import { MUTATION_UPDATE_TAG, QUERY_GET_TAGS_BY_USER } from '../../../../infraestructure/repository/tag/tag.gql';
 
-
 interface TagItemProps {
     tag: Tag
     startEditting?: boolean
 }
 
 export const TagItem = ({
-    // tagValue = '',
-    // date = '00/00/00',
     startEditting = false,
     ...props
 }: TagItemProps): JSX.Element => {
 
-    // const onClickNote = () => props.onClick()
     const [value, setValue] = useState(props.tag.value)
     const [isEditting, setIsEditting] = useState(startEditting)
     const [stateTagInput, setStateTagInput] = useState<InputStatus>('success')
@@ -68,7 +63,6 @@ export const TagItem = ({
                         setState={setStateTagInput}
                         pattern="^[a-zA-Z0-9\-]{2,18}$"
                         size="sm"
-                    // events={{ onkeydown: () => props.onUpdateTag() }}
                     />
                 }
                 {!isEditting &&
@@ -89,14 +83,14 @@ export const TagItem = ({
                                 icon="check"
                                 size="sm"
                                 type="alpha"
-                                onClick={() => handelUpdateTag()}
+                                events={{ onClick: () => handelUpdateTag() }}
                             />
                             <Button
                                 content=""
                                 icon="times"
                                 size="sm"
                                 type="alpha"
-                                onClick={() => setIsEditting(false)}
+                                events={{ onClick: () => setIsEditting(false) }}
                             />
                         </>
                     }
@@ -107,7 +101,7 @@ export const TagItem = ({
                                 icon="pen"
                                 size="sm"
                                 type="alpha"
-                                onClick={() => setIsEditting(true)}
+                                events={{ onClick: () => setIsEditting(true) }}
                             />
                             {/* <Button
                                 content=""

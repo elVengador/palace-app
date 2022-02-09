@@ -15,9 +15,9 @@ Default.args = {
     tag: {
         _id: '',
         userId: '',
-        value: 'This is a example note',
+        value: 'Tag-example-max-18-chars',
         state: '',
-        creationDate: '12 de noviembre del 2021',
-        updateDate: '12 de noviembre del 2021'
+        creationDate: '2022-02-09T16:19:10.984Z',
+        updateDate: '2022-02-09T16:19:10.984Z'
     }
 };
