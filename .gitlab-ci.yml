@@ -54,6 +54,7 @@ services:
 docker-job:
   stage: docker
   image: docker:dind
+  only: main
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - echo '-- -- >>'$API_HOST
@@ -63,6 +64,7 @@ docker-job:
 
 deploy-job:
   stage: deploy
+  only: main
   script:
     - >
       cmd="
