@@ -8,8 +8,8 @@ import { Tags } from '../../atomic/organisms/Tags/Tags';
 
 export default function TagsPage(): JSX.Element {
 
-    const header = <Header title="Mind Notes" />
-    const footer = <Footer title="2021 - elVengador" />
+    const header = <Header />
+    const footer = <Footer />
     const main = <Tags />
 
     return (

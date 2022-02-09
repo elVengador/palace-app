@@ -10,8 +10,8 @@ import { Page } from '../../atomic/templates/Page/Page';
 
 export default function NotesPage(): JSX.Element {
 
-    const header = <Header title="Mind Notes" />
-    const footer = <Footer title="2021 - elVengador" />
+    const header = <Header />
+    const footer = <Footer />
     const main = <h1>Note operations</h1>
 
     return (

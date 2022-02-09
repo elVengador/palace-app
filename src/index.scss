@@ -5,7 +5,7 @@
 :root{
     --height-header:38px;
     --height-footer:22px;
-    --height-main:calc(100vh - var(--height-header) - var(--height-footer) - 30px); //30px from padding .wrapper
+    --height-main:calc(100vh - var(--height-header) - var(--height-footer));
     --page-width:800px;
     --shadow:
         1px 2px 2px #1d1d1d1f,

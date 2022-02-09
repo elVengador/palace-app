@@ -9,8 +9,8 @@ import { FormSignIn } from '../../atomic/organisms/FormSignIn/FormSignIn';
 
 export default function SignIn(): JSX.Element {
 
-    const header = <Header title="Mind Notes" />
-    const footer = <Footer title="2021 - elVengador" />
+    const header = <Header />
+    const footer = <Footer />
     const main = <div className="sign-up--wrapper">
         <FormSignIn />
     </div>
