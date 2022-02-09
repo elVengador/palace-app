@@ -1,6 +1,9 @@
 import React from 'react';
+import { ApolloProvider } from '@apollo/client';
+import { BrowserRouter } from 'react-router-dom';
 
-import '../src/app/presentation/utils/font-awesome.util'
+import '../src/core/presentation/utils/font-awesome.util'
+import { client } from '../src/core/infraestructure/apollo';
 import './preview.scss'
 import '../tokens.scss'
 import '../src/index.scss'
@@ -17,13 +20,17 @@ export const parameters = {
 
 export const decorators = [
     (Story) => (
-        <div className={'preview--container'}>
-            <div className={'preview--container-light light-theme'}>
-                <Story />
-            </div>
-            <div className={'preview--container-dark dark-theme'}>
-                <Story />
-            </div>
-        </div>
+        <ApolloProvider client={client}>
+            <BrowserRouter>
+                <div className={'preview--container'}>
+                    <div className={'preview--container-light light-theme'}>
+                        <Story />
+                    </div>
+                    <div className={'preview--container-dark dark-theme'}>
+                        <Story />
+                    </div>
+                </div>
+            </BrowserRouter>
+        </ApolloProvider>
     ),
 ];

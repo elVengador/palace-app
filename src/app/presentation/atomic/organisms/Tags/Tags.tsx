@@ -10,7 +10,6 @@ import { TagForm } from '../../molecules/TagForm/TagForm';
 import { useQuery } from '@apollo/client';
 import { QUERY_GET_TAGS_BY_USER } from '../../../../infraestructure/repository/tag/tag.gql';
 
-
 export const Tags = (): JSX.Element => {
 
     const [canAddTag, setCanAddTag] = useState(false)
@@ -31,8 +30,8 @@ export const Tags = (): JSX.Element => {
         }
     }
 
-    const ButtonShowTagForm = <Button content="" icon="times" type="alpha" onClick={() => setCanAddTag(false)} />
-    const ButtonHideFormTag = <Button content="" icon="plus" type="alpha" onClick={() => setCanAddTag(true)} />
+    const ButtonShowTagForm = <Button content="" icon="times" type="alpha" events={{ onClick: () => setCanAddTag(false) }} />
+    const ButtonHideFormTag = <Button content="" icon="plus" type="alpha" events={{ onClick: () => setCanAddTag(true) }} />
 
     return (
         <Main>
