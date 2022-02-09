@@ -51,6 +51,7 @@ export const FormSignIn = ({
 
     const onSubmitSignIn = async () => {
         try {
+            console.log('on submit sign in');
             if (isInvalidForm()) { return console.log('Error'); }
 
             signUp()
