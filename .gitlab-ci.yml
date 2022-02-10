@@ -55,7 +55,7 @@ services:
 
 test-job:
   stage: test
-  image: node:alpine
+  image: node:latest
   only:
     - develop
   script:
