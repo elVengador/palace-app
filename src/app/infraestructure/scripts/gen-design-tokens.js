@@ -7,6 +7,7 @@
 
 const fs = require('fs')
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { choices, desicions } = require('../utils/design-tokens')
 
 const buildAProperty = (key, arrayProperties, prefix = '') => `--${prefix}${prefix ? '-' : ''}${key}: ${arrayProperties[key]};`
