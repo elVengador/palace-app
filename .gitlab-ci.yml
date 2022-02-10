@@ -53,7 +53,7 @@ stages:
 services:
   - docker:dind
 
-docker-job:
+test-job:
   stage: test
   image: node:alpine
   only:
