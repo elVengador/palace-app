@@ -47,10 +47,21 @@ variables:
   REGISTRY: registry.gitlab.com/jimynicanor1001
   GIT_SUBMODULE_STRATEGY: recursive
 stages:
+  - test
   - docker
   - deploy
 services:
   - docker:dind
+
+docker-job:
+  stage: test
+  image: node:alpine
+  only:
+    - develop
+  script:
+    - yarn global add eslint
+    - eslint ./src
+
 docker-job:
   stage: docker
   image: docker:dind
