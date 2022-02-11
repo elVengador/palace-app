@@ -1,14 +1,8 @@
 import React from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './NoteItem.scss';
 import { Title } from '../../../../../core/presentation/atomic/atoms/Title/Title';
 import { Tag } from '../../../../domain/entities';
-
-// export interface Tag {
-//     id: string,
-//     value: string,
-// }
 
 interface NoteItemProps {
     content: string;

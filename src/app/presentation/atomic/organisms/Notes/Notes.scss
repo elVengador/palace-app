@@ -1,9 +1,12 @@
 .notes{
     &--header{
+        padding: 20px;
         padding-bottom: 10px ;
     }
     &--items{
+        padding: 20px;
         display: grid;
         row-gap: 10px;
+        overflow-y: auto;
     }
 }
