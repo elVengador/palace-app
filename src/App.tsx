@@ -8,7 +8,7 @@ import NotePage from './app/presentation/pages/NotePage/NotePage';
 import NotesPage from './app/presentation/pages/NotesPage/NotesPage';
 import SignIn from './app/presentation/pages/SignInPage/SignInPage';
 import SignUp from './app/presentation/pages/SignUpPage/SignUpPage';
-import TagsPage from './app/presentation/pages/TagPage/TagPage';
+import TagsPage from './app/presentation/pages/TagsPage/TagsPage';
 
 export default function App(): JSX.Element {
     return (
@@ -23,6 +23,7 @@ export default function App(): JSX.Element {
                     </Route>
                     <Route path="notes"  >
                         <Route index element={<NotesPage />} />
+                        <Route path="add" element={<NotePage />} />
                         <Route path=":id" element={<NotePage />} />
                     </Route>
                     <Route path="tags" element={<TagsPage />} />

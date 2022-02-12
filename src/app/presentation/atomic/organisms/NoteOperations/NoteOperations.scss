@@ -1,8 +1,11 @@
-.notes{
+.note-operations{
     &--header{
-        padding-bottom: 10px ;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
     }
-    &--items{
+    &--body{
+        padding: 10px 20px;
         display: grid;
         row-gap: 10px;
     }

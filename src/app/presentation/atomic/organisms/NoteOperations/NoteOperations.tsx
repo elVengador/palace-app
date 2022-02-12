@@ -1,65 +1,106 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './NoteOperations.scss';
 import { Title } from '../../../../../core/presentation/atomic/atoms/Title/Title';
-import { NoteItem } from '../../molecules/NoteItem/NoteItem';
 import { Main } from '../../../../../core/presentation/atomic/molecules/Main/Main';
-import { Tag } from '../../../../domain/entities';
-
-interface NoteOperationsss {
-    id: string,
-    content: string,
-    date: string,
-    tags: Tag[]
-}
+import { Button } from '../../../../../core/presentation/atomic/atoms/Button/Button';
+import { useNavigate } from 'react-router';
+import { InputStatus, Select } from '../../../../../core/presentation/atomic/atoms/Select/Select';
+import { TextArea } from '../../../../../core/presentation/atomic/atoms/TextArea/TextArea';
+import { QUERY_GET_TAGS_BY_USER } from '../../../../infraestructure/repository/tag/tag.gql';
+import { AddNoteInput, NotesOutput, Tag } from '../../../../domain/entities';
+import { useMutation, useQuery } from '@apollo/client';
+import { MUTATION_ADD_NOTE } from '../../../../infraestructure/repository/note/note.gql';
 
 interface NoteOperationsProps {
-    title: string;
+    title?: string;
 }
 
 export const NotesOperations = ({
-    title = ''
+    title = 'Add Note'
 }: NoteOperationsProps): JSX.Element => {
 
-    const notes: NoteOperationsss[] = [
-        // {
-        //     id: '1',
-        //     content: 'Some Note',
-        //     date: '12 de agosto del 2021',
-        //     tags: [{ id: '1', value: 'example' }, { id: '2', value: 'task' }]
-        // },
-        // {
-        //     id: '2',
-        //     content: 'Another Note',
-        //     date: '13 de agosto del 2021',
-        //     tags: [{ id: '2', value: 'task' }]
-        // },
-    ]
+    const [tagValue, setTagValue] = useState<string>('12');
+    const [tagState, setTagState] = useState<InputStatus>('default');
+    const [noteValue, setNoteValue] = useState('111');
+    const [noteState, setNoteState] = useState<InputStatus>('default');
+    const navigate = useNavigate();
 
-    const buildNotes = notes.map(cur => <NoteItem
-        content={cur.content}
-        date={cur.date}
-        tags={cur.tags}
-        onClick={() => console.log('ok')}
-        key={cur.id}
-    />)
+    const { error: errorGetTagsByUser, loading, data: dataGetTagsByUser } = useQuery<{ getTagsByUser: Tag[] }, string>(QUERY_GET_TAGS_BY_USER, {
+        pollInterval: 1000 * 60 * 30,
+    })
+
+    const [addNote, { error: errorAddNote, loading: loadingAddNote }] = useMutation<{ addNote: NotesOutput }, { addNoteInput: AddNoteInput }>(MUTATION_ADD_NOTE)
+
+    const mapTagsToSelect = () => {
+        if (!dataGetTagsByUser) { return [] }
+        return dataGetTagsByUser.getTagsByUser.map(cur => ({ label: `#${cur.value}`, value: cur._id }))
+    }
+    const onAddNote = () => {
+        try {
+            console.log('VVV', tagValue, noteValue, tagState, noteState)
+            if (tagState !== 'success') { return console.log('tag invalid'); }
+            if (noteState !== 'success') { return console.log('note invalida'); }
+
+            // addNote({ variables: addNoteInput:{ tagId: tagValue, value: noteValue } })
+            addNote({
+                variables: {
+                    addNoteInput: {
+                        tagId: tagValue,
+                        value: noteValue
+                    }
+                }
+            })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    const onNavigateNotesPage = () => navigate("/notes")
+    // const onUpdateNote = () => { console.log('update note'); }
 
     return (
-        // <main className="notes">
-        //     <div className="notes--header">
-        //         <Title content={title} />
-        //     </div>
-        //     <div className="notes--items">
-        //         {buildNotes}
-        //     </div>
-        // </main>
         <Main>
             <>
-                <div className="notes--header">
+                {errorGetTagsByUser && <h2>error: nose puede obtener los tags</h2>}
+                {errorAddNote && <h2>error: nose puede agregar notas</h2>}
+                {loading && <h2>Loading</h2>}
+                {loadingAddNote && <h2>Loading AN</h2>}
+                <div className="note-operations--header">
+                    <Button
+                        content=""
+                        size="sm"
+                        icon="arrow-left"
+                        type="alpha"
+                        events={{ onClick: () => onNavigateNotesPage() }}
+                    />
                     <Title content={title} />
+                    <Button
+                        content=""
+                        size="sm"
+                        icon="check"
+                        type="alpha"
+                        events={{ onClick: () => onAddNote() }}
+                    />
                 </div>
-                <div className="notes--items">
-                    {buildNotes}
+                <div className="note-operations--body">
+                    {/* <textarea name="" id="" ></textarea> */}
+                    <Title content={'12/12/12'} />
+                    <Select
+                        value={tagValue}
+                        setValue={setTagValue}
+                        state={tagState}
+                        setState={setTagState}
+                        options={mapTagsToSelect()}
+                    />
+                    <div style={{ height: 'calc(100vh - 230px)' }}>
+                        <TextArea
+                            value={noteValue}
+                            setValue={setNoteValue}
+                            state={noteState}
+                            setState={setNoteState}
+                            attributes={{ placeholder: 'Write you note here:\nYou can format text with Markdown' }}
+                        />
+                    </div>
                 </div>
             </>
         </Main>

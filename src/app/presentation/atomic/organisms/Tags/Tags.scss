@@ -1,6 +1,6 @@
 .tags{
     &--header{
-        padding: 20px;
+        padding: 10px 20px;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
         // box-shadow: var(--shadow);
@@ -13,10 +13,10 @@
         }
     }
     &--items{
-        padding: 20px;
+        padding: 10px 20px;
         display: grid;
         row-gap: 10px;
-        // max-height: inherit;
+        max-height: inherit;
         overflow-y: auto;
     }
 }

@@ -21,17 +21,6 @@ export type AddTagInput = {
   value: Scalars['String'];
 };
 
-export type GetNotesByTagOutput = {
-  __typename?: 'GetNotesByTagOutput';
-  _id: Scalars['ID'];
-  creationDate: Scalars['String'];
-  creationUser: Scalars['ID'];
-  state: Scalars['String'];
-  tags?: Maybe<Array<Maybe<Tag>>>;
-  updateDate: Scalars['String'];
-  value: Scalars['String'];
-};
-
 export type Mutation = {
   __typename?: 'Mutation';
   addNote?: Maybe<Note>;
@@ -98,9 +87,21 @@ export type Note = {
   value: Scalars['String'];
 };
 
+export type NotesOutput = {
+  __typename?: 'NotesOutput';
+  _id: Scalars['ID'];
+  creationDate: Scalars['String'];
+  creationUser: Scalars['ID'];
+  state: Scalars['String'];
+  tags: Array<Tag>;
+  updateDate: Scalars['String'];
+  value: Scalars['String'];
+};
+
 export type Query = {
   __typename?: 'Query';
-  getNotesByTag?: Maybe<Array<Maybe<GetNotesByTagOutput>>>;
+  getNotesByTag?: Maybe<Array<Maybe<NotesOutput>>>;
+  getNotesByUser?: Maybe<Array<Maybe<NotesOutput>>>;
   getTagsByUser?: Maybe<Array<Maybe<Tag>>>;
   hola?: Maybe<Scalars['String']>;
 };

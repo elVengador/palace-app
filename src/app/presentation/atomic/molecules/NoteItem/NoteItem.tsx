@@ -51,8 +51,8 @@ export const NoteItem = ({
                 <div className={'note'}>
                     <p className={'note--body'} onClick={onClickNote}>{content}</p>
                     <div className="note--footer">
-                        <div className="note--tags">{buildTags()}</div>
-                        <div><Title content={props.date} size="xs" /></div>
+                        {buildTags()}
+                        <Title content={props.date} size="xs" attributes={{ style: { marginLeft: 'auto' } }} />
                     </div>
                 </div>
             }
