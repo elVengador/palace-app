@@ -1,17 +1,15 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
 
 import './Notes.scss';
 import { Title } from '../../../../../core/presentation/atomic/atoms/Title/Title';
 import { NoteItem } from '../../molecules/NoteItem/NoteItem';
 import { Main } from '../../../../../core/presentation/atomic/molecules/Main/Main';
-import { Tag } from '../../../../domain/entities';
+import { NoteOutput } from '../../../../domain/entities';
+import { QUERY_NOTES_BY_USER } from '../../../../infraestructure/repository/note/note.gql';
+import { Button } from '../../../../../core/presentation/atomic/atoms/Button/Button';
 
-interface Note {
-    id: string,
-    content: string,
-    date: string,
-    tags: Tag[]
-}
 
 interface HeaderProps {
     title: string;
@@ -21,47 +19,43 @@ export const Notes = ({
     title = ''
 }: HeaderProps): JSX.Element => {
 
-    const notes: Note[] = [
-        // {
-        //     id: '1',
-        //     content: 'Some Note',
-        //     date: '12 de agosto del 2021',
-        //     tags: [{ _id: '1', value: 'example' }, { id: '2', value: 'task' }]
-        // },
-        // {
-        //     id: '2',
-        //     content: 'Another Note',
-        //     date: '13 de agosto del 2021',
-        //     tags: [{ _id: '2', value: 'task' }]
-        // },
-    ]
+    const { error: errorGetNotesOutput, loading, data: dataGetNotesOutPut } = useQuery<{ getNotesByUser: NoteOutput[] }>(QUERY_NOTES_BY_USER)
+    const navigate = useNavigate();
 
-    const buildNotes = notes.map(cur => <NoteItem
-        content={cur.content}
-        date={cur.date}
+    const buildNotes = (notes: NoteOutput[]) => notes.map(cur => <NoteItem
+        content={cur.value}
+        date={cur.creationDate}
         tags={cur.tags}
         onClick={() => console.log('ok')}
-        key={cur.id}
+        key={cur._id}
     />)
 
+    const onNavigateNoteForm = () => navigate("/notes/add")
+
     return (
-        // <main className="notes">
-        //     <div className="notes--header">
-        //         <Title content={title} />
-        //     </div>
-        //     <div className="notes--items">
-        //         {buildNotes}
-        //     </div>
-        // </main>
         <Main>
             <>
+                {errorGetNotesOutput && <h1>{errorGetNotesOutput.message}</h1>}
+                {loading && <h1>loading</h1>}
                 <div className="notes--header">
-                    <Title content={title} />
+                    <div className="options-top">
+                        <Title content={title} />
+                        <Button
+                            content=""
+                            size="sm"
+                            icon="plus"
+                            type="alpha"
+                            events={{ onClick: () => onNavigateNoteForm() }}
+                        />
+                    </div>
                 </div>
                 <div className="notes--items">
-                    {buildNotes}
+                    {
+                        dataGetNotesOutPut?.getNotesByUser &&
+                        buildNotes(dataGetNotesOutPut?.getNotesByUser)
+                    }
                 </div>
             </>
-        </Main>
+        </Main >
     );
 };

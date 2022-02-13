@@ -12,19 +12,31 @@ export type Scalars = {
   Float: number;
 };
 
+export type AddNoteInput = {
+  tagId: Scalars['ID'];
+  value: Scalars['ID'];
+};
+
 export type AddTagInput = {
   value: Scalars['String'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addNote?: Maybe<NoteOutput>;
   addTag?: Maybe<Tag>;
   privateContent?: Maybe<Scalars['String']>;
   refreshToken?: Maybe<TokensOutput>;
   signIn?: Maybe<TokensOutput>;
   signOff?: Maybe<Scalars['Boolean']>;
   signUp?: Maybe<Scalars['String']>;
-  updateTag?: Maybe<Scalars['Int']>;
+  updateNote?: Maybe<Note>;
+  updateTag?: Maybe<Tag>;
+};
+
+
+export type MutationAddNoteArgs = {
+  addNoteInput?: InputMaybe<AddNoteInput>;
 };
 
 
@@ -53,15 +65,50 @@ export type MutationSignUpArgs = {
 };
 
 
+export type MutationUpdateNoteArgs = {
+  noteId: Scalars['ID'];
+  updateNoteInput?: InputMaybe<UpdateNoteInput>;
+};
+
+
 export type MutationUpdateTagArgs = {
   tagId: Scalars['ID'];
   updateTagInput: UpdateTagInput;
 };
 
+export type Note = {
+  __typename?: 'Note';
+  _id: Scalars['ID'];
+  creationDate: Scalars['String'];
+  creationUser: Scalars['ID'];
+  state: Scalars['String'];
+  tagId: Scalars['ID'];
+  updateDate: Scalars['String'];
+  value: Scalars['String'];
+};
+
+export type NoteOutput = {
+  __typename?: 'NoteOutput';
+  _id: Scalars['ID'];
+  creationDate: Scalars['String'];
+  creationUser: Scalars['ID'];
+  state: Scalars['String'];
+  tags: Array<Tag>;
+  updateDate: Scalars['String'];
+  value: Scalars['String'];
+};
+
 export type Query = {
   __typename?: 'Query';
+  getNotesByTag?: Maybe<Array<Maybe<NoteOutput>>>;
+  getNotesByUser?: Maybe<Array<Maybe<NoteOutput>>>;
   getTagsByUser?: Maybe<Array<Maybe<Tag>>>;
   hola?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryGetNotesByTagArgs = {
+  tagId: Scalars['ID'];
 };
 
 export type RefreshTokenInput = {
@@ -98,6 +145,11 @@ export type TokensOutput = {
   __typename?: 'TokensOutput';
   accessToken?: Maybe<Scalars['String']>;
   refreshToken?: Maybe<Scalars['String']>;
+};
+
+export type UpdateNoteInput = {
+  tagId: Scalars['ID'];
+  value: Scalars['ID'];
 };
 
 export type UpdateTagInput = {

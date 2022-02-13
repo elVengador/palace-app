@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ApolloProvider } from '@apollo/client';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -19,18 +19,16 @@ export const parameters = {
 }
 
 export const decorators = [
-    (Story) => (
-        <ApolloProvider client={client}>
-            <BrowserRouter>
-                <div className={'preview--container'}>
-                    <div className={'preview--container-light light-theme'}>
-                        <Story />
-                    </div>
-                    <div className={'preview--container-dark dark-theme'}>
-                        <Story />
-                    </div>
+    (Story) => < ApolloProvider client={client} >
+        <BrowserRouter>
+            <div className={'preview--container'}>
+                <div className={'preview--container-light light-theme'}>
+                    <Story />
                 </div>
-            </BrowserRouter>
-        </ApolloProvider>
-    ),
+                <div className={'preview--container-dark dark-theme'}>
+                    <Story />
+                </div>
+            </div>
+        </BrowserRouter>
+    </ApolloProvider >,
 ];
