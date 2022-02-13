@@ -51,6 +51,7 @@ stages:
   - deploy
 services:
   - docker:dind
+
 docker-job:
   stage: docker
   image: docker:dind

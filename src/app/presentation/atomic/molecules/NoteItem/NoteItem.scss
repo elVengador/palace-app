@@ -1,27 +1,29 @@
 .note{
     color: var(--fg);
-    border: solid 1px var(--main);
+    background: var(--bg_2);
+    // border: solid 1px var(--main);
     border-radius: 12px;
     padding: 10px 25px;
+    box-shadow: var(--shadow);
 }
 
-.note:hover{
-    box-shadow: var(--shadow);
-    transition: box-shadow 0.3s ease-in-out;
-}
+// .note:hover{
+//     // transition: box-shadow 0.3s ease-in-out;
+// }
 
 .note--body{
     cursor: pointer;
 }
 
 .note--footer{
-
+    display: flex;
+    flex-wrap: wrap;
 }
 
 @media screen and (min-width: 800px) {
     .note--footer{
         display: flex;
-    justify-content: space-between;
+        justify-content: space-between;
     }
 }
 

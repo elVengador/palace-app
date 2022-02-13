@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import './TagForm.scss';
+import './NoteForm.scss';
 import { Input, InputStatus } from '../../../../../core/presentation/atomic/atoms/Input/Input';
 import { Button } from '../../../../../core/presentation/atomic/atoms/Button/Button';
 import { useMutation } from '@apollo/client';
@@ -47,7 +47,7 @@ export const TagForm = ({
     }
 
     return (
-        <div className="tag-form">
+        <div className="note-form">
             {errorAddTag && <h1>{errorAddTag.message}</h1>}
             {loadingAddTag && <h1>loading</h1>}
             <Input
@@ -56,7 +56,7 @@ export const TagForm = ({
                 state={stateTagInput}
                 setState={setStateTagInput}
                 pattern="^[a-zA-Z0-9\-]{2,18}$"
-                size="md"
+                size="sm"
                 attributes={{ placeholder: 'Write name from new tag' }}
             />
             <Button

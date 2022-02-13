@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './TagPage.scss';
+import './TagsPage.scss';
 import { Footer } from '../../../../core/presentation/atomic/organisms/Footer/Footer';
 import { Header } from '../../../../core/presentation/atomic/organisms/Header/Header';
 import { Page } from '../../atomic/templates/Page/Page';

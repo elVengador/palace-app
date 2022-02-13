@@ -1,14 +1,9 @@
 import React from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Converter } from 'showdown'
 
 import './NoteItem.scss';
 import { Title } from '../../../../../core/presentation/atomic/atoms/Title/Title';
 import { Tag } from '../../../../domain/entities';
-
-// export interface Tag {
-//     id: string,
-//     value: string,
-// }
 
 interface NoteItemProps {
     content: string;
@@ -36,8 +31,11 @@ export const NoteItem = ({
         size="xs"
         attributes={tagAttribures} />)
 
-    const onClickNote = () => {
-        props.onClick()
+    const onClickNote = () => { props.onClick() }
+
+    const htmlToMarkDown = (content: string) => {
+        const converter = new Converter()
+        return converter.makeHtml(content)
     }
 
     return (
@@ -55,10 +53,10 @@ export const NoteItem = ({
             {
                 size === 'md' &&
                 <div className={'note'}>
-                    <p className={'note--body'} onClick={onClickNote}>{content}</p>
+                    <div className={'note--body'} onClick={onClickNote} dangerouslySetInnerHTML={{ __html: htmlToMarkDown(content) }}></div>
                     <div className="note--footer">
-                        <div className="note--tags">{buildTags()}</div>
-                        <div><Title content={props.date} size="xs" /></div>
+                        {buildTags()}
+                        <Title content={props.date} size="xs" attributes={{ style: { marginLeft: 'auto' } }} />
                     </div>
                 </div>
             }
