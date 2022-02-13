@@ -8,9 +8,9 @@ import { useNavigate } from 'react-router';
 import { InputStatus, Select } from '../../../../../core/presentation/atomic/atoms/Select/Select';
 import { TextArea } from '../../../../../core/presentation/atomic/atoms/TextArea/TextArea';
 import { QUERY_GET_TAGS_BY_USER } from '../../../../infraestructure/repository/tag/tag.gql';
-import { AddNoteInput, NotesOutput, Tag } from '../../../../domain/entities';
+import { AddNoteInput, NoteOutput, Tag } from '../../../../domain/entities';
 import { useMutation, useQuery } from '@apollo/client';
-import { MUTATION_ADD_NOTE } from '../../../../infraestructure/repository/note/note.gql';
+import { MUTATION_ADD_NOTE, QUERY_NOTES_BY_USER } from '../../../../infraestructure/repository/note/note.gql';
 
 interface NoteOperationsProps {
     title?: string;
@@ -22,7 +22,7 @@ export const NotesOperations = ({
 
     const [tagValue, setTagValue] = useState<string>('12');
     const [tagState, setTagState] = useState<InputStatus>('default');
-    const [noteValue, setNoteValue] = useState('111');
+    const [noteValue, setNoteValue] = useState('');
     const [noteState, setNoteState] = useState<InputStatus>('default');
     const navigate = useNavigate();
 
@@ -30,7 +30,24 @@ export const NotesOperations = ({
         pollInterval: 1000 * 60 * 30,
     })
 
-    const [addNote, { error: errorAddNote, loading: loadingAddNote }] = useMutation<{ addNote: NotesOutput }, { addNoteInput: AddNoteInput }>(MUTATION_ADD_NOTE)
+    const [addNote, { error: errorAddNote, loading: loadingAddNote }] = useMutation<{ addNote: NoteOutput }, { addNoteInput: AddNoteInput }>
+        (MUTATION_ADD_NOTE,
+            {
+                onCompleted: () => navigate("/notes"),
+                update(cache, { data }) {
+                    console.log('DATA:', data)
+                    const newNote = data?.addNote
+                    const existtingNotes = cache.readQuery<{ getNotesByUser: NoteOutput[] }>({ query: QUERY_NOTES_BY_USER })
+                    if (existtingNotes && newNote) {
+                        const notesByUser = existtingNotes?.getNotesByUser
+                        const getNotesByUser = [...notesByUser, newNote]
+                        cache.writeQuery({
+                            query: QUERY_NOTES_BY_USER,
+                            data: { getNotesByUser: getNotesByUser }
+                        })
+                    }
+                }
+            })
 
     const mapTagsToSelect = () => {
         if (!dataGetTagsByUser) { return [] }
@@ -98,7 +115,8 @@ export const NotesOperations = ({
                             setValue={setNoteValue}
                             state={noteState}
                             setState={setNoteState}
-                            attributes={{ placeholder: 'Write you note here:\nYou can format text with Markdown' }}
+                            pattern='^(.|\n){2,2000}$'
+                            attributes={{ placeholder: 'Write you note here:\nYou can format text with Markdown\nmin: 2 , max: 2000 characters' }}
                         />
                     </div>
                 </div>

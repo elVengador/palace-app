@@ -1,4 +1,5 @@
 import React from 'react';
+import { Converter } from 'showdown'
 
 import './NoteItem.scss';
 import { Title } from '../../../../../core/presentation/atomic/atoms/Title/Title';
@@ -30,8 +31,11 @@ export const NoteItem = ({
         size="xs"
         attributes={tagAttribures} />)
 
-    const onClickNote = () => {
-        props.onClick()
+    const onClickNote = () => { props.onClick() }
+
+    const htmlToMarkDown = (content: string) => {
+        const converter = new Converter()
+        return converter.makeHtml(content)
     }
 
     return (
@@ -49,7 +53,7 @@ export const NoteItem = ({
             {
                 size === 'md' &&
                 <div className={'note'}>
-                    <p className={'note--body'} onClick={onClickNote}>{content}</p>
+                    <div className={'note--body'} onClick={onClickNote} dangerouslySetInnerHTML={{ __html: htmlToMarkDown(content) }}></div>
                     <div className="note--footer">
                         {buildTags()}
                         <Title content={props.date} size="xs" attributes={{ style: { marginLeft: 'auto' } }} />

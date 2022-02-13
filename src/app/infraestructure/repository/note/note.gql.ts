@@ -3,8 +3,15 @@ import { gql } from '@apollo/client';
 export const MUTATION_ADD_NOTE = gql`
     mutation AddNote($addNoteInput: AddNoteInput) {
         addNote(addNoteInput: $addNoteInput) {
-            tagId
             _id
+            tags {
+                value
+                _id
+                userId
+                state
+                updateDate
+                creationDate
+            }
             value
             state
             updateDate

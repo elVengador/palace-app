@@ -6,7 +6,7 @@ import './Notes.scss';
 import { Title } from '../../../../../core/presentation/atomic/atoms/Title/Title';
 import { NoteItem } from '../../molecules/NoteItem/NoteItem';
 import { Main } from '../../../../../core/presentation/atomic/molecules/Main/Main';
-import { NotesOutput } from '../../../../domain/entities';
+import { NoteOutput } from '../../../../domain/entities';
 import { QUERY_NOTES_BY_USER } from '../../../../infraestructure/repository/note/note.gql';
 import { Button } from '../../../../../core/presentation/atomic/atoms/Button/Button';
 
@@ -19,10 +19,10 @@ export const Notes = ({
     title = ''
 }: HeaderProps): JSX.Element => {
 
-    const { error: errorGetNotesOutput, loading, data: dataGetNotesOutPut } = useQuery<{ getNotesByUser: NotesOutput[] }>(QUERY_NOTES_BY_USER)
+    const { error: errorGetNotesOutput, loading, data: dataGetNotesOutPut } = useQuery<{ getNotesByUser: NoteOutput[] }>(QUERY_NOTES_BY_USER)
     const navigate = useNavigate();
 
-    const buildNotes = (notes: NotesOutput[]) => notes.map(cur => <NoteItem
+    const buildNotes = (notes: NoteOutput[]) => notes.map(cur => <NoteItem
         content={cur.value}
         date={cur.creationDate}
         tags={cur.tags}
