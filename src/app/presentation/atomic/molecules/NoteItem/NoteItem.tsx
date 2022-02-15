@@ -10,9 +10,9 @@ interface NoteItemProps {
     content: string;
     tags: Tag[];
     date: string;
-    size?: 'sm' | 'md' | 'lg';
+    size?: 'sm' | 'md' | 'lg' | 'full';
     // color?: 'primary' | 'secondary'
-    onClick: () => void;
+    onClick?: () => void;
 }
 
 export const NoteItem = ({
@@ -34,7 +34,7 @@ export const NoteItem = ({
         size="xs"
         attributes={tagAttribures} />)
 
-    const onClickNote = () => { props.onClick() }
+    const onClickNote = () => { props.onClick && props.onClick() }
 
     return (
         <>
@@ -70,6 +70,24 @@ export const NoteItem = ({
                 size === 'lg' &&
                 <div>
                     <p>{content}</p>
+                </div>
+            }
+            {
+                size === 'full' &&
+                <div className={'note'}>
+                    <div
+                        className={`note--body__full`}
+                        onClick={onClickNote}
+                        dangerouslySetInnerHTML={{ __html: markdownToHtml(content) }}
+                    ></div>
+                    <div className="note--footer">
+                        {buildTags()}
+                        <Title
+                            content={formatDate(props.date)}
+                            size="xs"
+                            attributes={{ style: { marginLeft: 'auto' } }}
+                        />
+                    </div>
                 </div>
             }
         </>

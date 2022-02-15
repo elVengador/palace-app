@@ -15,4 +15,11 @@
         row-gap: 10px;
         overflow-y: auto;
     }
+    &--item-selected{
+        padding: 10px 20px;
+        display: grid;
+        row-gap: 10px;
+        overflow-y: auto;
+        height: calc(100vh - 140px);
+    }
 }

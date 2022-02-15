@@ -17,6 +17,14 @@
     overflow-y: auto;
 }
 
+.note--body__full{
+    cursor: pointer;
+    min-height: 100px;
+    height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+
 .note--footer{
     display: flex;
     flex-wrap: wrap;

@@ -16,6 +16,7 @@ interface TagItemProps {
 
 export const TagItem = ({
     startEditting = false,
+
     ...props
 }: TagItemProps): JSX.Element => {
 
