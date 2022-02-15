@@ -1,9 +1,10 @@
 import React from 'react';
-import { Converter } from 'showdown'
 
 import './NoteItem.scss';
 import { Title } from '../../../../../core/presentation/atomic/atoms/Title/Title';
 import { Tag } from '../../../../domain/entities';
+import { useMarkdown } from '../../../../../core/presentation/utils/hooks/useMarkdown';
+import { formatDate } from '../../../../../core/application/utils/dates';
 
 interface NoteItemProps {
     content: string;
@@ -21,8 +22,10 @@ export const NoteItem = ({
     // color = 'primary',
     ...props
 }: NoteItemProps): JSX.Element => {
+    const { markdownToHtml } = useMarkdown()
 
     const tagAttribures = { style: { 'marginRight': '10px' } }
+
 
     const buildTags = () => tags.map(cur => <Title
         content={cur.value}
@@ -32,11 +35,6 @@ export const NoteItem = ({
         attributes={tagAttribures} />)
 
     const onClickNote = () => { props.onClick() }
-
-    const htmlToMarkDown = (content: string) => {
-        const converter = new Converter()
-        return converter.makeHtml(content)
-    }
 
     return (
         <>
@@ -53,10 +51,18 @@ export const NoteItem = ({
             {
                 size === 'md' &&
                 <div className={'note'}>
-                    <div className={'note--body'} onClick={onClickNote} dangerouslySetInnerHTML={{ __html: htmlToMarkDown(content) }}></div>
+                    <div
+                        className={'note--body'}
+                        onClick={onClickNote}
+                        dangerouslySetInnerHTML={{ __html: markdownToHtml(content) }}
+                    ></div>
                     <div className="note--footer">
                         {buildTags()}
-                        <Title content={props.date} size="xs" attributes={{ style: { marginLeft: 'auto' } }} />
+                        <Title
+                            content={formatDate(props.date)}
+                            size="xs"
+                            attributes={{ style: { marginLeft: 'auto' } }}
+                        />
                     </div>
                 </div>
             }

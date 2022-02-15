@@ -1,30 +1,44 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useMutation, useQuery } from '@apollo/client';
+import { useNavigate } from 'react-router';
+import { useParams } from "react-router-dom";
 
 import './NoteOperations.scss';
 import { Title } from '../../../../../core/presentation/atomic/atoms/Title/Title';
 import { Main } from '../../../../../core/presentation/atomic/molecules/Main/Main';
 import { Button } from '../../../../../core/presentation/atomic/atoms/Button/Button';
-import { useNavigate } from 'react-router';
 import { InputStatus, Select } from '../../../../../core/presentation/atomic/atoms/Select/Select';
 import { TextArea } from '../../../../../core/presentation/atomic/atoms/TextArea/TextArea';
 import { QUERY_GET_TAGS_BY_USER } from '../../../../infraestructure/repository/tag/tag.gql';
 import { AddNoteInput, NoteOutput, Tag } from '../../../../domain/entities';
-import { useMutation, useQuery } from '@apollo/client';
 import { MUTATION_ADD_NOTE, QUERY_NOTES_BY_USER } from '../../../../infraestructure/repository/note/note.gql';
+import { useMarkdown } from '../../../../../core/presentation/utils/hooks/useMarkdown';
 
 interface NoteOperationsProps {
     title?: string;
+    watchPreview: boolean;
 }
 
 export const NotesOperations = ({
-    title = 'Add Note'
+    title = 'Add Note',
+    ...props
 }: NoteOperationsProps): JSX.Element => {
 
+    const noteCharacterLimit = 3000
     const [tagValue, setTagValue] = useState<string>('12');
     const [tagState, setTagState] = useState<InputStatus>('default');
     const [noteValue, setNoteValue] = useState('');
     const [noteState, setNoteState] = useState<InputStatus>('default');
     const navigate = useNavigate();
+    const { markdownToHtml } = useMarkdown()
+    const params = useParams();
+
+    useEffect(() => {
+        const idNote = params.id
+        console.log('id:', idNote);
+    }, [params])
+
+    // const {} = useLazyQuery()
 
     const { error: errorGetTagsByUser, loading, data: dataGetTagsByUser } = useQuery<{ getTagsByUser: Tag[] }, string>(QUERY_GET_TAGS_BY_USER, {
         pollInterval: 1000 * 60 * 30,
@@ -99,27 +113,46 @@ export const NotesOperations = ({
                         events={{ onClick: () => onAddNote() }}
                     />
                 </div>
-                <div className="note-operations--body">
-                    {/* <textarea name="" id="" ></textarea> */}
-                    <Title content={'12/12/12'} />
-                    <Select
-                        value={tagValue}
-                        setValue={setTagValue}
-                        state={tagState}
-                        setState={setTagState}
-                        options={mapTagsToSelect()}
-                    />
-                    <div style={{ height: 'calc(100vh - 230px)' }}>
-                        <TextArea
-                            value={noteValue}
-                            setValue={setNoteValue}
-                            state={noteState}
-                            setState={setNoteState}
-                            pattern='^(.|\n){2,2000}$'
-                            attributes={{ placeholder: 'Write you note here:\nYou can format text with Markdown\nmin: 2 , max: 2000 characters' }}
+                {
+                    !props.watchPreview && <div className="note-operations--body">
+                        {/* <textarea name="" id="" ></textarea> */}
+                        <div className="info">
+                            <Title content={`${noteValue.length} / ${noteCharacterLimit}`} />
+                            <Title content={'12/12/12'} />
+                        </div>
+                        <Select
+                            value={tagValue}
+                            setValue={setTagValue}
+                            state={tagState}
+                            setState={setTagState}
+                            options={mapTagsToSelect()}
                         />
+                        <div style={{ height: 'calc(100vh - 230px)' }}>
+                            <TextArea
+                                value={noteValue}
+                                setValue={setNoteValue}
+                                state={noteState}
+                                setState={setNoteState}
+                                pattern={`^(.|\n){2,${noteCharacterLimit}}$`}
+                                attributes={{ placeholder: `Write you note here:\nYou can format text with Markdown\nmin: 2 , max: ${noteCharacterLimit} characters` }}
+                            />
+                        </div>
                     </div>
-                </div>
+                }
+
+                {
+                    props.watchPreview && <div className='note-operations--body'>
+                        <div className="info">
+                            <Title content={`#`} />
+                            <Title content={'12/12/12'} />
+                        </div>
+                        <div
+                            style={{ height: 'calc(100vh - 200px)' }}
+                            className="preview"
+                            dangerouslySetInnerHTML={{ __html: markdownToHtml(noteValue) }}
+                        ></div>
+                    </div>
+                }
             </>
         </Main>
     );

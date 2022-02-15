@@ -13,6 +13,8 @@
 
 .note--body{
     cursor: pointer;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 .note--footer{
