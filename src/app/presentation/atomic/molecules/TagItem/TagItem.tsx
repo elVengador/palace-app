@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 
 import './TagItem.scss';
 import { Title } from '../../../../../core/presentation/atomic/atoms/Title/Title';
-import { Input, InputStatus } from '../../../../../core/presentation/atomic/atoms/Input/Input';
+import { Input } from '../../../../../core/presentation/atomic/atoms/Input/Input';
 import { Button } from '../../../../../core/presentation/atomic/atoms/Button/Button';
 import { formatDate } from '../../../../../core/application/utils/dates';
 import { Tag, UpdateTagInput } from '../../../../domain/entities';
 import { useMutation } from '@apollo/client';
 import { MUTATION_UPDATE_TAG, QUERY_GET_TAGS_BY_USER } from '../../../../infraestructure/repository/tag/tag.gql';
+import { InputStatus } from '../../../../../core/presentation/utils/interfaces.utils';
 
 interface TagItemProps {
     tag: Tag

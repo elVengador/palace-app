@@ -7,12 +7,13 @@ import './NoteOperations.scss';
 import { Title } from '../../../../../core/presentation/atomic/atoms/Title/Title';
 import { Main } from '../../../../../core/presentation/atomic/molecules/Main/Main';
 import { Button } from '../../../../../core/presentation/atomic/atoms/Button/Button';
-import { InputStatus, Select } from '../../../../../core/presentation/atomic/atoms/Select/Select';
+import { Select } from '../../../../../core/presentation/atomic/molecules/Select/Select';
 import { TextArea } from '../../../../../core/presentation/atomic/atoms/TextArea/TextArea';
 import { QUERY_GET_TAGS_BY_USER } from '../../../../infraestructure/repository/tag/tag.gql';
 import { AddNoteInput, NoteOutput, Tag } from '../../../../domain/entities';
 import { MUTATION_ADD_NOTE, QUERY_NOTES_BY_USER } from '../../../../infraestructure/repository/note/note.gql';
 import { useMarkdown } from '../../../../../core/presentation/utils/hooks/useMarkdown';
+import { InputStatus } from '../../../../../core/presentation/utils/interfaces.utils';
 
 interface NoteOperationsProps {
     title?: string;
@@ -127,14 +128,19 @@ export const NotesOperations = ({
                             setState={setTagState}
                             options={mapTagsToSelect()}
                         />
-                        <div style={{ height: 'calc(100vh - 230px)' }}>
+                        <div >
                             <TextArea
                                 value={noteValue}
                                 setValue={setNoteValue}
                                 state={noteState}
                                 setState={setNoteState}
                                 pattern={`^(.|\n){2,${noteCharacterLimit}}$`}
-                                attributes={{ placeholder: `Write you note here:\nYou can format text with Markdown\nmin: 2 , max: ${noteCharacterLimit} characters` }}
+                                attributes={{
+                                    placeholder: `Write you note here:
+                                    You can format text with Markdown
+                                    min: 2 , max: ${noteCharacterLimit} characters`,
+                                    style: { height: 'calc(100vh - 230px)' }
+                                }}
                             />
                         </div>
                     </div>

@@ -21,6 +21,27 @@ export const MUTATION_ADD_NOTE = gql`
     }
 `
 
+export const MUTATION_UPDATE_NOTE = gql`
+    mutation UpdateNote($noteId: ID!, $updateNoteInput: UpdateNoteInput) {
+        updateNote(noteId: $noteId, updateNoteInput: $updateNoteInput) {
+            _id
+            tags {
+                value
+                _id
+                userId
+                state
+                updateDate
+                creationDate
+            }
+            value
+            state
+            updateDate
+            creationDate
+            creationUser
+        }
+    }
+`
+
 export const QUERY_NOTES_BY_USER = gql`
     query Query {
         getNotesByUser {

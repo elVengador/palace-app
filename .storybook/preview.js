@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ApolloProvider } from '@apollo/client';
 import { BrowserRouter } from 'react-router-dom';
 
-import '../src/core/presentation/utils/font-awesome.util'
 import { client } from '../src/core/infraestructure/apollo';
+import '../src/core/presentation/utils/font-awesome.util'
 import './preview.scss'
 import '../tokens.scss'
 import '../src/index.scss'

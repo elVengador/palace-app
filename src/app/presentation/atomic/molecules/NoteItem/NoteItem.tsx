@@ -5,12 +5,14 @@ import { Title } from '../../../../../core/presentation/atomic/atoms/Title/Title
 import { Tag } from '../../../../domain/entities';
 import { useMarkdown } from '../../../../../core/presentation/utils/hooks/useMarkdown';
 import { formatDate } from '../../../../../core/application/utils/dates';
+import { Style } from '../../../../../core/presentation/utils/interfaces.utils';
 
 interface NoteItemProps {
     content: string;
     tags: Tag[];
     date: string;
     size?: 'sm' | 'md' | 'lg' | 'full';
+    attributes?: { style?: Style }
     // color?: 'primary' | 'secondary'
     onClick?: () => void;
 }
@@ -40,7 +42,7 @@ export const NoteItem = ({
         <>
             {
                 size === 'sm' &&
-                <div className={'note'}>
+                <div className={'note note--sm'}>
                     <p>{content}</p>
                 </div>
                 // <span className={`title title-${size} title-${color}`} {...props}>
@@ -50,7 +52,7 @@ export const NoteItem = ({
             }
             {
                 size === 'md' &&
-                <div className={'note'}>
+                <div className={'note note--md'}>
                     <div
                         className={'note--body'}
                         onClick={onClickNote}
@@ -74,7 +76,7 @@ export const NoteItem = ({
             }
             {
                 size === 'full' &&
-                <div className={'note'}>
+                <div className={'note note--full'} style={{ ...props.attributes?.style }}>
                     <div
                         className={`note--body__full`}
                         onClick={onClickNote}
