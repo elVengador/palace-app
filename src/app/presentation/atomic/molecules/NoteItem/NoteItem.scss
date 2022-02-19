@@ -1,21 +1,38 @@
 .note{
     color: var(--fg);
     background: var(--bg_2);
-    // border: solid 1px var(--main);
     border-radius: 12px;
-    padding: 10px 25px;
+    padding: 10px 25px ;
     box-shadow: var(--shadow);
+    overflow-y: auto;
+    // position: relative;
+    &--sm{ max-height: 300px; }
+    &--md{ max-height: 300px; }
+    &--lg{ max-height: 300px; }
+    &--full{
+        min-height: 100px;
+    }
 }
 
 // .note:hover{
-//     // transition: box-shadow 0.3s ease-in-out;
+//     // transition: bac 0.3s ease-in-out;
 // }
 
 .note--body{
     cursor: pointer;
+    // overflow-y: auto;
 }
 
+.note--body__full{
+    // cursor: pointer;
+
+    // overflow-y: auto;
+}
+
+
 .note--footer{
+    background: var(--bg_2);
+    position: sticky;
     display: flex;
     flex-wrap: wrap;
 }

@@ -5,10 +5,11 @@ import { useMutation } from '@apollo/client';
 import './FormSignUp.scss';
 import { Form } from '../../../../../core/presentation/atomic/molecules/Form/Form';
 // import { signUp } from '../../../../application/controllers/auth.controller';
-import { Input, InputStatus } from '../../../../../core/presentation/atomic/atoms/Input/Input';
+import { Input } from '../../../../../core/presentation/atomic/atoms/Input/Input';
 import { RE_EMAIL, RE_PASSWORD } from '../../../../../core/presentation/utils/regex.utils';
 import { MUTATION_SIGN_UP } from '../../../../../core/infraestructure/repository/auth/auth.gql';
 import { SignUpInput } from '../../../../domain/entities';
+import { InputStatus } from '../../../../../core/presentation/utils/interfaces.utils';
 
 interface FormProps {
     title?: string;
