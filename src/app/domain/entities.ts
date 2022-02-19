@@ -30,7 +30,7 @@ export type Mutation = {
   signIn?: Maybe<TokensOutput>;
   signOff?: Maybe<Scalars['Boolean']>;
   signUp?: Maybe<Scalars['String']>;
-  updateNote?: Maybe<Note>;
+  updateNote?: Maybe<NoteOutput>;
   updateTag?: Maybe<Tag>;
 };
 
