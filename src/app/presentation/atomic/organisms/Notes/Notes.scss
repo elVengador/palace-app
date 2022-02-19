@@ -1,13 +1,21 @@
 .notes{
     &--header{
         padding: 10px 20px;
+        background: var(--bg);
         position: sticky;
+        top: 0;
         .options-top{
             display: flex;
             justify-content: space-between;
         }
     }
     &--items{
+        padding: 10px 20px;
+        display: grid;
+        row-gap: 10px;
+        overflow-y: auto;
+    }
+    &--item-selected{
         padding: 10px 20px;
         display: grid;
         row-gap: 10px;

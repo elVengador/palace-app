@@ -4,11 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import './FormSignIn.scss';
 import * as storage from '../../../../../core/application/controllers/storage.controller';
 import { Form } from '../../../../../core/presentation/atomic/molecules/Form/Form';
-import { Input, InputStatus } from '../../../../../core/presentation/atomic/atoms/Input/Input';
+import { Input } from '../../../../../core/presentation/atomic/atoms/Input/Input';
 import { RE_EMAIL, RE_PASSWORD } from '../../../../../core/presentation/utils/regex.utils';
 import { MUTATION_SIGN_IN } from '../../../../../core/infraestructure/repository/auth/auth.gql';
 import { SignInInput, TokensOutput } from '../../../../domain/entities';
 import { useMutation } from '@apollo/client';
+import { InputStatus } from '../../../../../core/presentation/utils/interfaces.utils';
 
 interface FormProps {
     title?: string;

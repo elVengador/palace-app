@@ -1,9 +1,5 @@
-// body{
-//     font-family: 'Merienda', cursive !important;
-// }
-
 .preview--container{
-    border: solid;
+    border: dashed 2px orangered;
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;
@@ -12,11 +8,11 @@
 .preview--container-light{
     border: dashed 2px var(--main);
     background-color: var(--bg);
-    padding: 20px;
+    margin: 5px;
 }
 
 .preview--container-dark{
     border: dashed 2px var(--main);
     background-color: var(--bg);
-    padding: 20px;
+    margin: 5px;
 }
