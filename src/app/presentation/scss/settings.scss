@@ -1,0 +1,47 @@
+:root {
+    --height-header:55px;
+    --height-footer:45px;
+    --height-main:calc(100vh - var(--height-header) - var(--height-footer));
+    --page-width:800px;
+
+    --font-family:'Fira Mono';
+    --font-size-xlg:36px;
+    --font-size-lg:24px;
+    --font-size-md:18px;
+    --font-size-sm:16px;
+    --font-size-xsm:12px;
+
+    --shadow-sm: 0px 0px 3px 1px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0px 0px 16px 4px rgba(0, 0, 0, 0.25);
+    --border-radius:10px;
+}
+.light-theme {
+    --primary:#F3C057;
+    --secondary:#556DAC;
+    --dark:#202020;
+    --light:##FFFFFF;
+    --primary-disabled:rgba(243, 192, 87, 0.5);
+    --secondary-disabled: rgba(85, 109, 172, 0.5);
+    --dark-disabled:rgba(32, 32, 32, 0.5);
+    --light-disabled:#E5E5E5;
+    --success:#486824;
+    --danger:#D13525;
+    --info:#556DAC;
+    --warning:#F3C057;
+}
+
+.dark-theme {
+    --primary:#F3C057;
+    --secondary:#556DAC;
+    --dark:#202020;
+    --light:##FFFFFF;
+    --primary-disabled:rgba(243, 192, 87, 0.5);
+    --secondary-disabled: rgba(85, 109, 172, 0.5);
+    --dark-disabled:rgba(32, 32, 32, 0.5);
+    --light-disabled:#E5E5E5;
+    --success:#486824;
+    --danger:#D13525;
+    --info:#556DAC;
+    --warning:#F3C057;
+}
+
