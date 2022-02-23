@@ -1,18 +1,19 @@
 .preview--container{
-    border: dashed 2px orangered;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     width: 100%;
+    padding: 10px;
+    position: relative;
+    background: var(--bg);
+    // border: dashed 2px var(--dark);
 }
 
-.preview--container-light{
-    border: dashed 2px var(--main);
-    background-color: var(--bg);
-    margin: 5px;
+.options{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    display: flex;
 }
 
-.preview--container-dark{
-    border: dashed 2px var(--main);
-    background-color: var(--bg);
-    margin: 5px;
+.theme-option{
+    border: none;
+    background: var(--bg);
 }
