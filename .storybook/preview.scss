@@ -1,19 +1,20 @@
-.preview--container{
+.preview--container {
     width: 100%;
+    min-height: 300px;
     padding: 10px;
     position: relative;
     background: var(--bg);
-    // border: dashed 2px var(--dark);
+    border: dashed 1px var(--dark);
 }
 
-.options{
+.options {
     position: absolute;
     top: 0px;
     right: 0px;
     display: flex;
 }
 
-.theme-option{
+.theme-option {
     border: none;
     background: var(--bg);
 }

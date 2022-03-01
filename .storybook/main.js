@@ -5,6 +5,7 @@ module.exports = {
     ],
     "addons": [
         "@storybook/addon-links",
+        '@storybook/addon-controls',
         "@storybook/addon-essentials",
         "@storybook/preset-scss",
         '@storybook/addon-a11y', //👈 The a11y addon goes here
