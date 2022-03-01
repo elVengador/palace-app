@@ -2,22 +2,25 @@
 @import "./app/presentation/scss/generic.scss";
 @import "./app/presentation/scss/elements.scss";
 
-.m-sm{
+body {
+    position: relative;
+}
+.m-sm {
     margin: 5px;
 }
 
-.m-md{
+.m-md {
     margin: 10px;
 }
 
-.m-lg{
+.m-lg {
     margin: 15px;
 }
 
-.mr-sm{
+.mr-sm {
     margin-right: 5px;
 }
 
-.bottom-shadow{
+.bottom-shadow {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.747);
 }

@@ -7,8 +7,9 @@ import './HomePage.scss';
 export default function HomePage(): JSX.Element {
 
     return (
-        <div >
-            <h1>-- Mind Notes --</h1>
+        <div className='home-page'>
+            <h1>Palace</h1>
+            <div className="logo" />
             <ul>
                 <li>
                     <Link to="auth" >Sign In</Link>
@@ -26,13 +27,6 @@ export default function HomePage(): JSX.Element {
                     <Link to="tags" >tags</Link>
                 </li>
             </ul>
-
-            {/* <div className='bg-2'>
-                {notes.map(cur => (<div key={cur.id}>{cur.text}</div>))}
-            </div> */}
-            <div className="logo">
-
-            </div>
         </div>
     )
 }
