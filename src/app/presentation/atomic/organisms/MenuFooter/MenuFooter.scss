@@ -1,0 +1,15 @@
+.menu-footer {
+    height: inherit;
+    background: var(--dark);
+    color: var(--light-disabled);
+
+    &--items {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 300px;
+        height: inherit;
+        margin: auto;
+        padding: 4px;
+    }
+}

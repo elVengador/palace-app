@@ -1,6 +1,6 @@
-@import "./app/presentation/scss/settings.scss";
-@import "./app/presentation/scss/generic.scss";
-@import "./app/presentation/scss/elements.scss";
+@import "./app/presentation/scss/settings.scss"; // variables
+@import "./app/presentation/scss/generic.scss"; // resets
+@import "./app/presentation/scss/elements.scss"; // html elements
 
 body {
     position: relative;

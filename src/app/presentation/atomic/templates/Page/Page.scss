@@ -1,19 +1,19 @@
-.page--wrapper{
-    background: var(--bg_2);
+.page--wrapper {
+    background: var(--bg);
     min-height: 100vh;
 }
 
-.header--wrapper{
+.header--wrapper {
     box-shadow: var(--shadow);
     height: var(--height-header);
 }
 
-.footer--wrapper{
+.footer--wrapper {
     box-shadow: var(--shadow);
     height: var(--height-footer);
 }
 
-.wrapper{
+.wrapper {
     height: var(--height-main);
     display: flex;
     justify-content: center;
@@ -21,11 +21,11 @@
     max-width: var(--page-width);
     margin: auto;
     overflow-y: auto;
-    &--main{
+    &--main {
         width: 100%;
         border-radius: 10px;
     }
-    &--left-menu{
+    &--left-menu {
         background: var(--bg);
         margin-right: 10px;
         border-radius: 10px;
@@ -33,7 +33,7 @@
         box-shadow: var(--shadow);
         min-width: 50px;
     }
-    &--right-menu{
+    &--right-menu {
         background: var(--bg);
         margin-left: 10px;
         border-radius: 10px;
