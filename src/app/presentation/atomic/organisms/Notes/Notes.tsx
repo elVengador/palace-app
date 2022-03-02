@@ -122,7 +122,6 @@ export const Notes = ({
                                     content=""
                                     size="sm"
                                     icon="plus"
-                                    type="alpha"
                                     events={{ onClick: () => onNavigateNoteForm() }}
                                 />
                             </div>
@@ -143,7 +142,6 @@ export const Notes = ({
                                 content=""
                                 size="sm"
                                 icon="arrow-left"
-                                type="alpha"
                                 events={{ onClick: () => setSelectedNote(null) }}
                                 attributes={{ title: 'Back' }}
                             />
@@ -153,7 +151,6 @@ export const Notes = ({
                                     content=""
                                     size="sm"
                                     icon="pen"
-                                    type="alpha"
                                     events={{ onClick: () => onShowEditNote(selectedNote) }}
                                     attributes={{ title: 'Edit' }}
                                 />}
@@ -161,7 +158,6 @@ export const Notes = ({
                                     content=""
                                     size="sm"
                                     icon="times"
-                                    type="alpha"
                                     events={{ onClick: () => onHideEditNote() }}
                                     attributes={{ title: 'Cancel' }}
                                 />}
@@ -169,7 +165,6 @@ export const Notes = ({
                                     content=""
                                     size="sm"
                                     icon="check"
-                                    type="alpha"
                                     events={{
                                         onClick: () => onUpdateNote({
                                             noteId: selectedNote._id,

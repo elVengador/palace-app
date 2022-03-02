@@ -12,16 +12,29 @@ import TagsPage from './app/presentation/pages/TagsPage/TagsPage';
 import { Alerts, RefControlAlerts } from './core/presentation/atomic/organisms/Alerts/Alerts';
 import { Portal } from './core/presentation/atomic/templates/Portal/Portal';
 
-export const AlertContext = React.createContext<{ addSA: (message: string) => void } | null>(null);
+export const AlertContext = React.createContext<{
+    addSuccessAlert: (message?: string) => void
+    addInfoAlert: (message: string) => void
+    addWarningAlert: (message: string) => void
+    addErrorAlert: (message?: string) => void
+} | null>(null);
 
 export default function App(): JSX.Element {
 
     const refAlerts = React.useRef<RefControlAlerts>(null)
 
-    const addSA = (message: string) => refAlerts.current?.addSuccessAlert(message)
+    const addSuccessAlert = (message = 'Operation Successfull') => refAlerts.current?.addSuccessAlert(message)
+    const addInfoAlert = (message: string) => refAlerts.current?.addInfoAlert(message)
+    const addWarningAlert = (message: string) => refAlerts.current?.addWarningAlert(message)
+    const addErrorAlert = (message = 'Cant make this operation') => refAlerts.current?.addErrorAlert(message)
 
     return (
-        <AlertContext.Provider value={{ addSA }}>
+        <AlertContext.Provider value={{
+            addSuccessAlert,
+            addInfoAlert,
+            addWarningAlert,
+            addErrorAlert
+        }}>
 
             <ApolloProvider client={client}>
                 <BrowserRouter>

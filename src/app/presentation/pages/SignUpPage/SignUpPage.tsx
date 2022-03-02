@@ -10,6 +10,8 @@ import { Footer2 } from '../../../../core/presentation/atomic/organisms/Footer/F
 
 export default function SignUp(): JSX.Element {
 
+
+
     const header = <Header2 />
     const footer = <Footer2 />
     const main = <div className="sign-up--wrapper">

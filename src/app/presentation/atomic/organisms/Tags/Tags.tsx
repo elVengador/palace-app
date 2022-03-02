@@ -30,8 +30,8 @@ export const Tags = (): JSX.Element => {
         }
     }
 
-    const ButtonShowTagForm = <Button content="" size='sm' icon="times" type="alpha" events={{ onClick: () => setCanAddTag(false) }} />
-    const ButtonHideTagForm = <Button content="" size='sm' icon="plus" type="alpha" events={{ onClick: () => setCanAddTag(true) }} />
+    const ButtonShowTagForm = <Button content="" size='sm' icon="times" events={{ onClick: () => setCanAddTag(false) }} />
+    const ButtonHideTagForm = <Button content="" size='sm' icon="plus" events={{ onClick: () => setCanAddTag(true) }} />
 
     return (
         <Main>

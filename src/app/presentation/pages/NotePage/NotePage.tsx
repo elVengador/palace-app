@@ -13,7 +13,7 @@ export default function NotesPage(): JSX.Element {
 
     const [watchPreview, setWatchPreview] = useState(false)
 
-    const previewButton = <Button content='' icon={'eye'} type='alpha' events={{ onClick: () => setWatchPreview(!watchPreview) }} />
+    const previewButton = <Button content='' icon={'eye'} events={{ onClick: () => setWatchPreview(!watchPreview) }} />
 
     const header = <Header />
     const footer = <Footer2 />

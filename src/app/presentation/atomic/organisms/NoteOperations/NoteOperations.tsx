@@ -102,7 +102,6 @@ export const NotesOperations = ({
                         content=""
                         size="sm"
                         icon="arrow-left"
-                        type="alpha"
                         events={{ onClick: () => onNavigateNotesPage() }}
                     />
                     <Title content={title} />
@@ -110,7 +109,6 @@ export const NotesOperations = ({
                         content=""
                         size="sm"
                         icon="check"
-                        type="alpha"
                         events={{ onClick: () => onAddNote() }}
                     />
                 </div>

@@ -21,8 +21,10 @@ export const TagItem = ({
     ...props
 }: TagItemProps): JSX.Element => {
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [value, setValue] = useState(props.tag.value)
     const [isEditting, setIsEditting] = useState(startEditting)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [stateTagInput, setStateTagInput] = useState<InputStatus>('success')
 
     const [updateTag, { error: errorUpdateTag, loading: loadingUpdateTag }] =
@@ -65,6 +67,7 @@ export const TagItem = ({
                         setState={setStateTagInput}
                         pattern="^[a-zA-Z0-9\-]{2,18}$"
                         size="sm"
+                        attributes={{ id: '' }}
                     />
                 }
                 {!isEditting &&
@@ -84,14 +87,12 @@ export const TagItem = ({
                                 content=""
                                 icon="check"
                                 size="sm"
-                                type="alpha"
                                 events={{ onClick: () => handelUpdateTag() }}
                             />
                             <Button
                                 content=""
                                 icon="times"
                                 size="sm"
-                                type="alpha"
                                 events={{ onClick: () => setIsEditting(false) }}
                             />
                         </>
@@ -102,7 +103,6 @@ export const TagItem = ({
                                 content=""
                                 icon="pen"
                                 size="sm"
-                                type="alpha"
                                 events={{ onClick: () => setIsEditting(true) }}
                             />
                             {/* <Button
