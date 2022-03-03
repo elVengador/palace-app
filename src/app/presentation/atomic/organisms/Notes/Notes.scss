@@ -1,21 +1,21 @@
-.notes{
-    &--header{
+.notes {
+    &--header {
         padding: 10px 20px;
         background: var(--bg);
         position: sticky;
         top: 0;
-        .options-top{
+        .options-top {
             display: flex;
             justify-content: space-between;
         }
     }
-    &--items{
+    &--items {
         padding: 10px 20px;
         display: grid;
         row-gap: 10px;
         overflow-y: auto;
     }
-    &--item-selected{
+    &--item-selected {
         padding: 10px 20px;
         display: grid;
         row-gap: 10px;

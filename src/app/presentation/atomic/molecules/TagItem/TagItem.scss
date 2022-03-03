@@ -1,20 +1,25 @@
-.tag-item{
+.tag-item {
     // border: dashed 2px royalblue;
+    border: solid 2px var(--fg);
     padding: 10px;
     border-radius: 12px;
     box-shadow: var(--shadow);
     background: var(--bg_2);
-    &--body{
+    &--body {
         display: flex;
         justify-content: space-between;
         // border: solid;
-        .acctions{
-            // border:  solid royalblue 2px;
+        .actions {
+            border: solid royalblue 2px;
         }
     }
-    &--footer{
+    &--footer {
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
+        .actions {
+            display: flex;
+            // border: solid royalblue 2px;
+        }
     }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './FormSignIn.scss';
@@ -10,6 +10,8 @@ import { MUTATION_SIGN_IN } from '../../../../../core/infraestructure/repository
 import { SignInInput, TokensOutput } from '../../../../domain/entities';
 import { useMutation } from '@apollo/client';
 import { InputStatus } from '../../../../../core/presentation/utils/interfaces.utils';
+import { useInput } from '../../../../../core/presentation/utils/hooks/useInput';
+import { AlertContext } from '../../../../../App';
 
 interface FormProps {
     title?: string;
@@ -18,29 +20,29 @@ interface FormProps {
 export const FormSignIn = ({
     title = 'Sign In',
 }: FormProps): JSX.Element => {
-
-    const [email, setEmail] = useState('')
-    const [emailState, setEmailState] = useState<InputStatus>('default')
-    const [password, setPassword] = useState('')
-    const [passwordState, setPasswordState] = useState<InputStatus>('default')
-    const [signUp, { error, data }] = useMutation<{ signIn: TokensOutput }, SignInInput>
+    const alertContext = useContext(AlertContext)
+    const [email, setEmail, emailState, setEmailState] = useInput()
+    const [password, setPassword, passwordState, setPasswordState] = useInput()
+    const [signUp] = useMutation<{ signIn: TokensOutput }, SignInInput>
         (MUTATION_SIGN_IN, { variables: { email, password } });
 
     const successStatus: InputStatus = 'success'
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (!data?.signIn) { return }
+    // useEffect(() => {
+    //     if (!data?.signIn) { return }
 
-        const saveTokens = ({ accessToken, refreshToken }: TokensOutput) => {
-            if (!accessToken || !refreshToken) { return console.log('invalid response, try again'); }
 
-            storage.saveSession({ key: 'access-token', value: accessToken })
-            storage.saveSession({ key: 'refresh-token', value: refreshToken })
-        }
-        saveTokens(data.signIn)
-        navigate("/notes")
-    }, [data, navigate])
+    //     saveTokens(data.signIn)
+    //     navigate("/notes")
+    // }, [data, navigate])
+
+    const saveTokens = ({ accessToken, refreshToken }: TokensOutput) => {
+        if (!accessToken || !refreshToken) { return console.log('invalid response, try again'); }
+
+        storage.saveSession({ key: 'access-token', value: accessToken })
+        storage.saveSession({ key: 'refresh-token', value: refreshToken })
+    }
 
     const isInvalidForm = () => {
         const invalidInputs = [
@@ -50,30 +52,38 @@ export const FormSignIn = ({
         return invalidInputs.length
     }
 
-    const onSubmitSignIn = async () => {
+    const onSubmitSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
         try {
+            event.preventDefault()
             console.log('on submit sign in');
-            if (isInvalidForm()) { return console.log('Error'); }
+            if (isInvalidForm()) { return alertContext?.addErrorAlert('Invalid inputs') }
 
-            signUp()
+            signUp({
+                onCompleted: (data) => {
+                    console.log('completed', data.signIn)
+                    saveTokens(data.signIn)
+                    navigate("/notes")
+                },
+                onError: () => { alertContext?.addErrorAlert() }
+            })
         } catch (err) {
-            console.log('USER/PASS invalids');
+            console.log('>>', err);
+            alertContext?.addErrorAlert()
         }
     }
-
-    { data?.signIn && console.log('data:', data.signIn); }
 
     return (
         <Form title={title} onSubmit={onSubmitSignIn}>
             <>
-                {error && <h1>Hay un error</h1>}
                 <Input
                     value={email}
                     setValue={setEmail}
                     state={emailState}
                     setState={setEmailState}
                     labelValue="Email"
-                    pattern={RE_EMAIL} />
+                    pattern={RE_EMAIL}
+                    attributes={{ id: '' }}
+                />
                 <Input
                     value={password}
                     setValue={setPassword}
@@ -82,6 +92,7 @@ export const FormSignIn = ({
                     labelValue="Password"
                     pattern={RE_PASSWORD}
                     type="password"
+                    attributes={{ id: '' }}
                 />
             </>
         </Form>

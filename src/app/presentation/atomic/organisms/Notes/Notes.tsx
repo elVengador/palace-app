@@ -3,22 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 
 import './Notes.scss';
-import { Title } from '../../../../../core/presentation/atomic/atoms/Title/Title';
 import { NoteItem } from '../../molecules/NoteItem/NoteItem';
 import { Main } from '../../../../../core/presentation/atomic/molecules/Main/Main';
 import { NoteOutput, UpdateNoteInput } from '../../../../domain/entities';
 import { MUTATION_UPDATE_NOTE, QUERY_NOTES_BY_USER } from '../../../../infraestructure/repository/note/note.gql';
-import { Button } from '../../../../../core/presentation/atomic/atoms/Button/Button';
 import { TextArea } from '../../../../../core/presentation/atomic/atoms/TextArea/TextArea';
 import { InputStatus } from '../../../../../core/presentation/utils/interfaces.utils';
+import { IconButton } from '../../../../../core/presentation/atomic/atoms/IconButton/IconButton';
+import { NotePreview } from '../../molecules/NotePreview/NotePreview';
 
 interface HeaderProps {
     title: string;
 }
 
-export const Notes = ({
-    title = ''
-}: HeaderProps): JSX.Element => {
+export const Notes = ({ }: HeaderProps): JSX.Element => {
 
     const noteCharacterLimit = 3000
     const [noteValue, setNoteValue] = useState('');
@@ -28,9 +26,9 @@ export const Notes = ({
     const [showNoteForm, setShowNoteForm] = useState(false)
     const navigate = useNavigate();
 
-    const { error: errorGetNotesOutput, loading, data: dataGetNotesOutPut } = useQuery<{ getNotesByUser: NoteOutput[] }>(QUERY_NOTES_BY_USER)
+    const { error: errorGetNotesOutput, data: dataGetNotesOutPut } = useQuery<{ getNotesByUser: NoteOutput[] }>(QUERY_NOTES_BY_USER)
 
-    const [updateNote, { error: errorUpdateNote, loading: loadingUpdateNote }] =
+    const [updateNote, { error: errorUpdateNote }] =
         useMutation<{ updateNote: NoteOutput }, { noteId: string, updateNoteInput: UpdateNoteInput }>
             (MUTATION_UPDATE_NOTE,
             // {
@@ -58,26 +56,26 @@ export const Notes = ({
         }
     }, [selectedNote])
 
-    const buildNotes = (notes: NoteOutput[]) => notes.map(cur => <NoteItem
-        content={cur.value}
-        date={cur.creationDate}
-        tags={cur.tags}
-        onClick={() => setSelectedNote(cur)}
-        key={cur._id}
-    />)
+    // const buildNotes = (notes: NoteOutput[]) => notes.map(cur => <NoteItem
+    //     content={cur.value}
+    //     date={cur.creationDate}
+    //     tags={cur.tags}
+    //     onClick={() => setSelectedNote(cur)}
+    //     key={cur._id}
+    // />)
 
-    const buildNoteSelected = () => {
-        if (!selectedNote) { return <h1>No hay nota seleccionada</h1> }
-        return <NoteItem
-            content={selectedNote.value}
-            date={selectedNote.creationDate}
-            tags={selectedNote.tags}
-            size='full'
-            attributes={{
-                style: { height: 'calc(100vh - 160px)' }
-            }}
-        />
-    }
+    // const buildNoteSelected = () => {
+    //     if (!selectedNote) { return <h1>No hay nota seleccionada</h1> }
+    //     return <NoteItem
+    //         content={selectedNote.value}
+    //         date={selectedNote.creationDate}
+    //         tags={selectedNote.tags}
+    //         size='full'
+    //         attributes={{
+    //             style: { height: 'calc(100vh - 160px)' }
+    //         }}
+    //     />
+    // }
 
     const onUpdateNote = ({ noteId, updateNoteInput }: { noteId: string, updateNoteInput: UpdateNoteInput }) => {
         try {
@@ -98,10 +96,10 @@ export const Notes = ({
         setShowNoteForm(true)
     }
 
-    const onHideEditNote = () => {
-        setNoteValue('')
-        setShowNoteForm(false)
-    }
+    // const onHideEditNote = () => {
+    //     setNoteValue('')
+    //     setShowNoteForm(false)
+    // }
 
     const onNavigateNoteForm = () => navigate("/notes/add")
 
@@ -109,28 +107,32 @@ export const Notes = ({
         <Main>
             <>
                 {errorGetNotesOutput && <h1>{errorGetNotesOutput.message}</h1>}
-                {loading && <h1>loading</h1>}
                 {errorUpdateNote && <h1>{errorUpdateNote.message}</h1>}
-                {loadingUpdateNote && <h1>loadingUpdateNote</h1>}
                 {
                     !selectedNote && <>
                         <div className="notes--header">
                             <div className="options-top">
                                 <div></div>
-                                <Title content={`${title} (${dataGetNotesOutPut?.getNotesByUser.length})`} />
-                                <Button
-                                    content=""
-                                    size="sm"
-                                    icon="plus"
-                                    type="alpha"
-                                    events={{ onClick: () => onNavigateNoteForm() }}
-                                />
+                                <div>
+                                    <IconButton
+                                        icon='plus'
+                                        color='fg'
+                                        attributes={{ title: 'Add note' }}
+                                        events={{ onClick: () => onNavigateNoteForm() }}
+                                    />
+                                </div>
                             </div>
                         </div>
                         <div className="notes--items">
                             {
                                 dataGetNotesOutPut?.getNotesByUser &&
-                                buildNotes(dataGetNotesOutPut?.getNotesByUser)
+                                dataGetNotesOutPut?.getNotesByUser.map(cur => <NoteItem
+                                    content={cur.value}
+                                    date={cur.creationDate}
+                                    tags={cur.tags}
+                                    onClick={() => setSelectedNote(cur)}
+                                    key={cur._id}
+                                />)
                             }
                         </div>
                     </>
@@ -139,37 +141,28 @@ export const Notes = ({
                 {
                     selectedNote && <>
                         <div className="note-operations--header">
-                            <Button
-                                content=""
-                                size="sm"
-                                icon="arrow-left"
-                                type="alpha"
-                                events={{ onClick: () => setSelectedNote(null) }}
+                            <IconButton
+                                icon='arrow-left'
+                                color='fg'
                                 attributes={{ title: 'Back' }}
+                                events={{
+                                    onClick: () => {
+                                        setSelectedNote(null)
+                                        setShowNoteForm(false)
+                                    }
+                                }}
                             />
-                            <Title content="Update" />
                             <div>
-                                {!showNoteForm && <Button
-                                    content=""
-                                    size="sm"
-                                    icon="pen"
-                                    type="alpha"
+                                {!showNoteForm && <IconButton
+                                    icon='pen'
+                                    color='fg'
+                                    attributes={{ title: 'Edit Note' }}
                                     events={{ onClick: () => onShowEditNote(selectedNote) }}
-                                    attributes={{ title: 'Edit' }}
                                 />}
-                                {showNoteForm && <Button
-                                    content=""
-                                    size="sm"
-                                    icon="times"
-                                    type="alpha"
-                                    events={{ onClick: () => onHideEditNote() }}
-                                    attributes={{ title: 'Cancel' }}
-                                />}
-                                {showNoteForm && <Button
-                                    content=""
-                                    size="sm"
-                                    icon="check"
-                                    type="alpha"
+                                {showNoteForm && <IconButton
+                                    icon='check'
+                                    color='fg'
+                                    attributes={{ title: 'Save Note' }}
                                     events={{
                                         onClick: () => onUpdateNote({
                                             noteId: selectedNote._id,
@@ -179,12 +172,14 @@ export const Notes = ({
                                             }
                                         })
                                     }}
-                                    attributes={{ title: 'Save' }}
                                 />}
                             </div>
                         </div>
                         <div className="notes--item-selected">
-                            {!showNoteForm && buildNoteSelected()}
+                            {!showNoteForm && <NotePreview
+                                content={selectedNote.value}
+                            />}
+
                             {showNoteForm && <TextArea
                                 value={noteValue}
                                 setValue={setNoteValue}
@@ -195,7 +190,7 @@ export const Notes = ({
                                     placeholder: `Write you note here:
                                 You can format text with Markdown
                                 min: 2 , max: ${noteCharacterLimit} characters`,
-                                    style: { height: 'calc(100vh - 120px)' }
+                                    style: { height: 'calc(100vh - 200px)' }
                                 }}
                             />}
                         </div>
