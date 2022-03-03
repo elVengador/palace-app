@@ -17,6 +17,7 @@ export const TagForm = ({
 }: TagFormProps): JSX.Element => {
 
     const [value, setValue] = useState('')
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [stateTagInput, setStateTagInput] = useState<InputStatus>('success')
     const [addTag, { error: errorAddTag, loading: loadingAddTag }] = useMutation<{ addTag: Tag }, AddTagInput>
         (MUTATION_ADD_TAG, {
@@ -58,13 +59,12 @@ export const TagForm = ({
                 setState={setStateTagInput}
                 pattern="^[a-zA-Z0-9\-]{2,18}$"
                 size="sm"
-                attributes={{ placeholder: 'Write name from new tag' }}
+                attributes={{ id: '', placeholder: 'Write name from new tag' }}
             />
             <Button
                 content=""
                 icon="check"
                 size="sm"
-                type="alpha"
                 events={{ onClick: () => onSubmit() }}
             />
 

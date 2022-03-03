@@ -1,51 +1,23 @@
-@import "../tokens.scss";
-@import "./app/presentation/scss/generic/reset.scss";
-@import "./app/presentation/scss/elements/html-elements.scss";
+@import "./app/presentation/scss/settings.scss"; // variables
+@import "./app/presentation/scss/generic.scss"; // resets
+@import "./app/presentation/scss/elements.scss"; // html elements
 
-:root{
-    --height-header:38px;
-    --height-footer:22px;
-    --height-main:calc(100vh - var(--height-header) - var(--height-footer));
-    --page-width:800px;
-    --shadow:
-        1px 2px 2px #1d1d1d1f,
-        2px 4px 4px #1d1d1d1f,
-        3px 6px 6px #1d1d1d1f;
-  ;
-
-    --shadow-inner:
-        inset 0 1px 1px hsl(0deg 0% 0% / 0.075),
-        inset 0 2px 2px hsl(0deg 0% 0% / 0.075),
-        inset 0 4px 4px hsl(0deg 0% 0% / 0.075),
-        inset 0 8px 8px hsl(0deg 0% 0% / 0.075),
-        inset 0 16px 16px hsl(0deg 0% 0% / 0.075);
-
-    --shadow-sm:
-    0.5px 1px 1px hsl(var(--shadow-color) / 0.7)
-    --border-sm:10px
-
-}
-
-.m-sm{
+.m-sm {
     margin: 5px;
 }
 
-.m-md{
+.m-md {
     margin: 10px;
 }
 
-.m-lg{
+.m-lg {
     margin: 15px;
 }
 
-.mr-sm{
+.mr-sm {
     margin-right: 5px;
 }
 
-.top-shadow{
-
-}
-
-.bottom-shadow{
+.bottom-shadow {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.747);
 }
