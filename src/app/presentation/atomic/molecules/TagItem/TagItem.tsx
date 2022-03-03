@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import './TagItem.scss';
 import { Title } from '../../../../../core/presentation/atomic/atoms/Title/Title';
 import { Input } from '../../../../../core/presentation/atomic/atoms/Input/Input';
-import { Button } from '../../../../../core/presentation/atomic/atoms/Button/Button';
 import { formatDate } from '../../../../../core/application/utils/dates';
 import { Tag, UpdateTagInput } from '../../../../domain/entities';
 import { useMutation } from '@apollo/client';
 import { MUTATION_UPDATE_TAG, QUERY_GET_TAGS_BY_USER } from '../../../../infraestructure/repository/tag/tag.gql';
 import { InputStatus } from '../../../../../core/presentation/utils/interfaces.utils';
+import { IconButton } from '../../../../../core/presentation/atomic/atoms/IconButton/IconButton';
 
 interface TagItemProps {
     tag: Tag
@@ -21,10 +21,8 @@ export const TagItem = ({
     ...props
 }: TagItemProps): JSX.Element => {
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [value, setValue] = useState(props.tag.value)
     const [isEditting, setIsEditting] = useState(startEditting)
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [stateTagInput, setStateTagInput] = useState<InputStatus>('success')
 
     const [updateTag, { error: errorUpdateTag, loading: loadingUpdateTag }] =
@@ -75,34 +73,35 @@ export const TagItem = ({
                         content={value}
                         icon="hashtag"
                         iconSeparation="none"
+                        color='fg'
                     />
                 }
             </div>
             <div className="tag-item--footer">
-                <div><Title content={formatDate(props.tag.creationDate)} size="xs" /></div>
-                <div className="acctions">
+                <small>{formatDate(props.tag.creationDate)}</small>
+                <div className="actions">
                     {isEditting &&
                         <>
-                            <Button
-                                content=""
+                            <IconButton
                                 icon="check"
-                                size="sm"
+                                color='fg'
+                                attributes={{ title: 'Update tag' }}
                                 events={{ onClick: () => handelUpdateTag() }}
                             />
-                            <Button
-                                content=""
+                            <IconButton
                                 icon="times"
-                                size="sm"
+                                color='fg'
+                                attributes={{ title: 'Close tag form' }}
                                 events={{ onClick: () => setIsEditting(false) }}
                             />
                         </>
                     }
                     {!isEditting &&
                         <>
-                            <Button
-                                content=""
+                            <IconButton
                                 icon="pen"
-                                size="sm"
+                                color='fg'
+                                attributes={{ title: 'Show form to edit tag' }}
                                 events={{ onClick: () => setIsEditting(true) }}
                             />
                             {/* <Button
@@ -113,8 +112,6 @@ export const TagItem = ({
                             /> */}
                         </>
                     }
-                    <div className="acctions">
-                    </div>
                 </div>
             </div>
         </div>

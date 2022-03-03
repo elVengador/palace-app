@@ -1,25 +1,27 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import './TagForm.scss';
 import { Input } from '../../../../../core/presentation/atomic/atoms/Input/Input';
-import { Button } from '../../../../../core/presentation/atomic/atoms/Button/Button';
 import { useMutation } from '@apollo/client';
 import { MUTATION_ADD_TAG, QUERY_GET_TAGS_BY_USER } from '../../../../infraestructure/repository/tag/tag.gql';
 import { AddTagInput, Tag } from '../../../../domain/entities';
 import { InputStatus } from '../../../../../core/presentation/utils/interfaces.utils';
+import { IconButton } from '../../../../../core/presentation/atomic/atoms/IconButton/IconButton';
+import { Title } from '../../../../../core/presentation/atomic/atoms/Title/Title';
+import { AlertContext } from '../../../../../App';
 
 interface TagFormProps {
-    handleBeforeSubmit: () => void
+    handleBeforeSubmit: () => void,
+    destroyTagForm: () => void,
 }
 
 export const TagForm = ({
     ...props
 }: TagFormProps): JSX.Element => {
-
+    const alertContext = useContext(AlertContext)
     const [value, setValue] = useState('')
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [stateTagInput, setStateTagInput] = useState<InputStatus>('success')
-    const [addTag, { error: errorAddTag, loading: loadingAddTag }] = useMutation<{ addTag: Tag }, AddTagInput>
+    const [addTag, { loading: loadingAddTag }] = useMutation<{ addTag: Tag }, AddTagInput>
         (MUTATION_ADD_TAG, {
             variables: { value },
             update(cache, { data }) {
@@ -35,12 +37,20 @@ export const TagForm = ({
                     setValue('')
                     props.handleBeforeSubmit()
                 }
+            },
+            onError: (err) => {
+                console.log(err);
+                //manage error
+                // if unauthorized ==> redirect to sing in
+                alertContext?.addErrorAlert()
             }
         })
 
     const onSubmit = () => {
         try {
-            if (stateTagInput !== 'success') { return console.log('form invalid'); }
+            if (stateTagInput !== 'success') {
+                return alertContext?.addErrorAlert('Invalid tag')
+            }
 
             addTag()
         } catch (err) {
@@ -50,8 +60,12 @@ export const TagForm = ({
 
     return (
         <div className="tag-form">
-            {errorAddTag && <h1>{errorAddTag.message}</h1>}
-            {loadingAddTag && <h1>loading</h1>}
+            <IconButton
+                attributes={{ title: 'Close tag form' }}
+                icon='times'
+                color='fg'
+                events={{ onClick: () => props.destroyTagForm() }}
+            />
             <Input
                 value={value}
                 setValue={setValue}
@@ -61,13 +75,18 @@ export const TagForm = ({
                 size="md"
                 attributes={{ id: '', placeholder: 'Write name from new tag' }}
             />
-            <Button
-                content=""
-                icon="check"
-                size="sm"
+            {!loadingAddTag && <IconButton
+                attributes={{ title: 'Add Tag' }}
+                icon='check'
+                color='fg'
                 events={{ onClick: () => onSubmit() }}
-            />
-
+            />}
+            {loadingAddTag && <Title
+                iconSeparation='none'
+                color='fg'
+                content=''
+                icon={'spinner'}
+            />}
         </div>
     );
 };

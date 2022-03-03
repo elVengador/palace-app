@@ -10,9 +10,6 @@
     --font-size-md: 16px;
     --font-size-sm: 13px;
     --font-size-xs: 10px;
-
-    // --shadow-sm: 0px 0px 3px 1px rgba(0, 0, 0, 0.2);
-    // --shadow-lg: 0px 0px 16px 4px rgba(0, 0, 0, 0.25);
     --border-radius: 10px;
 }
 .light-theme {
@@ -22,7 +19,8 @@
     --light: #ffffff;
     --primary-disabled: rgba(243, 192, 87, 0.5);
     --secondary-disabled: rgba(85, 109, 172, 0.5);
-    --dark-disabled: rgba(32, 32, 32, 0.5);
+    // --dark-disabled: rgba(32, 32, 32, 0.5);
+    --dark-disabled: rgb(57, 57, 57);
     --light-disabled: #e5e5e5;
     // --success: #486824;
     --success: #5b941b;
@@ -31,8 +29,8 @@
     --warning: #f3c057;
     --bg: var(--light-disabled);
     --fg: var(--dark);
-    --shadow-sm: 0px 0px 1px rgb(120 120 120);
-    --shadow-md: 0px 0px 10px rgb(120 120 120);
+    --shadow-sm: 0px 0px 3px var(--light-disabled);
+    --shadow-md: 0px 0px 10px var(--light-disabled);
 }
 
 .dark-theme {

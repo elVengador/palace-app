@@ -1,76 +1,72 @@
-.note{
+.note {
     color: var(--fg);
     background: var(--bg_2);
     border-radius: 12px;
-    padding: 10px 25px ;
+    border: solid 2px var(--fg);
     box-shadow: var(--shadow);
-    overflow-y: auto;
+    overflow-x: hidden;
+    // overflow-y: auto;
     // position: relative;
-    &--sm{ max-height: 300px; }
-    &--md{ max-height: 300px; }
-    &--lg{ max-height: 300px; }
-    &--full{
-        min-height: 100px;
-    }
+    // &--sm {
+    //     max-height: 300px;
+    // }
+    // &--md {
+    //     max-height: 300px;
+    // }
+    // &--lg {
+    //     max-height: 300px;
+    // }
+    // &--full {
+    //     min-height: 100px;
+    // }
 }
 
 // .note:hover{
 //     // transition: bac 0.3s ease-in-out;
 // }
 
-.note--body{
+.note--body {
+    overflow-y: auto;
+    padding: 10px 25px;
+    overflow-wrap: break-word;
+    // inline-size: 200px;
     cursor: pointer;
+    // breakte
     // overflow-y: auto;
+    &__md {
+        max-height: 250px;
+    }
+    &__full {
+        max-height: calc(100vh - 230px);
+    }
 }
 
-.note--body__full{
+.note--body__full {
     // cursor: pointer;
 
     // overflow-y: auto;
 }
 
-
-.note--footer{
-    background: var(--bg_2);
-    position: sticky;
+.note--footer {
+    padding: 5px 25px;
+    background: var(--primary);
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
+    small {
+        font-weight: 500;
+    }
 }
 
 @media screen and (min-width: 800px) {
-    .note--footer{
+    .note--footer {
         display: flex;
         justify-content: space-between;
     }
 }
 
-.note--tags{
+.note--tags {
     display: flex;
     flex-wrap: wrap;
     // width: 100%;
 }
-// .title{
-//     margin: 0px;
-//     color: var(--main);
-//     font-weight: 700;
-// }
-
-// .title-primary{
-//     color: var(--main);
-// }
-
-// .title-secondary{
-//     color: var(--bg_2);
-// }
-
-// .title-xs{
-//     font-size: var(--font-size-xs);
-// }
-
-// .title-md{
-//     font-size: var(--font-size-md);
-// }
-
-// .title-lg{
-//     font-size: var(--font-size-lg);
-// }

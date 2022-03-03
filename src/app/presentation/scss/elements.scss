@@ -19,10 +19,11 @@ p {
 
 *::-webkit-scrollbar {
     width: 8px; /* width of the entire scrollbar */
+    height: 8px;
 }
 
 *::-webkit-scrollbar-track {
-    background: var(--light-disabled) !important; /* color of the tracking area */
+    background: var(--dark) !important; /* color of the tracking area */
     box-shadow: var(--shadow-inner);
 }
 

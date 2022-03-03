@@ -20,9 +20,9 @@ interface FormProps {
 export const FormSignIn = ({
     title = 'Sign In',
 }: FormProps): JSX.Element => {
+    const alertContext = useContext(AlertContext)
     const [email, setEmail, emailState, setEmailState] = useInput()
     const [password, setPassword, passwordState, setPasswordState] = useInput()
-    const alertContext = useContext(AlertContext)
     const [signUp] = useMutation<{ signIn: TokensOutput }, SignInInput>
         (MUTATION_SIGN_IN, { variables: { email, password } });
 
