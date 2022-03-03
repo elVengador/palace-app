@@ -56,7 +56,7 @@ export const FormSignIn = ({
         try {
             event.preventDefault()
             console.log('on submit sign in');
-            if (isInvalidForm()) { return console.log('Error'); }
+            if (isInvalidForm()) { return alertContext?.addErrorAlert('Invalid inputs') }
 
             signUp({
                 onCompleted: (data) => {

@@ -1,0 +1,11 @@
+.note-preview {
+    color: var(--fg);
+    background: var(--bg_2);
+    overflow-x: hidden;
+    &--body {
+        overflow-wrap: break-word;
+        img {
+            width: 100%;
+        }
+    }
+}

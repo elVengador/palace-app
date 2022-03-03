@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 
 import './Notes.scss';
-import { Title } from '../../../../../core/presentation/atomic/atoms/Title/Title';
 import { NoteItem } from '../../molecules/NoteItem/NoteItem';
 import { Main } from '../../../../../core/presentation/atomic/molecules/Main/Main';
 import { NoteOutput, UpdateNoteInput } from '../../../../domain/entities';
@@ -11,6 +10,7 @@ import { MUTATION_UPDATE_NOTE, QUERY_NOTES_BY_USER } from '../../../../infraestr
 import { TextArea } from '../../../../../core/presentation/atomic/atoms/TextArea/TextArea';
 import { InputStatus } from '../../../../../core/presentation/utils/interfaces.utils';
 import { IconButton } from '../../../../../core/presentation/atomic/atoms/IconButton/IconButton';
+import { NotePreview } from '../../molecules/NotePreview/NotePreview';
 
 interface HeaderProps {
     title: string;
@@ -145,9 +145,13 @@ export const Notes = ({ }: HeaderProps): JSX.Element => {
                                 icon='arrow-left'
                                 color='fg'
                                 attributes={{ title: 'Back' }}
-                                events={{ onClick: () => setSelectedNote(null) }}
+                                events={{
+                                    onClick: () => {
+                                        setSelectedNote(null)
+                                        setShowNoteForm(false)
+                                    }
+                                }}
                             />
-                            <Title content="Update" />
                             <div>
                                 {!showNoteForm && <IconButton
                                     icon='pen'
@@ -155,13 +159,6 @@ export const Notes = ({ }: HeaderProps): JSX.Element => {
                                     attributes={{ title: 'Edit Note' }}
                                     events={{ onClick: () => onShowEditNote(selectedNote) }}
                                 />}
-                                {/* {showNoteForm && <Button
-                                    content=""
-                                    size="sm"
-                                    icon="times"
-                                    events={{ onClick: () => onHideEditNote() }}
-                                    attributes={{ title: 'Cancel' }}
-                                />} */}
                                 {showNoteForm && <IconButton
                                     icon='check'
                                     color='fg'
@@ -179,12 +176,8 @@ export const Notes = ({ }: HeaderProps): JSX.Element => {
                             </div>
                         </div>
                         <div className="notes--item-selected">
-                            {!showNoteForm && <NoteItem
+                            {!showNoteForm && <NotePreview
                                 content={selectedNote.value}
-                                date={selectedNote.creationDate}
-                                tags={selectedNote.tags}
-                                size='full'
-
                             />}
 
                             {showNoteForm && <TextArea
@@ -197,7 +190,7 @@ export const Notes = ({ }: HeaderProps): JSX.Element => {
                                     placeholder: `Write you note here:
                                 You can format text with Markdown
                                 min: 2 , max: ${noteCharacterLimit} characters`,
-                                    style: { height: 'calc(100vh - 120px)' }
+                                    style: { height: 'calc(100vh - 200px)' }
                                 }}
                             />}
                         </div>
