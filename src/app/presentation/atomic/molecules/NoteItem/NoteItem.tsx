@@ -9,7 +9,7 @@ import { Style } from '../../../../../core/presentation/utils/interfaces.utils';
 interface NoteItemProps {
     content: string;
     tags: Tag[];
-    date: string;
+    dateInISO: string;
     size?: 'sm' | 'md' | 'lg' | 'full';
     attributes?: { style?: Style }
     onClick?: () => void;
@@ -33,15 +33,14 @@ export const NoteItem = ({
     const onClickNote = () => { props.onClick && props.onClick() }
 
     return (
-        <div className={'note'}>
+        <div className={'note'} onClick={onClickNote}>
             <div
                 className={`note--body note--body__${size}`}
-                onClick={onClickNote}
                 dangerouslySetInnerHTML={{ __html: markdownToHtml(content) }}
             ></div>
             <div className="note--footer">
                 {buildTags()}
-                <small>{formatDate(props.date)}</small>
+                <small>{formatDate(props.dateInISO)}</small>
             </div>
         </div>
     );

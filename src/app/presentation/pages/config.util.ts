@@ -8,8 +8,8 @@ export const MENU: MenuItem[] = [
     },
     {
         icon: "user-circle",
-        title: "Perfil",
-        path: "/perfil"
+        title: "user",
+        path: "/user"
     },
     {
         icon: "tags",
