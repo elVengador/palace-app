@@ -29,8 +29,10 @@
     --warning: #f3c057;
     --bg: var(--light-disabled);
     --fg: var(--dark);
-    --shadow-sm: 0px 0px 3px var(--light-disabled);
-    --shadow-md: 0px 0px 10px var(--light-disabled);
+    --shadow-sm-fg: 0px 0px 3px var(--dark-disabled);
+    --shadow-md-fg: 0px 0px 10px var(--dark-disabled);
+    --shadow-sm-bg: 0px 0px 3px var(--light-disabled);
+    --shadow-md-bg: 0px 0px 10px var(--light-disabled);
 }
 
 .dark-theme {
@@ -49,6 +51,8 @@
     --warning: #e4b452;
     --bg: var(--dark-disabled);
     --fg: var(--light);
-    --shadow-sm: 0px 0px 3px rgb(160 160 160);
-    --shadow-md: 0px 0px 10px rgb(160 160 160);
+    --shadow-sm-fg: 0px 0px 3px var(--dark-disabled);
+    --shadow-md-fg: 0px 0px 10px var(--dark-disabled);
+    --shadow-sm-bg: 0px 0px 3px var(--light-disabled);
+    --shadow-md-bg: 0px 0px 10px var(--light-disabled);
 }

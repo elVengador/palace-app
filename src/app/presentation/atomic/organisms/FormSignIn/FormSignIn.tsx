@@ -23,7 +23,7 @@ export const FormSignIn = ({
     const alertContext = useContext(AlertContext)
     const [email, setEmail, emailState, setEmailState] = useInput()
     const [password, setPassword, passwordState, setPasswordState] = useInput()
-    const [signUp] = useMutation<{ signIn: TokensOutput }, SignInInput>
+    const [signUp, { loading }] = useMutation<{ signIn: TokensOutput }, SignInInput>
         (MUTATION_SIGN_IN, { variables: { email, password } });
 
     const successStatus: InputStatus = 'success'
@@ -60,11 +60,15 @@ export const FormSignIn = ({
 
             signUp({
                 onCompleted: (data) => {
-                    console.log('completed', data.signIn)
                     saveTokens(data.signIn)
                     navigate("/notes")
                 },
-                onError: () => { alertContext?.addErrorAlert() }
+                onError: (err) => {
+                    if (err.message === 'Field invalid') {
+                        return alertContext?.addErrorAlert('User and/or password invalids')
+                    }
+                    alertContext?.addErrorAlert()
+                }
             })
         } catch (err) {
             console.log('>>', err);
@@ -73,7 +77,7 @@ export const FormSignIn = ({
     }
 
     return (
-        <Form title={title} onSubmit={onSubmitSignIn}>
+        <Form title={title} onSubmit={onSubmitSignIn} loading={loading}>
             <>
                 <Input
                     value={email}
@@ -82,7 +86,7 @@ export const FormSignIn = ({
                     setState={setEmailState}
                     labelValue="Email"
                     pattern={RE_EMAIL}
-                    attributes={{ id: '' }}
+                    attributes={{ id: 'email-input' }}
                 />
                 <Input
                     value={password}
@@ -92,7 +96,7 @@ export const FormSignIn = ({
                     labelValue="Password"
                     pattern={RE_PASSWORD}
                     type="password"
-                    attributes={{ id: '' }}
+                    attributes={{ id: 'password-input' }}
                 />
             </>
         </Form>

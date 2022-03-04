@@ -27,7 +27,7 @@ export const FormSignUp = ({
 
     const alertContext = useContext(AlertContext)
 
-    const [signIn] = useMutation<string, SignUpInput>(MUTATION_SIGN_UP, { variables: { nick, email, password } });
+    const [signIn, { loading }] = useMutation<string, SignUpInput>(MUTATION_SIGN_UP, { variables: { nick, email, password } });
 
     const SUCCESS_STATUS: InputStatus = 'success'
     const navigate = useNavigate();
@@ -63,7 +63,7 @@ export const FormSignUp = ({
     }
 
     return (
-        <Form title={title} onSubmit={onSubmitSignUp}>
+        <Form title={title} onSubmit={onSubmitSignUp} loading={loading}>
             <>
                 <Input
                     value={nick}

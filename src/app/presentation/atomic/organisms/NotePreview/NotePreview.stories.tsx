@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { NotePreview } from './NotePreview';
 
 export default {
-    title: 'Desing System/Molecules/NotePreview',
+    title: 'Desing System/Organisims/NotePreview',
     component: NotePreview,
 } as ComponentMeta<typeof NotePreview>;
 

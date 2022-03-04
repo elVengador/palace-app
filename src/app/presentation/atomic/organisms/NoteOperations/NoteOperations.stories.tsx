@@ -12,5 +12,5 @@ const Template: ComponentStory<typeof NotesOperations> = (args) => <NotesOperati
 
 export const Default = Template.bind({});
 Default.args = {
-    title: 'Titulo del Formulario'
+    // title: 'Titulo del Formulario'
 };

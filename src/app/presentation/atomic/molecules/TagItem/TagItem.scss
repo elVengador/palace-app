@@ -1,5 +1,4 @@
 .tag-item {
-    // border: dashed 2px royalblue;
     border: solid 2px var(--fg);
     padding: 10px;
     border-radius: 12px;
@@ -8,7 +7,6 @@
     &--body {
         display: flex;
         justify-content: space-between;
-        // border: solid;
         .actions {
             border: solid royalblue 2px;
         }
@@ -17,9 +15,9 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
+        color: var(--fg);
         .actions {
             display: flex;
-            // border: solid royalblue 2px;
         }
     }
 }

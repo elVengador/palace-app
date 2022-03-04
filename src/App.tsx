@@ -3,14 +3,14 @@ import { ApolloProvider } from '@apollo/client';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 
 import { client } from './core/infraestructure/apollo';
+import { Alerts, RefControlAlerts } from './core/presentation/atomic/organisms/Alerts/Alerts';
+import { Portal } from './core/presentation/atomic/templates/Portal/Portal';
 import HomePage from './app/presentation/pages/home-page/HomePage';
-import NotePage from './app/presentation/pages/NotePage/NotePage';
 import NotesPage from './app/presentation/pages/NotesPage/NotesPage';
 import SignIn from './app/presentation/pages/SignInPage/SignInPage';
 import SignUp from './app/presentation/pages/SignUpPage/SignUpPage';
 import TagsPage from './app/presentation/pages/TagsPage/TagsPage';
-import { Alerts, RefControlAlerts } from './core/presentation/atomic/organisms/Alerts/Alerts';
-import { Portal } from './core/presentation/atomic/templates/Portal/Portal';
+import UserPage from './app/presentation/pages/UserPage/UserPage';
 
 export const AlertContext = React.createContext<{
     addSuccessAlert: (message?: string) => void
@@ -47,11 +47,11 @@ export default function App(): JSX.Element {
                         </Route>
                         <Route path="notes"  >
                             <Route index element={<NotesPage />} />
-                            <Route path="add" element={<NotePage />} />
-                            <Route path=":id" element={<NotePage />} />
+                            {/* <Route path="add" element={<NotePage />} />
+                            <Route path=":id" element={<NotePage />} /> */}
                         </Route>
                         <Route path="tags" element={<TagsPage />} />
-                        <Route path="user" element={<div>User</div>} />
+                        <Route path="user" element={<UserPage />} />
                         <Route path="*" element={<div>Not found</div>} />
                     </Routes>
                     <Portal>
