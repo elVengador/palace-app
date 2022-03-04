@@ -60,7 +60,6 @@ export const FormSignIn = ({
 
             signUp({
                 onCompleted: (data) => {
-                    console.log('completed', data.signIn)
                     saveTokens(data.signIn)
                     navigate("/notes")
                 },
@@ -87,7 +86,7 @@ export const FormSignIn = ({
                     setState={setEmailState}
                     labelValue="Email"
                     pattern={RE_EMAIL}
-                    attributes={{ id: '' }}
+                    attributes={{ id: 'email-input' }}
                 />
                 <Input
                     value={password}
@@ -97,7 +96,7 @@ export const FormSignIn = ({
                     labelValue="Password"
                     pattern={RE_PASSWORD}
                     type="password"
-                    attributes={{ id: '' }}
+                    attributes={{ id: 'password-input' }}
                 />
             </>
         </Form>

@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { NoteForm } from './NoteForm';
 
 export default {
-    title: 'Desing System/Molecules/TagForm',
+    title: 'Desing System/Organisims/TagForm',
     component: NoteForm,
 } as ComponentMeta<typeof NoteForm>;
 

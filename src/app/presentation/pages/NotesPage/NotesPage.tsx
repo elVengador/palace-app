@@ -4,12 +4,11 @@ import './NotesPage.scss';
 import { Header } from '../../../../core/presentation/atomic/organisms/Header/Header';
 import { Page } from '../../atomic/templates/Page/Page';
 import { Notes } from '../../atomic/organisms/Notes/Notes';
-// import { Menu } from '../../../../core/presentation/atomic/organisms/Menu/Menu';
 import { MenuFooter } from '../../atomic/organisms/MenuFooter/MenuFooter';
 import { MENU } from '../config.util';
 import { useNotePage } from '../../atomic/organisms/Notes/useNotesPage';
-import { NotesOperations } from '../../atomic/organisms/NoteOperations2/NoteOperations';
-import { NoteForm } from '../../atomic/molecules/NoteForm2/NoteForm';
+import { NotesOperations } from '../../atomic/organisms/NoteOperations/NoteOperations';
+import { NoteForm } from '../../atomic/organisms/NoteForm/NoteForm';
 
 export default function NotesPage(): JSX.Element {
     const [title, setTitle] = useState('Notes')

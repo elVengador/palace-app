@@ -11,11 +11,11 @@ export default function HomePage(): JSX.Element {
         <div className='home-page'>
             <div className="logo" />
             <Title content='Palace' color='fg' size='lg' attributes={{ style: { justifyContent: 'center' } }} />
+            <br />
             <p>
                 Application to manage your notes as your second mind,
                 it could became in your memory palace
             </p>
-            <hr />
             <ul>
                 <li>
                     <Link to="auth/sign-up" >

@@ -9,8 +9,6 @@ import { NoteOutput } from '../../../../domain/entities';
 import { QUERY_NOTES_BY_USER } from '../../../../infraestructure/repository/note/note.gql';
 import { IconButton } from '../../../../../core/presentation/atomic/atoms/IconButton/IconButton';
 import { AlertContext } from '../../../../../App';
-
-
 interface HeaderProps {
     stateToShowPreviewNote: (note: NoteOutput) => void,
     stateToAddNote: () => void,
@@ -38,38 +36,36 @@ export const Notes = ({
 
     return (
         <Main>
-            {
-                <>
-                    <div className="notes--header">
-                        <div className="options-top">
-                            <div></div>
-                            <div>
-                                <IconButton
-                                    icon='plus'
-                                    color='fg'
-                                    attributes={{ title: 'Add note' }}
-                                    events={{ onClick: () => stateToAddNote() }}
-                                />
-                            </div>
+            <>
+                <div className="notes--header">
+                    <div className="options-top">
+                        <div></div>
+                        <div>
+                            <IconButton
+                                icon='plus'
+                                color='fg'
+                                attributes={{ title: 'Add note' }}
+                                events={{ onClick: () => stateToAddNote() }}
+                            />
                         </div>
                     </div>
-                    <div className="notes--items">
-                        {
-                            dataGetNotesOutPut?.getNotesByUser &&
-                            dataGetNotesOutPut?.getNotesByUser.map(cur => <NoteItem
-                                content={cur.value}
-                                date={cur.creationDate}
-                                tags={cur.tags}
-                                onClick={() => {
-                                    console.log('change to show preview')
-                                    stateToShowPreviewNote(cur)
-                                }}
-                                key={cur._id}
-                            />)
-                        }
-                    </div>
-                </>
-            }
+                </div>
+                <div className="notes--items">
+                    {
+                        dataGetNotesOutPut?.getNotesByUser &&
+                        dataGetNotesOutPut?.getNotesByUser.map(cur => <NoteItem
+                            content={cur.value}
+                            dateInISO={cur.creationDate}
+                            tags={cur.tags}
+                            onClick={() => {
+                                console.log('change to show preview')
+                                stateToShowPreviewNote(cur)
+                            }}
+                            key={cur._id}
+                        />)
+                    }
+                </div>
+            </>
         </Main>
     );
 };

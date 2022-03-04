@@ -38,5 +38,5 @@ Default.args = {
             state: '',
             userId: ''
         }],
-    date: '12 de noviembre del 2021'
+    dateInISO: '2022-03-04T17:59:01.834Z'
 };
