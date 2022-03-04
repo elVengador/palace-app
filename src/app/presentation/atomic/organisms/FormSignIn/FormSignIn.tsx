@@ -23,7 +23,7 @@ export const FormSignIn = ({
     const alertContext = useContext(AlertContext)
     const [email, setEmail, emailState, setEmailState] = useInput()
     const [password, setPassword, passwordState, setPasswordState] = useInput()
-    const [signUp] = useMutation<{ signIn: TokensOutput }, SignInInput>
+    const [signUp, { loading }] = useMutation<{ signIn: TokensOutput }, SignInInput>
         (MUTATION_SIGN_IN, { variables: { email, password } });
 
     const successStatus: InputStatus = 'success'
@@ -64,7 +64,12 @@ export const FormSignIn = ({
                     saveTokens(data.signIn)
                     navigate("/notes")
                 },
-                onError: () => { alertContext?.addErrorAlert() }
+                onError: (err) => {
+                    if (err.message === 'Field invalid') {
+                        return alertContext?.addErrorAlert('User and/or password invalids')
+                    }
+                    alertContext?.addErrorAlert()
+                }
             })
         } catch (err) {
             console.log('>>', err);
@@ -73,7 +78,7 @@ export const FormSignIn = ({
     }
 
     return (
-        <Form title={title} onSubmit={onSubmitSignIn}>
+        <Form title={title} onSubmit={onSubmitSignIn} loading={loading}>
             <>
                 <Input
                     value={email}

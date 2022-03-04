@@ -1,0 +1,28 @@
+.note-operations {
+    &--header {
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        .left-options {
+        }
+        .right-options {
+            display: flex;
+        }
+    }
+    &--body {
+        padding: 10px 20px;
+        display: grid;
+        row-gap: 10px;
+        .info {
+            display: flex;
+            justify-content: space-between;
+        }
+        .preview {
+            background-color: var(--bg_2);
+            border-radius: 10px;
+            padding: 10px 15px;
+            overflow-y: auto;
+            box-shadow: var(--shadow);
+        }
+    }
+}

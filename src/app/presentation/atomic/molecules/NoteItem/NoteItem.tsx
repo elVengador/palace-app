@@ -33,10 +33,9 @@ export const NoteItem = ({
     const onClickNote = () => { props.onClick && props.onClick() }
 
     return (
-        <div className={'note'}>
+        <div className={'note'} onClick={onClickNote}>
             <div
                 className={`note--body note--body__${size}`}
-                onClick={onClickNote}
                 dangerouslySetInnerHTML={{ __html: markdownToHtml(content) }}
             ></div>
             <div className="note--footer">

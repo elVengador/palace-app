@@ -135,6 +135,7 @@ export const NotesOperations = ({
                             state={tagState}
                             setState={setTagState}
                             options={mapTagsToSelect()}
+                            attributes={{ id: 'select-tag' }}
                         />
                         <div className="info">
                             <small>{`${noteValue.length} of ${NOTE_CHARACTER_LIMIT}`}</small>

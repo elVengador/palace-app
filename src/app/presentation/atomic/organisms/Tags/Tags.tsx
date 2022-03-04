@@ -21,7 +21,8 @@ export const Tags = (): JSX.Element => {
             console.log(err);
             if (err.message === 'Unauthorized') {
                 console.log('dont hast token');
-                navigate('/auth')
+                alertContext?.addErrorAlert('Ups, your session expired')
+                return navigate('/auth')
             }
             alertContext?.addErrorAlert()
         }

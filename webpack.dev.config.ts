@@ -60,7 +60,10 @@ const config: Configuration = {
     },
 
     plugins: [
-        new HtmlWebpackPlugin({ template: path.resolve(__dirname, "src", "index.html") }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, "src", "index.html"),
+            favicon: path.resolve(__dirname, "src", "assets", "favicon.ico")
+        }),
         new HotModuleReplacementPlugin(),
         new ForkTsCheckerWebpackPlugin({ async: false }),
         new ESLintPlugin({ extensions: ["js", "jsx", "ts", "tsx"] }),
