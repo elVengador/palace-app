@@ -2,15 +2,21 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Button } from '../../../../core/presentation/atomic/atoms/Button/Button';
 import { Title } from '../../../../core/presentation/atomic/atoms/Title/Title';
+import { Footer } from '../../../../core/presentation/atomic/organisms/Footer/Footer';
+import { Header } from '../../../../core/presentation/atomic/organisms/Header/Header';
+import { Page } from '../../atomic/templates/Page/Page';
 
 import './HomePage.scss';
 
 export default function HomePage(): JSX.Element {
 
-    return (
+    const header = <Header />
+    const footer = <Footer />
+
+    const Home = () => (
         <div className='home-page'>
             <div className="logo" />
-            <Title content='Palace' color='fg' size='lg' attributes={{ style: { justifyContent: 'center' } }} />
+            <Title content='Palace' color='fg' size='lg' />
             <br />
             <p>
                 Application to manage your notes as your second mind,
@@ -29,5 +35,9 @@ export default function HomePage(): JSX.Element {
                 </li>
             </ul>
         </div>
+    )
+
+    return (
+        <Page main={Home()} header={header} footer={footer} />
     )
 }

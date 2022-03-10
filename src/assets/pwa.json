@@ -1,8 +1,8 @@
 {
     "name": "Palace App",
     "short_name": "Palace",
-    "theme_color": "#f3c057",
-    "background_color": "#dbdbdb",
+    "theme_color": "#202020",
+    "background_color": "#f3c057",
     "description": "Palace is a app to manage notes with powerfull features",
     "display": "fullscreen",
     "start_url": "/notes",

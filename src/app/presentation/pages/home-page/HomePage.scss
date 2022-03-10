@@ -1,12 +1,23 @@
 .home-page {
     padding: 20px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    // height: 100vh;
+    height: 100%;
+    background: var(--bg);
+    p {
+        max-width: 300px;
+        color: var(--fg);
+    }
     ul {
-        padding: 30px 0px;
         display: flex;
         flex-direction: column;
         row-gap: 20px;
         justify-content: center;
+        padding-left: 0px;
     }
     li {
         list-style: none;
@@ -22,5 +33,4 @@
     background-position: center;
     width: 200px;
     height: 200px;
-    margin: auto;
 }
