@@ -1,13 +1,10 @@
 import path from "path";
-import fs from 'fs'
 import { Configuration as WebpackConfiguration, HotModuleReplacementPlugin } from "webpack";
 import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
-// import { Configuration, HotModuleReplacementPlugin } from "webpack";
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
 import CopyWebpackPlugin from 'copy-webpack-plugin'
-// import { postcss } from "postcss-flexbugs-fixes";
 import dotenv from 'dotenv';
 import webpack from "webpack";
 
@@ -22,7 +19,6 @@ const getEnvKeys = () => {
     if (env) {
         envKeys = Object.keys(env).reduce((acu, cur) => {
             const value = JSON.stringify(env[cur]);
-            // acu[`process.env.${cur}`]
             const tt = `process.env.${cur}`
             return { ...acu, [tt]: value };
         }, {});
@@ -66,8 +62,7 @@ const config: Configuration = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "src", "index.html"),
-            favicon: path.resolve(__dirname, "src", "assets", "favicon.ico"),
-            pwa: path.resolve(__dirname, "src", "assets", "pwa.json")
+            favicon: path.resolve(__dirname, "src", "assets", "favicon.ico")
         }),
         new HotModuleReplacementPlugin(),
         new ForkTsCheckerWebpackPlugin({ async: false }),
@@ -76,6 +71,7 @@ const config: Configuration = {
         new CopyWebpackPlugin({
             patterns: [
                 { from: 'src/assets', to: 'assets' },
+                { from: 'pwa.json', to: 'pwa.json' },
                 { from: 'sw.js', to: 'sw.js' }
             ]
         }),
