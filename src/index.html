@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="assets/pwa.json">
 </head>
 
 <body>
@@ -21,3 +22,23 @@
 </body>
 
 </html>
+
+<script>
+    // register service worker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js', { scope: '/' }).then(function (reg) {
+
+            if (reg.installing) {
+                console.log('Service worker installing');
+            } else if (reg.waiting) {
+                console.log('Service worker installed');
+            } else if (reg.active) {
+                console.log('Service worker active');
+            }
+
+        }).catch(function (error) {
+            // registration failed
+            console.log('Registration failed with ' + error);
+        });
+    }
+</script>

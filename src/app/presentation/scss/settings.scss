@@ -1,7 +1,9 @@
 :root {
     --height-header: 55px;
     --height-footer: 40px;
-    --height-main: calc(100vh - var(--height-header) - var(--height-footer));
+    --height-main: calc(
+        var(--vh, 100vh) - var(--height-header) - var(--height-footer)
+    ); // asign --vh with js to get real virtual height
     --page-width: 800px;
 
     --font-family: "Fira Mono", monospace;
