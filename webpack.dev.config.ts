@@ -1,10 +1,12 @@
 import path from "path";
+import fs from 'fs'
 import { Configuration as WebpackConfiguration, HotModuleReplacementPlugin } from "webpack";
 import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
 // import { Configuration, HotModuleReplacementPlugin } from "webpack";
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
+import CopyWebpackPlugin from 'copy-webpack-plugin'
 // import { postcss } from "postcss-flexbugs-fixes";
 import dotenv from 'dotenv';
 import webpack from "webpack";
@@ -31,7 +33,9 @@ const getEnvKeys = () => {
 
 const config: Configuration = {
     mode: 'development',
-    entry: { index: path.resolve(__dirname, "src", "index.tsx") },
+    entry: {
+        index: path.resolve(__dirname, "src", "index.tsx"),
+    },
     output: { publicPath: '/' },
     module: {
         rules: [
@@ -52,7 +56,7 @@ const config: Configuration = {
                         ],
                     },
                 },
-            }
+            },
         ]
     },
     resolve: {
@@ -62,19 +66,30 @@ const config: Configuration = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "src", "index.html"),
-            favicon: path.resolve(__dirname, "src", "assets", "favicon.ico")
+            favicon: path.resolve(__dirname, "src", "assets", "favicon.ico"),
+            pwa: path.resolve(__dirname, "src", "assets", "pwa.json")
         }),
         new HotModuleReplacementPlugin(),
         new ForkTsCheckerWebpackPlugin({ async: false }),
         new ESLintPlugin({ extensions: ["js", "jsx", "ts", "tsx"] }),
-        new webpack.DefinePlugin(getEnvKeys())
+        new webpack.DefinePlugin(getEnvKeys()),
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: 'src/assets', to: 'assets' },
+                { from: 'sw.js', to: 'sw.js' }
+            ]
+        }),
     ],
     devtool: "inline-source-map",
     devServer: {
         historyApiFallback: true,
         port: 4000,
         open: true,
-        hot: true
+        hot: true,
+        https: {
+            key: "./certs/localhost-key.pem",
+            cert: "./certs/localhost.pem"
+        }
     },
 };
 
