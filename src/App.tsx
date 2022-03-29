@@ -23,7 +23,7 @@ export default function App(): JSX.Element {
 
     const refAlerts = React.useRef<RefControlAlerts>(null)
 
-    const addSuccessAlert = (message = 'Operation Successfull') => refAlerts.current?.addSuccessAlert(message)
+    const addSuccessAlert = (message = 'Operation Successful') => refAlerts.current?.addSuccessAlert(message)
     const addInfoAlert = (message: string) => refAlerts.current?.addInfoAlert(message)
     const addWarningAlert = (message: string) => refAlerts.current?.addWarningAlert(message)
     const addErrorAlert = (message = 'Cant make this operation') => refAlerts.current?.addErrorAlert(message)

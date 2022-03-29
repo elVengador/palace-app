@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 
-// import './NoteForm.scss';
+import './NoteForm.scss';
 import { InputStatus } from '../../../../../core/presentation/utils/interfaces.utils';
 import { TextArea } from '../../../../../core/presentation/atomic/atoms/TextArea/TextArea';
 import { Select } from '../../../../../core/presentation/atomic/molecules/Select/Select';
