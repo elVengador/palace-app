@@ -22,7 +22,6 @@ export const Notes = ({
     const alertContext = useContext(AlertContext)
     const navigate = useNavigate();
     const { data: dataGetNotesOutPut } = useQuery<{ getNotesByUser: NoteOutput[] }>(QUERY_NOTES_BY_USER, {
-        pollInterval: 1000 * 60 * 30,
         onError: (err) => {
             console.log(err);
             if (err.message === 'Unauthorized') {

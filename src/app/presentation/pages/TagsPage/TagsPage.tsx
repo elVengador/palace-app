@@ -19,7 +19,6 @@ export default function TagsPage(): JSX.Element {
     const navigate = useNavigate();
 
     const { loading, data } = useQuery<{ getTagsByUser: Tag[] }, string>(QUERY_GET_TAGS_BY_USER, {
-        pollInterval: 1000 * 60 * 30,
         onError: (err) => {
             console.log(err);
             if (err.message === 'Unauthorized') {

@@ -8,7 +8,7 @@ import { AddNoteInput, NoteOutput, Tag, UpdateNoteInput } from '../../../../doma
 import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_GET_TAGS_BY_USER } from '../../../../infraestructure/repository/tag/tag.gql';
 import { MUTATION_ADD_NOTE, MUTATION_UPDATE_NOTE, QUERY_NOTES_BY_USER } from '../../../../infraestructure/repository/note/note.gql';
-import { AlertContext } from '../../../../../App';
+import { AlertContext, ModalContext } from '../../../../../App';
 import { IconButton } from '../../../../../core/presentation/atomic/atoms/IconButton/IconButton';
 
 interface NoteFormProps {
@@ -24,6 +24,7 @@ export const NoteForm = ({
 }: NoteFormProps): JSX.Element => {
 
     const alertContext = useContext(AlertContext)
+    const modalContext = useContext(ModalContext)
 
     const NOTE_CHARACTER_LIMIT = 3000
     const [tagValue, setTagValue] = useState<string>(initialNote?.tags[0]._id || '');
@@ -32,7 +33,7 @@ export const NoteForm = ({
     const [noteState, setNoteState] = useState<InputStatus>('default')
 
     const { loading, data: dataGetTagsByUser } = useQuery<{ getTagsByUser: Tag[] }, string>
-        (QUERY_GET_TAGS_BY_USER, { pollInterval: 1000 * 60 * 30, })
+        (QUERY_GET_TAGS_BY_USER)
 
     const [addNote,] = useMutation<{ addNote: NoteOutput }, { addNoteInput: AddNoteInput }>
         (MUTATION_ADD_NOTE,
@@ -119,6 +120,12 @@ export const NoteForm = ({
                     }}
                 />
                 <div>
+                    <IconButton
+                        icon='question'
+                        color='fg'
+                        attributes={{ title: 'Watch help to notes' }}
+                        events={{ onClick: () => modalContext?.showModal() }}
+                    />
                     <IconButton
                         icon='check'
                         color='fg'
