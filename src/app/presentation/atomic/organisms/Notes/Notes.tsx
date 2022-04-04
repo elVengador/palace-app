@@ -9,7 +9,7 @@ import { NoteOutput } from '../../../../domain/entities';
 import { QUERY_NOTES_BY_USER } from '../../../../infraestructure/repository/note/note.gql';
 import { IconButton } from '../../../../../core/presentation/atomic/atoms/IconButton/IconButton';
 import { AlertContext } from '../../../../../App';
-interface HeaderProps {
+interface NotesProps {
     stateToShowPreviewNote: (note: NoteOutput) => void,
     stateToAddNote: () => void,
 }
@@ -17,12 +17,11 @@ interface HeaderProps {
 export const Notes = ({
     stateToShowPreviewNote,
     stateToAddNote
-}: HeaderProps): JSX.Element => {
+}: NotesProps): JSX.Element => {
 
     const alertContext = useContext(AlertContext)
     const navigate = useNavigate();
     const { data: dataGetNotesOutPut } = useQuery<{ getNotesByUser: NoteOutput[] }>(QUERY_NOTES_BY_USER, {
-        pollInterval: 1000 * 60 * 30,
         onError: (err) => {
             console.log(err);
             if (err.message === 'Unauthorized') {
