@@ -10,32 +10,14 @@ interface FormProps {
     rightMenu?: JSX.Element
 }
 
-export const Page = ({ ...props }: FormProps): JSX.Element => {
+export const Page = ({ header, footer, main }: FormProps): JSX.Element => {
     return (
-        <div className="page--wrapper">
-            <div className="header--wrapper">
-                {props.header}
+        <>
+            <div className="header--wrapper">{header}</div>
+            <div className="main-wrapper">
+                <div className="wrapper">{main}</div>
             </div>
-
-            <div className="wrapper">
-                {props.leftMenu &&
-                    <div className="wrapper--left-menu">
-                        {props.leftMenu}
-                    </div>
-                }
-                <div className="wrapper--main">
-                    {props.main}
-                </div>
-                {props.rightMenu &&
-                    <div className="wrapper--right-menu">
-                        {props.rightMenu}
-                    </div>
-                }
-            </div>
-
-            <div className="footer--wrapper">
-                {props.footer}
-            </div>
-        </div>
+            <div className="footer--wrapper">{footer}</div>
+        </>
     );
 };
