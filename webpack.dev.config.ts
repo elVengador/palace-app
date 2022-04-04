@@ -82,10 +82,10 @@ const config: Configuration = {
         port: 4000,
         open: true,
         hot: true,
-        // https: {
-        //     key: "./certs/localhost-key.pem",
-        //     cert: "./certs/localhost.pem"
-        // }
+        https: {
+            key: "./certs/localhost-key.pem",
+            cert: "./certs/localhost.pem"
+        }
     },
 };
 
