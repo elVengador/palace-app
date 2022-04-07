@@ -22,8 +22,6 @@ export const MenuFooter = ({
 
     const { pathname } = useLocation();
 
-    console.log('menuItems', menuItems);
-
     const linkStyle = (path: string) => ({
         width: '30px',
         height: 'inherit',

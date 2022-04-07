@@ -19,11 +19,16 @@ export const AlertContext = React.createContext<{
     addErrorAlert: (message?: string) => void
 } | null>(null);
 
+export const ModalContext = React.createContext<{
+    showModal: () => void;
+    hideModal: () => void
+} | null>(null)
+
 export default function App(): JSX.Element {
 
     const refAlerts = React.useRef<RefControlAlerts>(null)
 
-    const addSuccessAlert = (message = 'Operation Successfull') => refAlerts.current?.addSuccessAlert(message)
+    const addSuccessAlert = (message = 'Operation Successful') => refAlerts.current?.addSuccessAlert(message)
     const addInfoAlert = (message: string) => refAlerts.current?.addInfoAlert(message)
     const addWarningAlert = (message: string) => refAlerts.current?.addWarningAlert(message)
     const addErrorAlert = (message = 'Cant make this operation') => refAlerts.current?.addErrorAlert(message)
@@ -35,7 +40,6 @@ export default function App(): JSX.Element {
             addWarningAlert,
             addErrorAlert
         }}>
-
             <ApolloProvider client={client}>
                 <BrowserRouter>
                     <Routes>
@@ -47,14 +51,12 @@ export default function App(): JSX.Element {
                         </Route>
                         <Route path="notes"  >
                             <Route index element={<NotesPage />} />
-                            {/* <Route path="add" element={<NotePage />} />
-                            <Route path=":id" element={<NotePage />} /> */}
                         </Route>
                         <Route path="tags" element={<TagsPage />} />
                         <Route path="user" element={<UserPage />} />
                         <Route path="*" element={<div>Not found</div>} />
                     </Routes>
-                    <Portal>
+                    <Portal parentSelector='#root' id='alerts-root'>
                         <Alerts refControlAlerts={refAlerts} />
                     </Portal>
                 </BrowserRouter>

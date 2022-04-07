@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 
-// import './NoteForm.scss';
+import './NoteForm.scss';
 import { InputStatus } from '../../../../../core/presentation/utils/interfaces.utils';
 import { TextArea } from '../../../../../core/presentation/atomic/atoms/TextArea/TextArea';
 import { Select } from '../../../../../core/presentation/atomic/molecules/Select/Select';
@@ -10,6 +10,9 @@ import { QUERY_GET_TAGS_BY_USER } from '../../../../infraestructure/repository/t
 import { MUTATION_ADD_NOTE, MUTATION_UPDATE_NOTE, QUERY_NOTES_BY_USER } from '../../../../infraestructure/repository/note/note.gql';
 import { AlertContext } from '../../../../../App';
 import { IconButton } from '../../../../../core/presentation/atomic/atoms/IconButton/IconButton';
+import { Modal } from '../../../../../core/presentation/atomic/organisms/Modal/Modal';
+import { HelpNotes } from '../../atoms/HelpNotes/HelpNotes';
+import { HeaderPage } from '../../molecules/HeaderPage/HeaderPage';
 
 interface NoteFormProps {
     initialNote?: NoteOutput | null,
@@ -30,9 +33,10 @@ export const NoteForm = ({
     const [tagState, setTagState] = useState<InputStatus>('default');
     const [noteValue, setNoteValue] = useState(initialNote?.value || '')
     const [noteState, setNoteState] = useState<InputStatus>('default')
+    const [showHelpNotes, setShowHelpNotes] = useState(false)
 
     const { loading, data: dataGetTagsByUser } = useQuery<{ getTagsByUser: Tag[] }, string>
-        (QUERY_GET_TAGS_BY_USER, { pollInterval: 1000 * 60 * 30, })
+        (QUERY_GET_TAGS_BY_USER)
 
     const [addNote,] = useMutation<{ addNote: NoteOutput }, { addNoteInput: AddNoteInput }>
         (MUTATION_ADD_NOTE,
@@ -99,6 +103,8 @@ export const NoteForm = ({
         }
     }
 
+    const onShowHelpNotes = () => setShowHelpNotes(true)
+
     const mapTagsToSelect = () => {
         if (!dataGetTagsByUser) { return [] }
         return dataGetTagsByUser.getTagsByUser.map(cur => ({ label: `#${cur.value}`, value: cur._id }))
@@ -106,19 +112,30 @@ export const NoteForm = ({
 
     if (initialNote) { //form to edit
         return <>
-            <div className="note-operations--header">
-                <IconButton
-                    icon='arrow-left'
-                    color='fg'
-                    attributes={{ title: 'Back' }}
-                    events={{
+            <Modal isOpen={showHelpNotes} onHide={() => setShowHelpNotes(false)}>
+                <HelpNotes />
+            </Modal>
+            <HeaderPage
+                leftOptions={
+                    <IconButton
+                        icon='arrow-left'
+                        color='fg'
+                        attributes={{ title: 'Back' }}
+                        events={{
 
-                        onClick: () => {
-                            stateToShowPreviewNote(initialNote)
-                        }
-                    }}
-                />
-                <div>
+                            onClick: () => {
+                                stateToShowPreviewNote(initialNote)
+                            }
+                        }}
+                    />
+                }
+                rightOptions={<>
+                    <IconButton
+                        icon='question'
+                        color='fg'
+                        attributes={{ title: 'Watch help to notes' }}
+                        events={{ onClick: onShowHelpNotes }}
+                    />
                     <IconButton
                         icon='check'
                         color='fg'
@@ -129,8 +146,8 @@ export const NoteForm = ({
                             })
                         }}
                     />
-                </div>
-            </div>
+                </>}
+            />
 
             <form onSubmit={() => onUpdateNote(initialNote._id, {
                 tagId: tagValue, value: noteValue
@@ -170,23 +187,35 @@ export const NoteForm = ({
     return (
         //form to add
         <>
-            <div className="note-operations--header">
-                <IconButton
-                    icon='arrow-left'
-                    color='fg'
-                    attributes={{ title: 'Back' }}
-                    events={{ onClick: () => stateToShowNotes() }}
-                />
+            <Modal isOpen={showHelpNotes} onHide={() => setShowHelpNotes(false)}>
+                <HelpNotes />
+            </Modal>
 
-                <div>
+            <HeaderPage
+                leftOptions={
+                    <IconButton
+                        icon='arrow-left'
+                        color='fg'
+                        attributes={{ title: 'Back' }}
+                        events={{ onClick: () => stateToShowNotes() }}
+                    />
+                }
+
+                rightOptions={<>
+                    <IconButton
+                        icon='question'
+                        color='fg'
+                        attributes={{ title: 'Watch help to notes' }}
+                        events={{ onClick: onShowHelpNotes }}
+                    />
                     <IconButton
                         icon='check'
                         color='fg'
                         attributes={{ title: 'Save Note' }}
                         events={{ onClick: () => onAddNote({ tagId: tagValue, value: noteValue }) }}
                     />
-                </div>
-            </div>
+                </>}
+            />
 
             <form onSubmit={() => onAddNote({ tagId: tagValue, value: noteValue })}>
                 {loading && <h1>Loading</h1>}

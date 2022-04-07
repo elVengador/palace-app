@@ -41,7 +41,6 @@ export const NotesOperations = ({
                         onClick: () => {
                             // stateToEditNote(selectedNote)
                             stateToEditNote(selectedNote)
-                            console.log('efit notes')
                         }
                     }}
                 />

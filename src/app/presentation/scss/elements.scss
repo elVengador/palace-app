@@ -3,7 +3,7 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: var(--light-disabled);
-    color: var(--dark);
+    color: var(--fg);
     font-family: var(--font-family);
 }
 
@@ -30,4 +30,36 @@ p {
 *::-webkit-scrollbar-thumb {
     background-color: var(--primary); /* color of the scroll thumb */
     border-radius: var(--border-radius); /* roundness of the scroll thumb */
+}
+
+a {
+    font-style: italic;
+    text-decoration: none;
+    // text-decoration: var(--fg) underline dotted;
+}
+
+a:before {
+    content: "🔗";
+    font-weight: bold;
+    font-style: italic;
+}
+/* unvisited link */
+a:link {
+    color: var(--fg);
+}
+
+/* visited link */
+a:visited {
+    color: var(--fg);
+}
+
+/* mouse over link */
+a:hover {
+    color: var(--secondary);
+    text-decoration: var(--secondary) underline dotted;
+}
+
+/* selected link */
+a:active {
+    color: var(--dark);
 }

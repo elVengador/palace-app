@@ -1,0 +1,14 @@
+.header-page{
+    display: flex;
+    justify-content: space-between;
+    .left-options{
+        display: flex;
+        justify-content: left;
+        column-gap: 10px;
+    }
+    .right-options{
+        display: flex;
+        justify-content: right;
+        column-gap: 10px;
+    }
+}

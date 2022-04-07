@@ -1,0 +1,15 @@
+.help-notes {
+    padding: 10px;
+    &--title {
+        margin: 10px 0px;
+    }
+    &--content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        row-gap: 20px;
+        align-items: center;
+    }
+}
+.help-notes-wrapper {
+    margin: 20px 0px;
+}
