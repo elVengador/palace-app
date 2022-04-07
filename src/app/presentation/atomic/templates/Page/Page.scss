@@ -9,8 +9,9 @@
 }
 .main-wrapper{
     height: var(--height-main);
+    display: flex;
     background: var(--bg);
-        overflow-y: auto;
+    overflow-y: auto;
     .wrapper{
         max-width: var(--page-width);
         margin: auto;
