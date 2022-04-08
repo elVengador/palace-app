@@ -7,13 +7,14 @@
     box-shadow: var(--shadow);
     height: var(--height-footer);
 }
-.main-wrapper{
+.main-wrapper {
     height: var(--height-main);
     display: flex;
     background: var(--bg);
     overflow-y: auto;
-    .wrapper{
+    .wrapper {
         max-width: var(--page-width);
+        width: 100%;
         margin: auto;
     }
 }
