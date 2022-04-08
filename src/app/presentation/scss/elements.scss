@@ -38,11 +38,6 @@ a {
     // text-decoration: var(--fg) underline dotted;
 }
 
-a:before {
-    content: "🔗";
-    font-weight: bold;
-    font-style: italic;
-}
 /* unvisited link */
 a:link {
     color: var(--fg);
@@ -62,4 +57,25 @@ a:hover {
 /* selected link */
 a:active {
     color: var(--dark);
+}
+
+table {
+    border-collapse: collapse;
+    margin: auto;
+    th {
+        text-align: center;
+    }
+    th,
+    td {
+        border: solid 1px var(--fg);
+    }
+}
+
+blockquote {
+    padding: 10px;
+    margin: 12px;
+    border-left: solid 3px var(--primary);
+    box-shadow: var(--shadow-sm-fg);
+    border-radius: 3px;
+    color: var(--fg);
 }

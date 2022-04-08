@@ -18,6 +18,41 @@ export const HelpNotes = (): JSX.Element => {
             </article>
 
             <article className='help-notes-wrapper'>
+                <h2 className='help-notes--table'>Table:</h2>
+                <div className="help-notes--content">
+                    <div><pre>
+                        {`
+|  a  |  b  |
+|-----|-----|
+|  x  |  x  |
+|  x  |  x  |
+                            `}
+                    </pre>
+                    </div>
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>a</th>
+                                    <th>b</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>x</td>
+                                    <td>x</td>
+                                </tr>
+                                <tr>
+                                    <td>x</td>
+                                    <td>x</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </article>
+
+            <article className='help-notes-wrapper'>
                 <h2 className='help-notes--title'>Others:</h2>
                 <div className="help-notes--content">
                     <span>[link text](link)</span> <a href="https://jimynicanor.com">link text</a>
