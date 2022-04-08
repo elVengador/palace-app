@@ -11,6 +11,7 @@ import { Tag } from '../../../domain/entities';
 import { useQuery } from '@apollo/client';
 import { AlertContext } from '../../../../App';
 import { useNavigate } from 'react-router-dom';
+import { SignOut } from '../../../../core/presentation/atomic/molecules/SignOut/SignOut';
 
 export default function TagsPage(): JSX.Element {
 
@@ -30,7 +31,8 @@ export default function TagsPage(): JSX.Element {
         }
     })
 
-    const header = <Header />
+
+    const header = <Header rightElementOptions={<SignOut />} />
     const footer = <MenuFooter menuItems={MENU} />
     const main = <Tags tags={data?.getTagsByUser} loading={loading} />
 

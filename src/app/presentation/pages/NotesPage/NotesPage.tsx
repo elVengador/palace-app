@@ -9,6 +9,7 @@ import { MENU } from '../config.util';
 import { useNotePage } from '../../atomic/organisms/Notes/useNotesPage';
 import { NotesOperations } from '../../atomic/organisms/NoteOperations/NoteOperations';
 import { NoteForm } from '../../atomic/organisms/NoteForm/NoteForm';
+import { SignOut } from '../../../../core/presentation/atomic/molecules/SignOut/SignOut';
 
 export default function NotesPage(): JSX.Element {
     const [title, setTitle] = useState('Notes')
@@ -21,7 +22,7 @@ export default function NotesPage(): JSX.Element {
         notesPageState
     } = useNotePage(setTitle)
 
-    const header = <Header title={title} />
+    const header = <Header title={title} rightElementOptions={<SignOut />} />
     const footer = <MenuFooter menuItems={MENU} />
     const main = () => {
         if (notesPageState === 'LIST') return <Notes

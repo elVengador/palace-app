@@ -5,11 +5,12 @@ import { Page } from '../../atomic/templates/Page/Page';
 import { MenuFooter } from '../../atomic/organisms/MenuFooter/MenuFooter';
 import { MENU } from '../config.util';
 import { Title } from '../../../../core/presentation/atomic/atoms/Title/Title';
+import { SignOut } from '../../../../core/presentation/atomic/molecules/SignOut/SignOut';
 
 export default function UserPage(): JSX.Element {
     const [title] = useState('User')
 
-    const header = <Header title={title} />
+    const header = <Header title={title} rightElementOptions={<SignOut />} />
     const footer = <MenuFooter menuItems={MENU} />
     const main = () => {
         const style = {
@@ -21,7 +22,7 @@ export default function UserPage(): JSX.Element {
         }
         return <main style={{ ...style, flexDirection: 'column' }}>
             <Title content='User Page' color='fg' size='lg' />
-            <p>in working...</p>
+            <p style={{ color: 'var(--fg)' }}>-- in working --</p>
         </main>
     }
 
