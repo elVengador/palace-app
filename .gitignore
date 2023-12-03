@@ -4,3 +4,5 @@ dist
 .env
 .env.*
 .certs
+package-lock.json
+yarn.lock
