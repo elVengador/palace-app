@@ -21,6 +21,8 @@ mkcert localhost
 npm run dev
 ```
 
+to deploy dont forget to setup the private submodule
+https://github.com/beeinger/vercel-private-submodule
 
 # Architecture
 Clean Architecture with shareable frontend core, these are the layers:
