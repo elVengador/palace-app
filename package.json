@@ -10,7 +10,8 @@
         "storybook": "start-storybook -p 6006",
         "build-storybook": "build-storybook",
         "gen-design-tokens": "node src/app/infraestructure/scripts/gen-design-tokens",
-        "gen-gql": "graphql-codegen"
+        "gen-gql": "graphql-codegen",
+        "vercel-install": "./vercel-submodule-workaround.sh && yarn"
     },
     "keywords": [],
     "author": "",

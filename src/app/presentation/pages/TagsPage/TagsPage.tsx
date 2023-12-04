@@ -19,7 +19,7 @@ export default function TagsPage(): JSX.Element {
     const alertContext = useContext(AlertContext)
     const navigate = useNavigate();
 
-    const { loading, data } = useQuery<{ getTagsByUser: Tag[] }, string>(QUERY_GET_TAGS_BY_USER, {
+    const { loading, data } = useQuery<{ getTagsByUser: Tag[] }>(QUERY_GET_TAGS_BY_USER, {
         onError: (err) => {
             console.log(err);
             if (err.message === 'Unauthorized') {

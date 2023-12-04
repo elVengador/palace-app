@@ -35,7 +35,7 @@ export const NoteForm = ({
     const [noteState, setNoteState] = useState<InputStatus>('default')
     const [showHelpNotes, setShowHelpNotes] = useState(false)
 
-    const { loading, data: dataGetTagsByUser } = useQuery<{ getTagsByUser: Tag[] }, string>
+    const { loading, data: dataGetTagsByUser } = useQuery<{ getTagsByUser: Tag[] }>
         (QUERY_GET_TAGS_BY_USER)
 
     const [addNote,] = useMutation<{ addNote: NoteOutput }, { addNoteInput: AddNoteInput }>
