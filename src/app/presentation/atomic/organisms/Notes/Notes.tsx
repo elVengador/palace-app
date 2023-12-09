@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import './Notes.scss';
@@ -9,6 +9,8 @@ import { NoteOutput } from '../../../../domain/entities';
 import { QUERY_NOTES_BY_USER } from '../../../../infraestructure/repository/note/note.gql';
 import { IconButton } from '../../../../../core/presentation/atomic/atoms/IconButton/IconButton';
 import { AlertContext } from '../../../../../App';
+import { Title } from '../../../../../core/presentation/atomic/atoms/Title/Title';
+import { MENU } from '../../../pages/config.util';
 interface NotesProps {
     stateToShowPreviewNote: (note: NoteOutput) => void,
     stateToAddNote: () => void,
@@ -21,7 +23,7 @@ export const Notes = ({
 
     const alertContext = useContext(AlertContext)
     const navigate = useNavigate();
-    const { data: dataGetNotesOutPut } = useQuery<{ getNotesByUser: NoteOutput[] }>(QUERY_NOTES_BY_USER, {
+    const { data: dataGetNotesOutPut,loading } = useQuery<{ getNotesByUser: NoteOutput[] }>(QUERY_NOTES_BY_USER, {
         onError: (err) => {
             console.log(err);
             if (err.message === 'Unauthorized') {
@@ -36,6 +38,26 @@ export const Notes = ({
     return (
         <Main>
             <>
+            {loading && <h2>loading...</h2>}
+            {!loading && !dataGetNotesOutPut?.getNotesByUser.length && 
+            <>
+            <h2>{"You don't have Notes yet"}</h2>
+            <h3>{"If you don't have tags yet, create one to start taking notes"}</h3>
+            <NavLink
+                to={MENU[2].path}
+            >
+                <Title
+                    content='Create tag here'
+                    icon={MENU[2].icon}
+                    size="sm"
+                    attributes={{title: MENU[2].title}}
+                    iconSeparation="none"
+                    color='secondary'
+                />
+            </NavLink>
+            </>
+            }
+            {!loading &&<>
                 <div className="notes--header">
                     <div className="options-top">
                         <div></div>
@@ -64,6 +86,7 @@ export const Notes = ({
                         />)
                     }
                 </div>
+            </>}
             </>
         </Main>
     );

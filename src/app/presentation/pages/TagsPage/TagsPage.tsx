@@ -32,7 +32,7 @@ export default function TagsPage(): JSX.Element {
     })
 
 
-    const header = <Header rightElementOptions={<SignOut />} />
+    const header = <Header title='Tags' rightElementOptions={<SignOut />} />
     const footer = <MenuFooter menuItems={MENU} />
     const main = <Tags tags={data?.getTagsByUser} loading={loading} />
 

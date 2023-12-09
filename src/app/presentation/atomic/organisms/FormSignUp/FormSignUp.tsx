@@ -27,7 +27,7 @@ export const FormSignUp = ({
 
     const alertContext = useContext(AlertContext)
 
-    const [signIn, { loading }] = useMutation<string, SignUpInput>(MUTATION_SIGN_UP, { variables: { nick, email, password } });
+    const [signUp, { loading }] = useMutation<string, SignUpInput>(MUTATION_SIGN_UP, { variables: { nick, email, password } });
 
     const SUCCESS_STATUS: InputStatus = 'success'
     const navigate = useNavigate();
@@ -52,7 +52,7 @@ export const FormSignUp = ({
         try {
             event.preventDefault()
             if (isInvalidForm()) { return alertContext?.addErrorAlert('Invalid Inputs') }
-            signIn({
+            signUp({
                 onCompleted: () => navigate("/auth"),
                 onError: () => alertContext?.addErrorAlert()
             })

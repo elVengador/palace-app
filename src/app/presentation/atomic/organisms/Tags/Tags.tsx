@@ -38,33 +38,36 @@ export const Tags = ({ tags = [], loading }: TagsProps): JSX.Element => {
     return (
         <Main>
             <>
-                {loading && <h1>loading</h1>}
-                <div className="tags--header">
-                    <div className="options-top">
-                        {!showTagForm && <>
-                            <div>
-                                {/* {ButtonShowHelp} */}
-                            </div>
-                            <div>
-                                {ButtonShowTagForm}
-                            </div>
-                        </>}
+                {loading && <h2>loading...</h2>}
+                {!loading && !tags.length && <h2>There is no tags, create one before start taking notes</h2>}
+                {!loading && <>
+                    <div className="tags--header">
+                        <div className="options-top">
+                            {!showTagForm && <>
+                                <div>
+                                    {/* {ButtonShowHelp} */}
+                                </div>
+                                <div>
+                                    {ButtonShowTagForm}
+                                </div>
+                            </>}
+                        </div>
+                        <div className="options-bottom">
+                            {
+                                showTagForm &&
+                                <TagForm
+                                    handleBeforeSubmit={handleSubmitTag}
+                                    destroyTagForm={() => setShowTagForm(false)}
+                                />
+                            }
+                        </div>
                     </div>
-                    <div className="options-bottom">
+                    <div className="tags--items">
                         {
-                            showTagForm &&
-                            <TagForm
-                                handleBeforeSubmit={handleSubmitTag}
-                                destroyTagForm={() => setShowTagForm(false)}
-                            />
+                            buildTags(tags)
                         }
                     </div>
-                </div>
-                <div className="tags--items">
-                    {
-                        buildTags(tags)
-                    }
-                </div>
+                </>}
             </>
         </Main >
     );
