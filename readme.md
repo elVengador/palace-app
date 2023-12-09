@@ -46,6 +46,9 @@ git submodule update
 cd certs 
 mkcert localhost
 
+# set up the enviroment variables
+cp .env.example .env
+
 # run with webpack on https://localhost:4000/
 npm run dev
 ```

@@ -3,6 +3,7 @@ build
 dist
 .env
 .env.*
+!.env.example
 .certs
 package-lock.json
 yarn.lock
