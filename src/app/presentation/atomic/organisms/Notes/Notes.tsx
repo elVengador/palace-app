@@ -40,7 +40,7 @@ export const Notes = ({
             <>
             {loading && <h2>loading...</h2>}
             {!loading && !dataGetNotesOutPut?.getNotesByUser.length && 
-            <>
+            <div className='notes--empty-message'>
             <h2>{"You don't have Notes yet"}</h2>
             <h3>{"If you don't have tags yet, create one to start taking notes"}</h3>
             <NavLink
@@ -55,7 +55,7 @@ export const Notes = ({
                     color='secondary'
                 />
             </NavLink>
-            </>
+            </div>
             }
             {!loading &&<>
                 <div className="notes--header">

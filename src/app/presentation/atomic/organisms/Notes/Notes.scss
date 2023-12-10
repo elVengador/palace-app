@@ -1,4 +1,7 @@
 .notes {
+    &--empty-message{
+        padding: 10px 20px;
+    }
     &--header {
         padding: 10px 20px;
         background: var(--bg);
