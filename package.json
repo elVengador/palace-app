@@ -11,7 +11,7 @@
         "build-storybook": "build-storybook",
         "gen-design-tokens": "node src/app/infraestructure/scripts/gen-design-tokens",
         "gen-gql": "graphql-codegen",
-        "vercel-install": "./vercel-submodule-workaround.sh && yarn"
+        "vercel-install": "./vercel-submodule-workaround.sh && npm install"
     },
     "keywords": [],
     "author": "",
