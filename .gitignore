@@ -7,3 +7,4 @@ dist
 .certs
 package-lock.json
 yarn.lock
+storybook-static

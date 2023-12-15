@@ -14,5 +14,5 @@ module.exports = {
     "core": {
         "builder": "webpack5"
     },
-    "staticDirs": ["./pulic"]
+    "staticDirs": ["./public"]
 }
